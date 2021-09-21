@@ -20,16 +20,17 @@ int main()
   int randomNum = rand() % 100 +1; //random number generator
   int userInput = 0;
   int guesses = 1;
-  bool playAgain = false;
+  bool playAgain = true;
   //cout << randomNum << endl;
-  /*cin >> userInput;
-  while (userInput != randomNum)
+  
+  while (playAgain == true)
     {
-      guesses++;
+      
       cin >> userInput;
       cout << "Your input number was " << userInput << endl;
-
+      
+      playAgain = false;
     }
-  */
+  
   return 0;
 }
