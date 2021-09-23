@@ -8,14 +8,16 @@ Palindrome Assignment
 */
 #include <iostream>
 #include <cstring>
+
 using namespace std;
 
 int main() {
 	
-	char str[5];
-	 
-	cin >> str;
-	cout << ch << endl;
+	char str[20];
+	cin.get(str, 20); 
+	
+	cout << str << endl;
+	
 	return 0;
 }
 
