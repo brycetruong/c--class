@@ -13,10 +13,39 @@ using namespace std;
 
 int main() {
 	
-	char str[20];
-	cin.get(str, 20); 
+	char input[80];
+	char reverseInput[20];
+	cin.get(input, 80); 
 	
-	cout << str << endl;
+	cout << input << endl;
+	int count = 0;
+
+
+
+
+
+
+
+	
+	if (strcmp(input, reverseInput) == 0) { //this means that they are equal
+	cout << "Palindrome" << endl;
+
+
+
+
+	} else { //not equal
+	  cout << "Not A Palindrome" << endl; 
+
+	}
+	/*for (int i = 0; i < 20; i++) {
+	  if (str[i] != '\0'){
+	    str2[count] = str[i];
+	    count++;
+	  }
+
+
+	  }*/
+	
 	
 	return 0;
 }
