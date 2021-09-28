@@ -34,7 +34,7 @@ void removeSpaces(char *str)
     // Traverse the given string. If current character
     // is not space, then place it at index 'count++'
     for (int i = 0; str[i]; i++)
-      if (str[i] > 'A' || str[i] < 'Z')
+      if (str[i] > 'A' && str[i] < 'Z')
             str[count++] = str[i]; // here count is
                                    // incremented
     str[count] = '\0';
@@ -54,8 +54,6 @@ int main() {
 	for (int i = 0; i < inputLength; i++) {
 	  char ch = input[i];
 	  input[i] = toupper(ch);
-
-
 	}
 	removeSpaces(input);
 	cout << input << endl;
