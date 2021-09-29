@@ -39,20 +39,19 @@ int removeSpaces(char *str)
       if (str[i] > 'A' && str[i] < 'Z')
             str[count++] = str[i]; // here count is
                                    // incremented
-    //str[count] = '\0'; //I have commented out the carridge return because when reversing, it does funky stuff
+    str[count] = '\0'; //I have commented out the carridge return because when reversing, it does funky stuff
     return count;
 }
 
-char[] reverseInput(char *pointyPointer) { //my own homegrown 100% organic non-gmo function
-  char newArray[81];
+void reverseInput(char *pointyPointer, char *newArray) { //my own homegrown 100% organic non-gmo function
   int index = 0;
-  for (int i = strlen(pointyPointer) - 1; i != 0; i--) { //starts at the end of input adds everything in
+  for (int i = strlen(pointyPointer) - 1; i >= 0; i--) { //starts at the end of input adds everything in
     newArray[index] = pointyPointer[i];
     index++;
 
   }
   newArray[strlen(pointyPointer)] = '\0'; //adds that return carridge at the end.
-  return newArray;
+  
 
 
 }
@@ -62,7 +61,7 @@ int main() {
 
   
 	char input[81]; //reads in 80 characters
-	char reverseInput[81];
+	char reverse[81];
 	cin.getline(input, 81, '\n'); 
 	
 	cout << "You entered: " << input << endl;
@@ -73,16 +72,13 @@ int main() {
 	  input[i] = toupper(ch);
 	}
 	int newLength = removeSpaces(input);//a function that was modified from the interwebs
-	cout << newLength << input << endl;
-	reverseInput = reverseInput(input);
-
+	cout << newLength << input << endl; //totally not me realizing that I could just use strlen() on the new string instead of passing around the newLength... its useless now and is just a waste of memory lol
+	reverseInput(input, reverse);
+	cout << reverse << endl;
 
 	
-	if (strcmp(input, reverseInput) == 0) { //this means that they are equal
+	if (strcmp(input, reverse) == 0) { //this means that they are equal
 	cout << "Palindrome" << endl;
-
-
-
 
 	} else { //not equal
 	  cout << "Not A Palindrome" << endl; 
