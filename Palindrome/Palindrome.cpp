@@ -36,7 +36,7 @@ int removeSpaces(char *str)
     // Traverse the given string. If current character
     // is not space, then place it at index 'count++'
     for (int i = 0; str[i]; i++)
-      if (str[i] > 'A' && str[i] < 'Z')
+      if (str[i] >= 'A' && str[i] <= 'Z')
             str[count++] = str[i]; // here count is
                                    // incremented
     str[count] = '\0'; //I have commented out the carridge return because when reversing, it does funky stuff
@@ -71,8 +71,9 @@ int main() {
 	  char ch = input[i];
 	  input[i] = toupper(ch);
 	}
+	//cout << input << endl;
 	int newLength = removeSpaces(input);//a function that was modified from the interwebs
-	cout << newLength << input << endl; //totally not me realizing that I could just use strlen() on the new string instead of passing around the newLength... its useless now and is just a waste of memory lol
+	cout << newLength << strlen(input) << input << endl; //totally not me realizing that I could just use strlen() on the new string instead of passing around the newLength... its useless now and is just a waste of memory lol
 	reverseInput(input, reverse);
 	cout << reverse << endl;
 
