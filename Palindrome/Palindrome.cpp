@@ -65,7 +65,7 @@ int main() {
 	cin.getline(input, 81, '\n'); 
 	
 	cout << "You entered: " << input << endl;
-	cout << "It has a length of " << strlen(input) << endl;
+	cout << "It has an unfiltered length of " << strlen(input) << endl;
 	int inputLength = strlen(input);
 	for (int i = 0; i < inputLength; i++) { //uses the toupper(char) and goes thru entire input, have a temp 'ch' to store the input, then change it to an uppercase, and then plop it back into it's spot in the char array.
 	  char ch = input[i];
@@ -73,7 +73,7 @@ int main() {
 	}
 	//cout << input << endl;
 	int newLength = removeSpaces(input);//a function that was modified from the interwebs
-	cout << newLength << strlen(input) << input << endl; //totally not me realizing that I could just use strlen() on the new string instead of passing around the newLength... its useless now and is just a waste of memory lol
+	cout /*<< newLength << strlen(input)*/<< input << endl; //totally not me realizing that I could just use strlen() on the new string instead of passing around the newLength... its useless now and is just a waste of memory lol
 	reverseInput(input, reverse);
 	cout << reverse << endl;
 
