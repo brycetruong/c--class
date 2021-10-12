@@ -33,28 +33,49 @@ const int O_MOVE = 2;
 const int X_TURN = 0;
 const int O_TURN = 1;
 
+//all of my functions pass the 2D array board into them. 
 void printBoard(int (*board)[3]);
 bool checkWin(int player, int (*board)[3]);
-bool checkTie();
+bool checkTie(int (*board)[3]);
 
 int main() {
   int turn = X_TURN;
   int board[3][3] = {{BLANK, BLANK, BLANK}, {BLANK, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
   bool playing = true;
   while (playing == true) {
-    while (checkWin(X_MOVE) == false && checkWin(O_MOVE) == false && checkTie() == false) {
-    cout << "Enter a letter followed by a number" << endl;
-    //cout << board[0][0] << endl;
-    printBoard(board);
-    bool test = true;
-    cout << checkWin(X_MOVE, board) << endl;
-
-
-
-
-
+    while (checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false) {
+      cout << "Enter a letter followed by a number" << endl;
+      //cout << board[0][0] << endl;
+      printBoard(board);
+      bool test = true;
+      cout << checkWin(X_MOVE, board) << endl;
+      
     }
+    
+    /*if (checkWin(X_MOVE) == true) {
+      System.out.println("X wins by a landslide!");
+      printBoard();
+				xWins++;
+			} else if (checkWin(O_MOVE) == true) {
+				System.out.println("O wins by a landslide!");
+				printBoard();
+				oWins++;
+			} else if (checkTie() == true) {
+				System.out.println("It is a tie!");
+				printBoard();
+			}
+    */
+    if (true) {
+      //this resets the board by going through every slot in the array and placing a blank into them
+      for (int row = 0; row < 3; row++) {
+	for (int column = 0; column < 3; column++) {
+	  board[row][column] = BLANK;
+	}
+      }
+    } else {
+      
     playing = false;
+    }
   }
   
   return 0;
@@ -128,4 +149,16 @@ bool checkWin(int player, int (*board)[3]) { //checks conditions to see whether 
 			}
 		//if none if the above are true, return false and keep on playing
 		return false;
+	}
+//function for checking ties!
+bool checkTie(int (*board)[3]) {
+		//checks for ties by seeing if the entire board is all filled up
+		for (int row = 0; row < 3; row++) {
+			for (int column = 0; column < 3; column++) {
+				if (board[row][column] == BLANK) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
