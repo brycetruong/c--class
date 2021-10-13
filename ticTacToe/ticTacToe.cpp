@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 10/5/21
-Last Modified: 10/11/21
+Last Modified: 10/13/21
 ticTacToe game!
 This is a TicTacToe Game. It reads input and creates a 3x3 board to play the game on.
 It checks for wins, ties, and calculates how many wins X has and how many wins O has.
@@ -40,32 +40,54 @@ bool checkTie(int (*board)[3]);
 
 int main() {
   int turn = X_TURN;
-  int board[3][3] = {{BLANK, BLANK, BLANK}, {BLANK, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
+  int xWins = 0;
+  int oWins = 0;
+  char input[10];
+  int board[3][3] = {{X_MOVE, O_MOVE, BLANK}, {X_MOVE, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
   bool playing = true;
   while (playing == true) {
-    while (checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false) {
+    while (/*checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false*/false) {
       cout << "Enter a letter followed by a number" << endl;
       //cout << board[0][0] << endl;
       printBoard(board);
-      bool test = true;
-      cout << checkWin(X_MOVE, board) << endl;
-      
+      //cout << checkWin(X_MOVE, board) << endl;
+      cin.getline(input, 10, '\n');
+      cout << input[0] << "," << input[1] << endl;
+    }
+
+
+    cout << "Enter a letter followed by a number" << endl;
+    //cout << board[0][0] << endl;
+    printBoard(board);
+    //cout << checkWin(X_MOVE, board) << endl;
+    cin.getline(input, 10, '\n');
+    cout << input[0] << "," << input[1] << endl;
+
+
+
+
+
+
+    
+    if (checkWin(X_MOVE, board) == true) {
+      cout << "X wins by a landslide!" << endl;;
+      printBoard(board);
+      xWins++;
+    } else if (checkWin(O_MOVE, board) == true) {
+      cout << "O wins by a landslide!" << endl;
+      printBoard(board);
+      oWins++;
+    } else if (checkTie(board) == true) {
+      cout << "It is a tie!" << endl;;
+      printBoard(board);
     }
     
-    /*if (checkWin(X_MOVE) == true) {
-      System.out.println("X wins by a landslide!");
-      printBoard();
-				xWins++;
-			} else if (checkWin(O_MOVE) == true) {
-				System.out.println("O wins by a landslide!");
-				printBoard();
-				oWins++;
-			} else if (checkTie() == true) {
-				System.out.println("It is a tie!");
-				printBoard();
-			}
-    */
-    if (true) {
+    cout << "X has won: " << xWins << " times" << endl;
+    cout << "O has won: " << oWins << " times" << endl;
+    cout << "Do you want to play again?" << endl;
+    //need to clear input right here
+    cin.getline(input, 10, '\n');
+    if (strcmp(input, "yes") == 0 || strcmp(input, "Yes") == 0 || strcmp(input, "y") == 0) {
       //this resets the board by going through every slot in the array and placing a blank into them
       for (int row = 0; row < 3; row++) {
 	for (int column = 0; column < 3; column++) {
@@ -73,8 +95,8 @@ int main() {
 	}
       }
     } else {
-      
-    playing = false;
+      cout << "thanks for playing, cya!" << endl;
+      playing = false;
     }
   }
   
