@@ -116,17 +116,17 @@ int main() {
 
 void printBoard(int (*board)[3]) {
   
-  cout << " \t1\t2\t3\n";
+  cout << " \t|1|\t|2|\t|3|\n";
   //prints the board, going from left to right, and going down each row and printing from left to right again
 	for (int row = 0; row < 3; row++) {
 	  cout << (char)('a' + row) << "\t";
 		for (int column = 0; column < 3; column++) {
 			if (board[row][column] == BLANK) {
-			  cout << " \t";
+			  cout << "| |\t";
 			} else if (board[row][column] == X_MOVE) {
-			  cout << "X\t";
+			  cout << "|X|\t";
 			} else if (board[row][column] == O_MOVE) {
-			  cout << "O\t";
+			  cout << "|O|\t";
 			}
 		}
 		cout << endl;
