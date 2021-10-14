@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 10/5/21
-Last Modified: 10/13/21
+Last Modified: 10/14/21
 ticTacToe game!
 This is a TicTacToe Game. It reads input and creates a 3x3 board to play the game on.
 It checks for wins, ties, and calculates how many wins X has and how many wins O has.
@@ -39,26 +39,28 @@ bool checkWin(int player, int (*board)[3]);
 bool checkTie(int (*board)[3]);
 
 int main() {
-  int turn = X_TURN;
+  int turn = X_TURN; //int to keep track of turns
   int xWins = 0;
   int oWins = 0;
   char input[10];
-  int board[3][3] = {0};
+  int board[3][3] = {0}; //initialize the board, below is me testing boards with things already in them
   //int board[3][3] = {{X_MOVE, O_MOVE, BLANK}, {X_MOVE, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
   bool playing = true;
-  while (playing == true) {
-    while (checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false) {
+  cout << "Welcome to TicTacToe! X starts first. Only use lowercase letters, and don't put in anything other" << endl;
+  while (playing == true) { // main playing loop
+    while (checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false) { // checks to see if anyone has won yet, or if there is a tie yet
       cout << "Enter a letter followed by a number" << endl;
+	    cout << endl;
       //cout << board[0][0] << endl;
-      printBoard(board);
+      printBoard(board); //calls my board function, while passing in the pointer of the local array 'board'
       //cout << checkWin(X_MOVE, board) << endl;
-      cin.getline(input, 10, '\n');
+      cin.getline(input, 10, '\n'); //takes in the next 10 characters, or until a return key
       
       //cout << input[0] << "," << input[1] << endl;
 
       int row = input[0] - 'a';
       int column = input[1] - '1';
-      if (board[row][column] == BLANK) {
+      if (board[row][column] == BLANK) { //check to make sure it is a LEGAL move, then place the move into the 2D array, and change the turn
 	if (turn == X_TURN) {
 	  board[row][column] = X_MOVE;
 	  turn = O_TURN;
@@ -73,10 +75,10 @@ int main() {
 
       
     
-    if (checkWin(X_MOVE, board) == true) {
+    if (checkWin(X_MOVE, board) == true) { //this section checks which player won (because the while loop knows that someone has won, or tied, it just doesn't return out who won)
       cout << "X wins by a landslide!" << endl;;
       printBoard(board);
-      xWins++;
+      xWins++; //adds to the wins of the player
     } else if (checkWin(O_MOVE, board) == true) {
       cout << "O wins by a landslide!" << endl;
       printBoard(board);
@@ -90,12 +92,11 @@ int main() {
     cout << "O has won: " << oWins << " times" << endl;
     cout << "Do you want to play again?" << endl;
     
-    //need to clear input right here
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) { //clears whatever junk is in input
       input[i] = '\0';
     }
     cin.getline(input, 10, '\n');
-    if (strcmp(input, "yes") == 0 || strcmp(input, "Yes") == 0 || strcmp(input, "y") == 0) {
+    if (strcmp(input, "yes") == 0 || strcmp(input, "Yes") == 0 || strcmp(input, "y") == 0) { //see if the user said yes or Yes or y
       //this resets the board by going through every slot in the array and placing a blank into them
       for (int row = 0; row < 3; row++) {
 	for (int column = 0; column < 3; column++) {
@@ -114,12 +115,12 @@ int main() {
 
  
 
-void printBoard(int (*board)[3]) {
+void printBoard(int (*board)[3]) { //prints out the board. Figured out how to pass in 2D arrays from: https://www.geeksforgeeks.org/pass-2d-array-parameter-c/
   
   cout << " \t|1|\t|2|\t|3|\n";
   //prints the board, going from left to right, and going down each row and printing from left to right again
 	for (int row = 0; row < 3; row++) {
-	  cout << (char)('a' + row) << "\t";
+	  cout << (char)('a' + row) << "\t"; //prints rows y adding row to the ASCII value which changes it to the next letter
 		for (int column = 0; column < 3; column++) {
 			if (board[row][column] == BLANK) {
 			  cout << "| |\t";
@@ -129,7 +130,7 @@ void printBoard(int (*board)[3]) {
 			  cout << "|O|\t";
 			}
 		}
-		cout << endl;
+		cout << endl; //adds the return at the end
 		
 	}
 }
