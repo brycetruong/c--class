@@ -43,31 +43,35 @@ int main() {
   int xWins = 0;
   int oWins = 0;
   char input[10];
-  int board[3][3] = {{X_MOVE, O_MOVE, BLANK}, {X_MOVE, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
+  int board[3][3] = {0};
+  //int board[3][3] = {{X_MOVE, O_MOVE, BLANK}, {X_MOVE, BLANK, BLANK}, {X_MOVE, O_MOVE, BLANK}};
   bool playing = true;
   while (playing == true) {
-    while (/*checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false*/false) {
+    while (checkWin(X_MOVE, board) == false && checkWin(O_MOVE, board) == false && checkTie(board) == false) {
       cout << "Enter a letter followed by a number" << endl;
       //cout << board[0][0] << endl;
       printBoard(board);
       //cout << checkWin(X_MOVE, board) << endl;
       cin.getline(input, 10, '\n');
-      cout << input[0] << "," << input[1] << endl;
+      
+      //cout << input[0] << "," << input[1] << endl;
+
+      int row = input[0] - 'a';
+      int column = input[1] - '1';
+      if (board[row][column] == BLANK) {
+	if (turn == X_TURN) {
+	  board[row][column] = X_MOVE;
+	  turn = O_TURN;
+	} else { //o turn
+	  board[row][column] = O_MOVE;
+	  turn = X_TURN;
+	}
+      } else {
+	cout << "Sorry there's already something there!" << endl;
+      }
     }
 
-
-    cout << "Enter a letter followed by a number" << endl;
-    //cout << board[0][0] << endl;
-    printBoard(board);
-    //cout << checkWin(X_MOVE, board) << endl;
-    cin.getline(input, 10, '\n');
-    cout << input[0] << "," << input[1] << endl;
-
-
-
-
-
-
+      
     
     if (checkWin(X_MOVE, board) == true) {
       cout << "X wins by a landslide!" << endl;;
@@ -85,7 +89,11 @@ int main() {
     cout << "X has won: " << xWins << " times" << endl;
     cout << "O has won: " << oWins << " times" << endl;
     cout << "Do you want to play again?" << endl;
+    
     //need to clear input right here
+    for (int i = 0; i < 10; i++) {
+      input[i] = '\0';
+    }
     cin.getline(input, 10, '\n');
     if (strcmp(input, "yes") == 0 || strcmp(input, "Yes") == 0 || strcmp(input, "y") == 0) {
       //this resets the board by going through every slot in the array and placing a blank into them
@@ -94,6 +102,7 @@ int main() {
 	  board[row][column] = BLANK;
 	}
       }
+      turn = X_TURN;
     } else {
       cout << "thanks for playing, cya!" << endl;
       playing = false;
