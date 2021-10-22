@@ -29,16 +29,22 @@ int main() {
   char input[10];
   bool stillRunning = true;
   
-  vector<Student*> myVector;
+  vector<Student*> myVec;
   while (stillRunning == true) {
     cin.getline(input, 10, '\n');
     if (strcmp(input, "ADD") == 0) {
-      cout << "Add Mode\n--------\nEnter" << endl;
+      cout << "Add Mode\n--------\nEnter Student Name: " << endl;
+      cin.getline(input, 10, '\n');
+      myVec.push_back(new Student());
+      myVec[0]->fname = input;
+      cout << myVec[0]->fname << endl;
     } else if (strcmp(input, "DELETE") == 0) {
       cout << "DELETE" << endl;
     } else if (strcmp(input, "QUIT") == 0) {
       cout << "QUIT" << endl;
       stillRunning = false;
+    } else if (strcmp(input, "PRINT") == 0) {
+    cout << "PRINT" << endl;
     } else {
       cout << "Plese entr a vald imkapoot" << endl;
     }
