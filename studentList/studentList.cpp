@@ -3,7 +3,15 @@ Author: Bryce Truong
 Date Created: 10/18/21
 Last Modified: 10/27/21
 
-This is a program that reads out student lists.
+This is a program that reads out student lists. You can add students with:
+-Firstnames
+-Lastnames
+-StudentID's
+-GPAs
+
+It is stored in a vector (basically an arraylist from java)
+
+Commands include "ADD, DELETE, PRINT, QUIT." Once you select a mode, follow the promts.
 
 
 Sources:
@@ -51,7 +59,8 @@ int main() {
     cin.getline(input, 10, '\n');
     if (strcmp(input, "ADD") == 0) {
       cout << "Add Mode\n--------" << endl;
-      Student* temp = new Student();
+      Student* temp = new Student(); // creates a new temporary student pointer that you can change and add things to.
+//After everything is added in to the student struct, push it into the vector with push_back
       
       cout << "Enter Student Firstname: " << endl;
       cin.getline(input, 10, '\n');
@@ -71,7 +80,7 @@ int main() {
       cin.getline(input, 10, '\n');
       temp -> gpa = atof(input);
       
-      myVec.push_back(temp);
+      myVec.push_back(temp); // adds our new and improved student into the vector
       
       //cout << myVec.at(0) -> fname << endl;
     } else if (strcmp(input, "DELETE") == 0) {
@@ -80,16 +89,21 @@ int main() {
       
       cout << "Enter StudentID to PURGE FROM EXISTENCE: " << endl;
       cin.getline(input, 10, '\n');
+// Uses an iterator to count through the vector. Something something pointer idk...
+
       for (vector<Student*>::iterator i = myVec.begin(); i != myVec.end(); i++) {
 	if((*i) -> uid == atoi(input)) {
 	  myVec.erase(i);
-	  break;
+	  break;// jumps out of the for loop
 	}
       }
-    } else if (strcmp(input, "QUIT") == 0) {
-      cout << "Exiting..." << endl;
+    } else if (strcmp(input, "QUIT") == 0) { // sets the underlying run condition from the while loop to false.
+       cout << "Exiting..." << endl;
       stillRunning = false;
     } else if (strcmp(input, "PRINT") == 0) {
+/*
+Cycles through the length of the vector and outputs all of the students
+*/
       //cout << "PRINT" << endl;
       for (int i = 0; i < myVec.size(); i++) {
 	cout << "\tFirstname: " << myVec.at(i) -> fname << endl;
