@@ -37,6 +37,7 @@ Kubir's vast c++ knowledge;)
 #include <stdlib.h>
 #include <vector>
 #include <iterator>
+#include <iomanip>
 
 using namespace std;
 
@@ -109,7 +110,7 @@ Cycles through the length of the vector and outputs all of the students
 	cout << "\tFirstname: " << myVec.at(i) -> fname << endl;
 	cout << "\tLirstname: " << myVec.at(i) -> lname << endl;
 	cout << "\tStudentID: " << myVec.at(i) -> uid << endl;
-	cout << "\tGPA: " << myVec.at(i) -> gpa << endl;
+	cout << "\tGPA: " << setprecision(3) << myVec.at(i) -> gpa << endl;
 	cout << endl;
       }
 
