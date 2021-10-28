@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 10/18/21
-Last Modified: 10/27/21
+Last Modified: 10/28/21
 
 This is a program that reads out student lists. You can add students with:
 -Firstnames
