@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cstring>
+#include <cctype>
+#include <cstdlib>
+#include <array>
+#include <stdio.h>
+
+
+using namespace std;
+
+int main() {
+	
+	return 0;
+}
