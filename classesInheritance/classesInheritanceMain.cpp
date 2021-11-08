@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
-Date Created: 10/28/21
-Last Modified: 10/28/21
+Date Created: 11/5/21
+Last Modified: 11/8/21
 */
 #include <iostream>
 #include <cstring>
@@ -13,11 +13,32 @@ Last Modified: 10/28/21
 #include <vector>
 #include <iterator>
 #include "videoGames.h"
+#include "media.h"
 
 using namespace std;
 
 
 int main() {
+  char input[10];
+  bool stillRunning = true;
+  
+  vector<media*> myVec;
+  while (stillRunning == true) {
+    cin.getline(input, 10, '\n');
+    if (strcmp(input, "ADD") == 0) {
 
+    } else if (strcmp(input, "DELETE") == 0) {
+
+    } else if (strcmp(input, "QUIT") == 0) {
+      cout << "Exiting..." << endl;
+      stillRunning = false;
+    } else if (strcmp(input, "SEARCH") == 0) {
+      for (int i = 0; i < myVec.size(); i++) {
+
+      }
+    } else {
+      cout << "Input not recognized..." << endl
+    }
+  }
 
 }

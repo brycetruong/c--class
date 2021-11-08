@@ -1,15 +1,27 @@
 #include <iostream>
 #include <cstring>
-#include <cctype>
-#include <cstdlib>
-#include <array>
 #include <stdio.h>
-#include <vector>
-#include <iterator>
 #include "videoGames.h"
 
 using namespace std;
 
+videoGames::videoGames(char newTitle){
+  strcpy(title, newTitle);
 
-	
-       
+}
+
+char videoGames::getTitle(){
+  return title;
+}
+
+int videoGames::getYear(){
+  return year;
+}
+
+char videoGames::getPub(){
+  return publisher;
+}
+
+double getRate(){
+  return rating;
+}
