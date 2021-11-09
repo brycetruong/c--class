@@ -14,10 +14,11 @@ using namespace std;
 
 class media {
 	public:
-	//char getTitle();
+	char getTitle();
  	int getYear();
 	
 	private:
 	int year;
+	char title;
 
 };
