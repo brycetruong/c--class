@@ -17,6 +17,7 @@ using namespace std;
 media::media(char newTitle){
   //strcpy(title, newTitle);
   year = 1;
+  title = 'a';
 }
 
 char media::getTitle(){
