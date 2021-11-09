@@ -1,4 +1,4 @@
-
+/*
 #include <iostream>
 #include <cstring>
 #include <stdio.h>
@@ -19,4 +19,4 @@ class videoGames: public media{
   double rating;
  
 };
- 
+ */
