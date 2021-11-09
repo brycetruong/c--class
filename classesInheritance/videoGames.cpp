@@ -6,7 +6,7 @@
 using namespace std;
 
 videoGames::videoGames(char newTitle){
-  strcpy(title, newTitle);
+  //strcpy(title, newTitle);
 
 }
 
