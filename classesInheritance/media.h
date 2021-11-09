@@ -13,6 +13,12 @@ Last Modified: 11/5/21
 using namespace std;
 
 class media {
+	public:
+	char* getTitle();
+	
+ 	int getYear();
+	
+	private:
 	
 
-}
+};
