@@ -14,6 +14,11 @@ Last Modified: 11/5/21
 
 using namespace std;
 
+media::media(char newTitle){
+  //strcpy(title, newTitle);
+  year = 1;
+}
+
 char media::getTitle(){
   return title;
 }
