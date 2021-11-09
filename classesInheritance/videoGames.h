@@ -17,5 +17,6 @@ class videoGames: public media{
   int year;
   char publisher[20];
   double rating;
+ 
 };
  
