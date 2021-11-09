@@ -33,9 +33,11 @@ int main() {
       cout << "Exiting..." << endl;
       stillRunning = false;
     } else if (strcmp(input, "S") == 0) {
+      /*
       for (int i = 0; i < myVec.size(); i++) {
         cout << myVec.at(i) -> getTitle() << endl;
       }
+      */
     } else {
       cout << "Input not recognized..." << endl;
     }
