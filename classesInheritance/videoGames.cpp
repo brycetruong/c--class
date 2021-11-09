@@ -2,7 +2,7 @@
 #include <cstring>
 #include <stdio.h>
 #include "videoGames.h"
-
+//
 using namespace std;
 
 videoGames::videoGames(char newTitle){
