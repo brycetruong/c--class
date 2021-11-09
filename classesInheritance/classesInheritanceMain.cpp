@@ -37,7 +37,7 @@ int main() {
 
       }
     } else {
-      cout << "Input not recognized..." << endl
+      cout << "Input not recognized..." << endl;
     }
   }
 
