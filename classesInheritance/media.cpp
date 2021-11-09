@@ -14,7 +14,10 @@ Last Modified: 11/5/21
 
 using namespace std;
 
-int main() {
-	
+char media::getTitle(){
+  return title;
+}
 
+int media::getYear(){
+  return year;
 }
