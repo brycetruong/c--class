@@ -12,7 +12,7 @@ Last Modified: 11/8/21
 #include <stdlib.h>
 #include <vector>
 #include <iterator>
-#include "videoGames.h"
+//#include "videoGames.h"
 #include "media.h"
 
 using namespace std;
@@ -34,7 +34,7 @@ int main() {
       stillRunning = false;
     } else if (strcmp(input, "SEARCH") == 0) {
       for (int i = 0; i < myVec.size(); i++) {
-
+        cout << myVec.at(i) -> getTitle() << endl;
       }
     } else {
       cout << "Input not recognized..." << endl;
