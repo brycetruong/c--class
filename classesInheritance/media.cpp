@@ -14,10 +14,16 @@ Last Modified: 11/5/21
 
 using namespace std;
 
-media::media(char newTitle){
+media::media(){
   //strcpy(title, newTitle);
-  year = 1;
-  title = 'a';
+  title = new char[20];
+  year = 2000;
+}
+
+media::media(char* newTitle){
+  title = new char[20];
+  strcpy(title, newTitle);
+  year = 2000;
 }
 
 char media::getTitle(){
