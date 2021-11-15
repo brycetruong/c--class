@@ -1,4 +1,6 @@
-/*
+#ifndef MEDIA_H
+#define MEDIA_H
+
 #include <iostream>
 #include <cstring>
 #include <stdio.h>
@@ -7,16 +9,16 @@
 
 class videoGames: public media{
  public:
-  videoGames(char);
-  char getTitle();
-  int getYear();
-  char getPub();
+  videoGames();
+  videoGames(char*);
+ 
+  char* getPub();
   double getRate();
  private:
-  char title[20];
-  int year;
-  char publisher[20];
+  
+  char* publisher[20];
   double rating;
  
 };
- */
+
+#endif
