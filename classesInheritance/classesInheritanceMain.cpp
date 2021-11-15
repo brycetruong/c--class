@@ -30,7 +30,7 @@ int main() {
   strcpy(testTitle, "myFirst");
   mediaList[0] = new media(testTitle);
   myVec.push_back(mediaList[0]);
-  cout << mediaList[0]->firstMedia.getTitle() << endl;
+  cout << mediaList[0]->getTitle() << endl;
   
   
   while (stillRunning == true) {
