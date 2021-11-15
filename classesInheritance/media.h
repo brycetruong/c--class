@@ -1,3 +1,6 @@
+#ifndef MEDIA_H
+#define MEDIA_H
+
 /*
 Author: Bryce Truong
 Date Created: 11/5/21
@@ -24,3 +27,5 @@ class media {
 	char* title;
 
 };
+
+#endif
