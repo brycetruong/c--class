@@ -26,7 +26,7 @@ media::media(char* newTitle){
   year = 2000;
 }
 
-char media::getTitle(){
+char* media::getTitle(){
   return title;
 }
 
