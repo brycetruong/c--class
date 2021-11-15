@@ -32,7 +32,7 @@ int main() {
     } else if (strcmp(input, "QUIT") == 0) {
       cout << "Exiting..." << endl;
       stillRunning = false;
-    } else if (strcmp(input, "Search") == 0) {
+    } else if (strcmp(input, "SEARCH") == 0) {
       /*
       for (int i = 0; i < myVec.size(); i++) {
         cout << myVec.at(i) -> getTitle() << endl;
