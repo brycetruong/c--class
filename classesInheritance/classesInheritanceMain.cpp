@@ -19,19 +19,33 @@ using namespace std;
 
 
 int main() {
-  char input[10];
+  char input[20];
   bool stillRunning = true;
   
-  char* testTitle = new char[20];
-  strcpy(testTitle, "myFirst");
-  firstMedia = new media(testTitle);
-  cout << firstMedia.getTitle() << endl;
+  media* mediaList[20];
   
   vector<media*> myVec;
+  char* testTitle = new char[20];
+  strcpy(testTitle, "myFirst");
+  media[0] = new media(testTitle);
+  myVec.push_back(mediaList[0]);
+  cout << mediaList[0]->firstMedia.getTitle() << endl;
+  
+  
   while (stillRunning == true) {
-    cin.getline(input, 10, '\n');
+    cin.getline(input, 20, '\n');
     if (strcmp(input, "ADD") == 0) {
-    
+      cout << "What kind of media would you like to add? \nVIDEOGAMES\tMUSIC\tMOVIES" << endl;
+      cin.getline(input, 20, '\n');
+      if (strcmp(input, "VIDEOGAMES") == 0) {
+        
+      } else if (strcmp(input, "MUSIC") == 0) {
+        
+      } else if (strcmp(input, "MOVIES") == 0) {
+        
+      } else {
+        cout << "Returning to menu..." << endl;
+      }
     } else if (strcmp(input, "DELETE") == 0) {
 
     } else if (strcmp(input, "QUIT") == 0) {
