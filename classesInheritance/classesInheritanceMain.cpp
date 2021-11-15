@@ -26,7 +26,7 @@ int main() {
   
   vector<media*> myVec;
   
-  char testTitle[20];
+  char* testTitle = new char[20];
   strcpy(testTitle, "myFirst");
   mediaList[0] = new media(testTitle);
   myVec.push_back(mediaList[0]);
