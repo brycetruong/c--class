@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 11/5/21
-Last Modified: 11/8/21
+Last Modified: 11/15/21
 */
 #include <iostream>
 #include <cstring>
@@ -22,11 +22,16 @@ int main() {
   char input[10];
   bool stillRunning = true;
   
+  char* testTitle = new char[20];
+  strcpy(testTitle, "myFirst");
+  firstMedia = new media(testTitle);
+  cout << firstMedia.getTitle() << endl;
+  
   vector<media*> myVec;
   while (stillRunning == true) {
     cin.getline(input, 10, '\n');
     if (strcmp(input, "ADD") == 0) {
-
+    
     } else if (strcmp(input, "DELETE") == 0) {
 
     } else if (strcmp(input, "QUIT") == 0) {
