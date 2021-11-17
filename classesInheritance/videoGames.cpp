@@ -1,29 +1,32 @@
-/*
+
 #include <iostream>
 #include <cstring>
 #include <stdio.h>
+#include "media.h"
 #include "videoGames.h"
 
 using namespace std;
 
-videoGames::videoGames(char newTitle){
+
+videoGames::videoGames(){
   //strcpy(title, newTitle);
-
+  title = new char[20];
+  year = 2000;
 }
 
-char videoGames::getTitle(){
-  return title;
+videoGames::videoGames(char newTitle){
+  title = new char[20];
+  strcpy(title, newTitle);
+  year = 2000;
+  
 }
 
-int videoGames::getYear(){
-  return year;
-}
 
-char videoGames::getPub(){
+char* videoGames::getPub(){
   return publisher;
 }
 
 double getRate(){
   return rating;
 }
-*/
+
