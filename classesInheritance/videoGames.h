@@ -1,5 +1,5 @@
-#ifndef MEDIA_H
-#define MEDIA_H
+#ifndef VIEDOGAMES_H
+#define VIEDOGAMES_H
 
 #include <iostream>
 #include <cstring>
