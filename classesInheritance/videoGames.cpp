@@ -26,7 +26,7 @@ char* videoGames::getPub(){
   return publisher;
 }
 
-double getRate(){
+videoGames::double getRate(){
   return rating;
 }
 
