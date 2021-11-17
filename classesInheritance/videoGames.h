@@ -16,7 +16,7 @@ class videoGames: public media {
   double getRate();
  private:
   
-  char* publisher[20];
+  char* publisher;
   double rating;
  
 };
