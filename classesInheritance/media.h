@@ -22,7 +22,7 @@ class media {
 	char* getTitle();
  	int getYear();
 	
-	private:
+	protected:
 	int year;
 	char* title;
 
