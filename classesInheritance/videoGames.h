@@ -7,7 +7,7 @@
 #include "media.h"
 
 
-class videoGames: public media{
+class videoGames: public media {
  public:
   videoGames();
   videoGames(char*);
