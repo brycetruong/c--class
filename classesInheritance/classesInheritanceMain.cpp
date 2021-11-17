@@ -28,7 +28,7 @@ int main() {
   
   char* testTitle = new char[20];
   strcpy(testTitle, "myFirst");
-  mediaList[0] = new videoGames(testTitle);
+  mediaList[0] = new videoGames(testTitle); //videogames or media
   myVec.push_back(mediaList[0]);
   cout << mediaList[0]->getTitle() << endl;
   
