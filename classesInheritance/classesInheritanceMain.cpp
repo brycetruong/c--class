@@ -39,6 +39,7 @@ int main() {
         double intuit = 0.0;
         cin >> intuit;
         cout << intuit << endl;
+        cin.ignore(80,'\n');
       } else if (strcmp(input, "MUSIC") == 0 || strcmp(input, "MS") == 0) {
         cout << "MUSIC" << endl;
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
