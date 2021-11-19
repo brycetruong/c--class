@@ -16,9 +16,9 @@ videoGames::videoGames(){
 
 videoGames::videoGames(char* newTitle, int newYear, char* newPub){
   title = new char[20];
-  publisher = new char[20];
-  
   strcpy(title, newTitle);
+  publisher = new char[20];
+  strcpy(publisher, newPub);
   year = newYear;
   
 }
