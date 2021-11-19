@@ -13,7 +13,7 @@ videoGames::videoGames(){
   title = new char[20];
   year = 2000;
   publisher = new char[20];
-  rating = 7.7
+  rating = 7.7;
 }
 
 videoGames::videoGames(char* newTitle, int newYear, char* newPub, double newRate){
