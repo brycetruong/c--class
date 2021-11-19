@@ -31,7 +31,6 @@ int main() {
   
   while (stillRunning == true) {
     cin.getline(input, 20, '\n');
-    cin >> input;
     if (strcmp(input, "ADD") == 0) {
       cout << "What kind of media would you like to add? \nVIDEOGAMES\tMUSIC\tMOVIES" << endl;
       cin.getline(input, 20, '\n');
