@@ -32,16 +32,17 @@ int main() {
   while (stillRunning == true) {
     cin.getline(input, 20, '\n');
     if (strcmp(input, "ADD") == 0) {
-      cout << "What kind of media would you like to add? \nVIDEOGAMES\tMUSIC\tMOVIES" << endl;
+      cout << "What kind of media would you like to add? \nVIDEOGAMES (VG)\tMUSIC (MS)\tMOVIES (MV)" << endl;
       cin.getline(input, 20, '\n');
-      if (strcmp(input, "VIDEOGAMES") == 0) {
+      if (strcmp(input, "VIDEOGAMES") == 0 || strcmp(input, "VG") == 0) {
+        cout << "VIDEOGAMES" << endl;
         double intuit = 0;
         cin >> intuit;
         cout << intuit << endl;
-      } else if (strcmp(input, "MUSIC") == 0) {
-        
-      } else if (strcmp(input, "MOVIES") == 0) {
-        
+      } else if (strcmp(input, "MUSIC") == 0 || strcmp(input, "MS") == 0) {
+        cout << "MUSIC" << endl;
+      } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
+        cout << "MOVIES" << endl;
       } else {
         cout << "Returning to menu..." << endl;
       }
