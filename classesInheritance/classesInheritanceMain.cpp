@@ -26,10 +26,8 @@ int main() {
   
   vector<media*> myVec;
   
-  
-  
-  
   while (stillRunning == true) {
+    cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tSEARCH\tQUIT" << endl;
     cin.getline(input, 20, '\n');
     if (strcmp(input, "ADD") == 0) {
       cout << "What kind of media would you like to add? \nVIDEOGAMES (VG)\tMUSIC (MS)\tMOVIES (MV)" << endl;
@@ -59,8 +57,7 @@ int main() {
       int newInt = 2021;
       mediaList[0] = new media(testTitle, newInt); //videogames or media
       myVec.push_back(mediaList[0]);
-      cout << mediaList[0]->getTitle() << endl;
-      cout << mediaList[0]->getYear() << endl;
+      mediaList[1] = new videoGame();
       
       /*
       for (int i = 0; i < myVec.size(); i++) {
@@ -70,6 +67,9 @@ int main() {
     } else {
       cout << mediaList[0]->getTitle() << endl;
       cout << mediaList[0]->getYear() << endl;
+      
+      cout << mediaList[1]->getYear() << endl;
+      cout << mediaList[1]->getRate() << endl;
       cout << "Input not recognized..." << endl;
     }
   }
