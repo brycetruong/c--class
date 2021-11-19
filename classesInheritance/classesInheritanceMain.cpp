@@ -57,7 +57,7 @@ int main() {
       int newInt = 2021;
       mediaList[0] = new media(testTitle, newInt); //videogames or media
       myVec.push_back(mediaList[0]);
-      mediaList[1] = new videoGame();
+      mediaList[1] = new videoGames();
       myVec.push_back(mediaList[1]);
       
       /*
