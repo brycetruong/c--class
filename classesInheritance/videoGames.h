@@ -1,5 +1,5 @@
-#ifndef VIEDOGAMES_H
-#define VIEDOGAMES_H
+#ifndef VIDEOGAMES_H
+#define VIDEOGAMES_H
 
 #include <iostream>
 #include <cstring>
