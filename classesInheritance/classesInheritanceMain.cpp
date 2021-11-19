@@ -28,9 +28,11 @@ int main() {
   
   char* testTitle = new char[20];
   strcpy(testTitle, "myFirst");
-  mediaList[0] = new videoGames(testTitle); //videogames or media
+  int newInt = 2021;
+  mediaList[0] = new media(testTitle, newInt); //videogames or media
   myVec.push_back(mediaList[0]);
   cout << mediaList[0]->getTitle() << endl;
+  cout << mediaList[0]->getYear() << endl;
   
   
   while (stillRunning == true) {
