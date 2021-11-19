@@ -65,14 +65,14 @@ int main() {
         cout << "Input not recognized..." << endl;
       }
       
-      /*char* testTitle = new char[20];
+      char* testTitle = new char[20];
       strcpy(testTitle, "myFirst");
       int newInt = 2021;
       mediaList[0] = new media(testTitle, newInt); //videogames or media
       myVec.push_back(mediaList[0]);
       mediaList[1] = new videoGames();
       myVec.push_back(mediaList[1]);
-      */
+      
       
       /*
       for (int i = 0; i < myVec.size(); i++) {
