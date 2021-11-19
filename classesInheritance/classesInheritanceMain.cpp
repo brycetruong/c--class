@@ -26,13 +26,7 @@ int main() {
   
   vector<media*> myVec;
   
-  char* testTitle = new char[20];
-  strcpy(testTitle, "myFirst");
-  int newInt = 2021;
-  mediaList[0] = new media(testTitle, newInt); //videogames or media
-  myVec.push_back(mediaList[0]);
-  cout << mediaList[0]->getTitle() << endl;
-  cout << mediaList[0]->getYear() << endl;
+  
   
   
   while (stillRunning == true) {
@@ -55,12 +49,23 @@ int main() {
       cout << "Exiting..." << endl;
       stillRunning = false;
     } else if (strcmp(input, "SEARCH") == 0) {
+      
+      char* testTitle = new char[20];
+      strcpy(testTitle, "myFirst");
+      int newInt = 2021;
+      mediaList[0] = new media(testTitle, newInt); //videogames or media
+      myVec.push_back(mediaList[0]);
+      cout << mediaList[0]->getTitle() << endl;
+      cout << mediaList[0]->getYear() << endl;
+      
       /*
       for (int i = 0; i < myVec.size(); i++) {
         cout << myVec.at(i) -> getTitle() << endl;
       }
       */
     } else {
+      cout << mediaList[0]->getTitle() << endl;
+      cout << mediaList[0]->getYear() << endl;
       cout << "Input not recognized..." << endl;
     }
   }
