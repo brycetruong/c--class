@@ -10,7 +10,7 @@
 class videoGames: public media {
  public:
   videoGames();
-  videoGames(char*, int, char*);
+  videoGames(char*, int, char*, double);
  
   char* getPub();
   double getRate();
