@@ -36,9 +36,7 @@ int main() {
       cin.getline(input, 20, '\n');
       if (strcmp(input, "VIDEOGAMES") == 0 || strcmp(input, "VG") == 0) {
         cout << "VIDEOGAMES" << endl;
-        double intuit = 0;
-        cin >> intuit;
-        cout << intuit << endl;
+        
       } else if (strcmp(input, "MUSIC") == 0 || strcmp(input, "MS") == 0) {
         cout << "MUSIC" << endl;
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
