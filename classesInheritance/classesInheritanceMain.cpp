@@ -51,8 +51,9 @@ int main() {
       cout << "Exiting..." << endl;
       stillRunning = false;
     } else if (strcmp(input, "SEARCH") == 0) {
-      cin.getline(input, 20, '\n');
       cout << "What do you want to search by?\nTITLE\tYEAR" << endl;
+      cin.getline(input, 20, '\n');
+      
       if (strcmp(input, "TITLE") == 0){
         for (int i = 0; i < myVec.size(); i++) {
           
