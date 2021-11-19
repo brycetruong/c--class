@@ -20,10 +20,10 @@ media::media(){
   year = 2000;
 }
 
-media::media(char* newTitle){
+media::media(char* newTitle, int newYear){
   title = new char[20];
   strcpy(title, newTitle);
-  year = 2000;
+  year = newYear;
 }
 
 char* media::getTitle(){
