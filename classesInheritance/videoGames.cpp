@@ -12,14 +12,20 @@ videoGames::videoGames(){
   //strcpy(title, newTitle);
   title = new char[20];
   year = 2000;
+  publisher = new char[20];
+  rating = 7.7
 }
 
-videoGames::videoGames(char* newTitle, int newYear, char* newPub){
+videoGames::videoGames(char* newTitle, int newYear, char* newPub, double newRate){
   title = new char[20];
   strcpy(title, newTitle);
+  
+  year = newYear;
+  
   publisher = new char[20];
   strcpy(publisher, newPub);
-  year = newYear;
+  
+  rating = newRate;
   
 }
 
