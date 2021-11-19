@@ -70,7 +70,7 @@ int main() {
       cout << mediaList[0]->getYear() << endl;
       
       cout << mediaList[1]->getYear() << endl;
-      cout << mediaList[1]->getRate() << endl;
+      cout << (videoGames*)(mediaList[1])->getRate() << endl;
       cout << "Input not recognized..." << endl;
     }
   }
