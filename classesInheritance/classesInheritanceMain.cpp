@@ -58,6 +58,7 @@ int main() {
       mediaList[0] = new media(testTitle, newInt); //videogames or media
       myVec.push_back(mediaList[0]);
       mediaList[1] = new videoGame();
+      myVec.push_back(mediaList[1]);
       
       /*
       for (int i = 0; i < myVec.size(); i++) {
