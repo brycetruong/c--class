@@ -1,5 +1,5 @@
-#ifndef VIDEOGAMES_H
-#define VIDEOGAMES_H
+#ifndef MUSIC_H
+#define MUSIC_H
 
 #include <iostream>
 #include <cstring>
@@ -7,17 +7,18 @@
 #include "media.h"
 
 
-class videoGames: public media {
+class music: public media {
  public:
-  videoGames();
-  videoGames(char*, int, char*, double);
+  music();
+  music(char*, int, char*);
  
   char* getPub();
-  double getRate();
+  char* getArt();
+  
  private:
   
   char* publisher;
-  double rating;
+  char* artist;
  
 };
 
