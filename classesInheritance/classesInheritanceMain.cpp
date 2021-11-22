@@ -87,8 +87,8 @@ int main() {
       cout << myVec.at(0)->getTitle() << endl;
       cout << mediaList[0]->getYear() << endl;
       
-      cout << mediaList[1]->getYear() << endl;
-      cout << ((videoGames*)mediaList[1])->getRate() << endl;
+      cout << myVec.at(1)->getYear() << endl; //also use virtual functions for when there are the same fctn (like getRate on both movies and VG)
+      cout << ((videoGames*)mediaList[1])->getRate() << endl; //I cast to a videogame ptr because it still thinks that it is a media ptr and tries to find get rate when there is no get rate
       
       cout << "Input not recognized..." << endl;
     }
