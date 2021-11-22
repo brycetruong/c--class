@@ -14,11 +14,13 @@ class music: public media {
  
   char* getPub();
   char* getArt();
+  int getDuration();
   
  private:
   
   char* publisher;
   char* artist;
+  int duration;
  
 };
 
