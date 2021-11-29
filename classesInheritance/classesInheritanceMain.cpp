@@ -75,7 +75,7 @@ int main() {
         cin.getline(input, 20, '\n');
         
         for (int i = 0; i < myVec.size(); i++) {
-          if (myVec.at(i) -> getYear() == input) {
+          if ((myVec.at(i) -> getYear()) == input) {
             cout << "-\t-\t-\t-\t" << endl;
             cout << "Title: " << myVec.at(i) -> getTitle() << endl;
             cout << "Year: " << myVec.at(i) -> getYear() << endl;
