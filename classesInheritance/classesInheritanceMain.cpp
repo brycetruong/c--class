@@ -75,7 +75,7 @@ int main() {
       myVec.push_back(mediaList[0]);
       strcpy(testTitle, "mySecond");
       newInt = 2022;
-      mediaList[1] = new videoGames(testTitle, newInt);
+      mediaList[1] = new videoGames(testTitle, newInt, testTitle, 7.8);
       myVec.push_back(mediaList[1]);
       
       
