@@ -59,11 +59,12 @@ int main() {
           
         myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempRate));
         
-        
-        double intuit = 0.0;
+        /*double intuit = 0.0; // just me testing how cin works
         cin >> intuit;
         cout << intuit << endl;
         cin.ignore(80,'\n');
+        */
+        
       } else if (strcmp(input, "MUSIC") == 0 || strcmp(input, "MS") == 0) {
         cout << "MUSIC" << endl;
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
