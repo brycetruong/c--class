@@ -35,7 +35,31 @@ int main() {
       cout << "What kind of media would you like to add? \nVIDEOGAMES (VG)\tMUSIC (MS)\tMOVIES (MV)" << endl;
       cin.getline(input, 20, '\n');
       if (strcmp(input, "VIDEOGAMES") == 0 || strcmp(input, "VG") == 0) {
-        cout << "VIDEOGAMES" << endl;
+        //VIDEOGAMES 
+        char* tempTitle = new char[20];
+        int tempYear = 0;
+        char* tempPub = new char[20];
+        double tempRate = 0.0;
+        
+        cout << "Input title:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempTitle, input);
+        
+        cout << "Input year:" << endl;
+        cin.getline(input, 20, '\n');
+        tempYear = atoi(input);
+        
+        cout << "Input publisher:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempPub, input);
+        
+        cout << "Input rating:" << endl;
+        cin.getline(input, 20, '\n');
+        tempRate = atof(input);
+          
+        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempRate));
+        
+        
         double intuit = 0.0;
         cin >> intuit;
         cout << intuit << endl;
