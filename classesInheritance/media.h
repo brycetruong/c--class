@@ -15,6 +15,11 @@ Last Modified: 11/5/21
 
 using namespace std;
 
+const int MEDIA = 0;
+const int VG = 1; //videogame
+const int MS = 2; //music
+const int MV = 3; //movie
+
 class media {
 	public:
 	media();
@@ -25,6 +30,7 @@ class media {
 	protected:
 	int year;
 	char* title;
+	int type;
 
 };
 
