@@ -21,6 +21,7 @@ class media {
 	media(char*, int);
 	char* getTitle();
  	int getYear();
+	int getType();
 	
 	protected:
 	int year;
