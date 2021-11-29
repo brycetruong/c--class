@@ -75,7 +75,7 @@ int main() {
         cin.getline(input, 20, '\n');
         
         for (int i = 0; i < myVec.size(); i++) {
-          if (strcmp(myVec.at(i) -> getYear(), input) == 0) {
+          if (myVec.at(i) -> getYear() == input) {
             cout << "-\t-\t-\t-\t" << endl;
             cout << "Title: " << myVec.at(i) -> getTitle() << endl;
             cout << "Year: " << myVec.at(i) -> getYear() << endl;
@@ -87,6 +87,16 @@ int main() {
       } else {
         cout << "Input not recognized..." << endl;
       }
+      
+      
+      
+      
+      /*
+      for (int i = 0; i < myVec.size(); i++) {
+        cout << myVec.at(i) -> getTitle() << endl;
+      }
+      */
+    } else {
       
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
@@ -102,13 +112,7 @@ int main() {
       mediaList[2] = new videoGames(testTitle, newInt, testTitle, 9.9);
       myVec.push_back(mediaList[2]);
       
-      
-      /*
-      for (int i = 0; i < myVec.size(); i++) {
-        cout << myVec.at(i) -> getTitle() << endl;
-      }
-      */
-    } else {
+      cout << endl;
       
       cout << myVec.at(0)->getTitle() << endl;
       cout << mediaList[0]->getYear() << endl;
