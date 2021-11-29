@@ -90,11 +90,20 @@ int main() {
         
         for (int i = 0; i < myVec.size(); i++) {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
-            cout << "-\t-\t-\t-\t" << endl;
-            cout << "Title: " << myVec.at(i) -> getTitle() << endl;
-            cout << "Year: " << myVec.at(i) -> getYear() << endl;
-            cout << "-\t-\t-\t-\t" << endl;
-            cout << endl;
+            if (myVec.at(i) -> getType() == VG) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Title: " << ((videoGames*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((videoGames*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((videoGames*)myVec.at(i)) -> getPub() << endl;
+              cout << "Rating: " << ((videoGames*)myVec.at(i)) -> getRate() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            } else if (myVec.at(i) -> getType() == MS) {
+              
+            } else if (myVec.at(i) -> getType() == MV) {
+              
+            }
+            
           }
           
         }
