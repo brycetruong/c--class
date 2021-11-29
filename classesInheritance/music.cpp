@@ -7,6 +7,10 @@
 
 using namespace std;
 
+const int MEDIA = 0;
+const int VG = 1; //videogame
+const int MS = 2; //music
+const int MV = 3; //movie
 
 music::music(){
   //strcpy(title, newTitle);
@@ -25,7 +29,7 @@ music::music(char* newTitle, int newYear, char* newPub){
   publisher = new char[20];
   strcpy(publisher, newPub);
   
-  
+  type = MS;
 }
 
 
