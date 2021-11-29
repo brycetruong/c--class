@@ -13,12 +13,15 @@ Last Modified: 11/15/21
 #include <vector>
 #include <iterator>
 #include "videoGames.h"
+//#include "music.h"
 #include "media.h"
-
-
 
 using namespace std;
 
+const int MEDIA = 0;
+const int VG = 1; //videogame
+const int MS = 2; //music
+const int MV = 3; //movie
 
 int main() {
   char input[20];
