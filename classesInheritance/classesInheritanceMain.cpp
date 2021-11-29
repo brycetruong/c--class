@@ -57,9 +57,13 @@ int main() {
       cin.getline(input, 20, '\n');
       
       if (strcmp(input, "TITLE") == 0){
+        cout << "Enter Title" << endl;
+        cin.getline(input, 20, '\n');
+        
         for (int i = 0; i < myVec.size(); i++) {
-          
-          cout << myVec.at(i) -> getTitle() << endl;
+          if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
+            cout << myVec.at(i) -> getTitle() << endl;  
+          }
           
         }
       } else if (strcmp(input, "YEAR") == 0) {
@@ -69,14 +73,18 @@ int main() {
       }
       
       char* testTitle = new char[20];
-      strcpy(testTitle, "myFirst");
+      strcpy(testTitle, "Pacman");
       int newInt = 2021;
       mediaList[0] = new media(testTitle, newInt); //videogames or media
       myVec.push_back(mediaList[0]);
-      strcpy(testTitle, "mySecond");
+      strcpy(testTitle, "Galaga");
       newInt = 2022;
       mediaList[1] = new videoGames(testTitle, newInt, testTitle, 7.8);
       myVec.push_back(mediaList[1]);
+      strcpy(testTitle, "Galaga");
+      newInt = 2023;
+      mediaList[2] = new videoGames(testTitle, newInt, testTitle, 9.9);
+      myVec.push_back(mediaList[2]);
       
       
       /*
