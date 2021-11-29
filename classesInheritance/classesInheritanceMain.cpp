@@ -57,17 +57,33 @@ int main() {
       cin.getline(input, 20, '\n');
       
       if (strcmp(input, "TITLE") == 0){
-        cout << "Enter Title" << endl;
+        cout << "Enter Title:" << endl;
         cin.getline(input, 20, '\n');
         
         for (int i = 0; i < myVec.size(); i++) {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
-            cout << myVec.at(i) -> getTitle() << endl;  
+            cout << "-\t-\t-\t-\t" << endl;
+            cout << "Title: " << myVec.at(i) -> getTitle() << endl;
+            cout << "Year: " << myVec.at(i) -> getYear() << endl;
+            cout << "-\t-\t-\t-\t" << endl;
+            cout << endl;
           }
           
         }
       } else if (strcmp(input, "YEAR") == 0) {
+        cout << "Enter Year:" << endl;
+        cin.getline(input, 20, '\n');
         
+        for (int i = 0; i < myVec.size(); i++) {
+          if (strcmp(myVec.at(i) -> getYear(), input) == 0) {
+            cout << "-\t-\t-\t-\t" << endl;
+            cout << "Title: " << myVec.at(i) -> getTitle() << endl;
+            cout << "Year: " << myVec.at(i) -> getYear() << endl;
+            cout << "-\t-\t-\t-\t" << endl;
+            cout << endl;
+          }
+          
+        }
       } else {
         cout << "Input not recognized..." << endl;
       }
