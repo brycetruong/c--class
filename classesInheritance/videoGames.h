@@ -10,6 +10,7 @@
 class videoGames: public media {
  public:
   videoGames();
+  virtual ~videoGames();
   videoGames(char*, int, char*, double);
  
   char* getPub();
