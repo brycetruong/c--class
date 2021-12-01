@@ -11,7 +11,7 @@ class music: public media {
  public:
   music();
   virtual ~music();
-  music(char*, int, char*);
+  music(char*, int, char*, char*, int);
  
   char* getPub();
   char* getArt();
