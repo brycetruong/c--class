@@ -7,7 +7,7 @@
 #include "media.h"
 
 
-virtual class videoGames: public media {
+class videoGames: public media {
  public:
   videoGames();
   virtual ~videoGames();
