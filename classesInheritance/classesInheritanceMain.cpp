@@ -13,7 +13,8 @@ Last Modified: 11/15/21
 #include <vector>
 #include <iterator>
 #include "videoGames.h"
-//#include "music.h"
+#include "music.h"
+#include "movie.h"
 #include "media.h"
 
 using namespace std;
