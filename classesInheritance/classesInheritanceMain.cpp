@@ -69,7 +69,32 @@ int main() {
         */
         
       } else if (strcmp(input, "MUSIC") == 0 || strcmp(input, "MS") == 0) {
-        cout << "MUSIC" << endl;
+        //cout << "MUSIC" << endl;
+        
+        char* tempTitle = new char[20];
+        int tempYear = 0;
+        char* tempPub = new char[20];
+        char* tempArt = new char[20];
+        int tempDur = 0;
+        
+        //not done from here and below
+        cout << "Input title:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempTitle, input);
+        
+        cout << "Input year:" << endl;
+        cin.getline(input, 20, '\n');
+        tempYear = atoi(input);
+        
+        cout << "Input publisher:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempPub, input);
+        
+        cout << "Input rating:" << endl;
+        cin.getline(input, 20, '\n');
+        tempRate = atof(input);
+          
+        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempRate));
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
         cout << "MOVIES" << endl;
       } else {
@@ -154,7 +179,7 @@ int main() {
       cout << myVec.at(0)->getTitle() << endl;
       cout << mediaList[0]->getYear() << endl;
       
-      cout << myVec.at(1)->getYear() << endl; //also use virtual functions for when there are the same fctn (like getRate on both movies and VG)
+      cout << myVec.at(1)->getYear() << endl; //note to self: also use virtual functions for when there are the same fctn (like getRate on both movies and VG)?
       cout << ((videoGames*)myVec.at(1))->getRate() << endl; //I cast to a videogame ptr because it still thinks that it is a media ptr and tries to find get rate when there is no get rate
       
       cout << "Input not recognized..." << endl;
