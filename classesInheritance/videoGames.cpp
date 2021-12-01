@@ -20,6 +20,10 @@ videoGames::videoGames(){ //default constructor if you don't put anything in
   rating = 7.7;
 }
 
+videoGames::~videoGames(){ //destructor
+  delete[] publisher;
+}
+
 videoGames::videoGames(char* newTitle, int newYear, char* newPub, double newRate){
   title = new char[20];
   strcpy(title, newTitle);
