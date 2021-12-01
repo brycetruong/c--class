@@ -129,7 +129,7 @@ int main() {
         cin.getline(input, 20, '\n');
         tempDur = atoi(input);
           
-        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempArt, tempDur));
+        myVec.push_back(new movie(tempTitle, tempYear, tempPub, tempArt, tempDur));
         
       } else {
         cout << "Returning to menu..." << endl;
