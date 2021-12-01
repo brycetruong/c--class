@@ -97,7 +97,7 @@ int main() {
         cin.getline(input, 20, '\n');
         tempDur = atoi(input);
           
-        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempArt, tempDur));
+        myVec.push_back(new music(tempTitle, tempYear, tempPub, tempArt, tempDur));
         
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
         //cout << "MOVIES" << endl;
