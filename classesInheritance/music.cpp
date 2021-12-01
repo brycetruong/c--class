@@ -18,6 +18,7 @@ music::music(){
   year = 2000;
   publisher = new char[20];
   artist = new char[20];
+  duration = 2000; //in seconds
 }
 
 music::~music(){
@@ -25,7 +26,7 @@ music::~music(){
   delete[] artist;
 }
 
-music::music(char* newTitle, int newYear, char* newPub){
+music::music(char* newTitle, int newYear, char* newPub, char* newArt, int newDur){
   title = new char[20];
   strcpy(title, newTitle);
   
@@ -33,6 +34,11 @@ music::music(char* newTitle, int newYear, char* newPub){
   
   publisher = new char[20];
   strcpy(publisher, newPub);
+  
+  artist = new char[20];
+  strcpy(artist, newArt);
+  
+  duration = newDur;
   
   type = MS;
 }
