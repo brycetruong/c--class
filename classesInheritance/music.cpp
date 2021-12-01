@@ -26,7 +26,7 @@ music::~music(){
   delete[] artist;
 }
 
-music::music(char* newTitle, int newYear, char* newPub, char* newArt, int newDur){
+music::music(char* newTitle, int newYear, char* newPub, char* newArt, int newDur){//title, year, publisher, artist, duration
   title = new char[20];
   strcpy(title, newTitle);
   
