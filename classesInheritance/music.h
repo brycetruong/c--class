@@ -10,6 +10,7 @@
 class music: public media {
  public:
   music();
+  virtual ~music();
   music(char*, int, char*);
  
   char* getPub();
