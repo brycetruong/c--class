@@ -18,6 +18,7 @@ using namespace std;
 class media {
 	public:
 	media();
+	~media();
 	media(char*, int);
 	char* getTitle();
  	int getYear();
