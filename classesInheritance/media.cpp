@@ -25,6 +25,10 @@ media::media(){
   type = MEDIA;
 }
 
+media::~media(){
+  delete[] title;
+}
+
 media::media(char* newTitle, int newYear){
   title = new char[20];
   strcpy(title, newTitle);
