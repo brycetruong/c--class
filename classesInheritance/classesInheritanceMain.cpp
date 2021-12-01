@@ -77,7 +77,6 @@ int main() {
         char* tempArt = new char[20];
         int tempDur = 0;
         
-        //not done from here and below
         cout << "Input title:" << endl;
         cin.getline(input, 20, '\n');
         strcpy(tempTitle, input);
@@ -90,13 +89,47 @@ int main() {
         cin.getline(input, 20, '\n');
         strcpy(tempPub, input);
         
-        cout << "Input rating:" << endl;
+        cout << "Input artist:" << endl;
         cin.getline(input, 20, '\n');
-        tempRate = atof(input);
+        strcpy(tempArt, input);
+        
+        cout << "Input duration (in seconds):" << endl;
+        cin.getline(input, 20, '\n');
+        tempDur = atoi(input);
           
-        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempRate));
+        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempArt, tempDur));
+        
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
-        cout << "MOVIES" << endl;
+        //cout << "MOVIES" << endl;
+        //not done anything below this
+        char* tempTitle = new char[20];
+        int tempYear = 0;
+        char* tempPub = new char[20];
+        char* tempArt = new char[20];
+        int tempDur = 0;
+        
+        cout << "Input title:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempTitle, input);
+        
+        cout << "Input year:" << endl;
+        cin.getline(input, 20, '\n');
+        tempYear = atoi(input);
+        
+        cout << "Input publisher:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempPub, input);
+        
+        cout << "Input artist:" << endl;
+        cin.getline(input, 20, '\n');
+        strcpy(tempArt, input);
+        
+        cout << "Input duration (in seconds):" << endl;
+        cin.getline(input, 20, '\n');
+        tempDur = atoi(input);
+          
+        myVec.push_back(new videoGames(tempTitle, tempYear, tempPub, tempArt, tempDur));
+        
       } else {
         cout << "Returning to menu..." << endl;
       }
