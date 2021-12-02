@@ -135,7 +135,115 @@ int main() {
         cout << "Returning to menu..." << endl;
       }
     } else if (strcmp(input, "DELETE") == 0) {
-
+      
+      cout << "What do you want to search by to delete?\nTITLE\tYEAR" << endl;
+      cin.getline(input, 20, '\n');
+      
+      int matches = 0;
+      int indexOfVec[20];
+      /*int vg = 0;
+      int ms = 0;
+      int mv = 0;*/
+      media* mediaToDelete[20];
+      
+      if (strcmp(input, "TITLE") == 0){
+        cout << "Enter Title:" << endl;
+        cin.getline(input, 20, '\n');
+        
+        for (int i = 0; i < myVec.size(); i++) {
+          if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
+            mediaToDelete[matches] = myVec.at(i);
+            matches++;
+            indexOfVec[matches] = i;
+            if (myVec.at(i) -> getType() == VG) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: VideoGame" << endl;
+              cout << "Title: " << ((videoGames*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((videoGames*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((videoGames*)myVec.at(i)) -> getPub() << endl;
+              cout << "Rating: " << ((videoGames*)myVec.at(i)) -> getRate() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            } else if (myVec.at(i) -> getType() == MS) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Music" << endl;
+              cout << "Title: " << ((music*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((music*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((music*)myVec.at(i)) -> getPub() << endl;
+              cout << "Artist: " << ((music*)myVec.at(i)) -> getArt() << endl;
+              cout << "Duration: " << ((music*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            } else if (myVec.at(i) -> getType() == MV) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Movie" << endl;
+              cout << "Title: " << ((movie*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((movie*)myVec.at(i)) -> getYear() << endl;
+              cout << "Director: " << ((movie*)myVec.at(i)) -> getDir() << endl;
+              cout << "Rating: " << ((movie*)myVec.at(i)) -> getRate() << endl;
+              cout << "Duration: " << ((movie*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            }
+            
+          }
+          
+        }
+      } else if (strcmp(input, "YEAR") == 0) {
+        cout << "Enter Year:" << endl;
+        cin.getline(input, 20, '\n');
+        
+        for (int i = 0; i < myVec.size(); i++) {
+          if (myVec.at(i) -> getYear() == atoi(input)) {
+            matches++;
+            mediaToDelete[matches] = myVec.at(i);
+            indexOfVec[matches] = i;
+            if (myVec.at(i) -> getType() == VG) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: VideoGame" << endl;
+              cout << "Title: " << ((videoGames*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((videoGames*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((videoGames*)myVec.at(i)) -> getPub() << endl;
+              cout << "Rating: " << ((videoGames*)myVec.at(i)) -> getRate() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            } else if (myVec.at(i) -> getType() == MS) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Music" << endl;
+              cout << "Title: " << ((music*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((music*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((music*)myVec.at(i)) -> getPub() << endl;
+              cout << "Artist: " << ((music*)myVec.at(i)) -> getArt() << endl;
+              cout << "Duration: " << ((music*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            } else if (myVec.at(i) -> getType() == MV) {
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Movie" << endl;
+              cout << "Title: " << ((movie*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((movie*)myVec.at(i)) -> getYear() << endl;
+              cout << "Director: " << ((movie*)myVec.at(i)) -> getDir() << endl;
+              cout << "Rating: " << ((movie*)myVec.at(i)) -> getRate() << endl;
+              cout << "Duration: " << ((movie*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
+            }
+          }
+        }
+      } else {
+        cout << "Input not recognized... please enter TITLE or YEAR" << endl;
+      }
+      
+      if (matches > 1) {
+        cout << "Multiple matches! Input indicie to delete:" << endl;
+        cin.getline(input, 20, '\n');
+        
+      } else {
+       cout << "Succesfully deleted" << endl;
+       delete mediaToDelete[0];
+       myVec.erase(indexOfVec[0]);
+      }
+      
     } else if (strcmp(input, "QUIT") == 0) {
       cout << "Exiting..." << endl;
       stillRunning = false;
@@ -222,7 +330,7 @@ int main() {
           }
         }
       } else {
-        cout << "Input not recognized..." << endl;
+        cout << "Input not recognized... please enter TITLE or YEAR" << endl;
       }
       
       
@@ -235,6 +343,7 @@ int main() {
       */
     } else {
       delete myVec.at(0);
+      myVec.erase(i);
       /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
