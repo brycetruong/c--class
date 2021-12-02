@@ -194,6 +194,7 @@ int main() {
       */
     } else {
       
+      /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
       int newInt = 2021;
@@ -215,7 +216,7 @@ int main() {
       
       cout << myVec.at(1)->getYear() << endl; //note to self: also use virtual functions for when there are the same fctn (like getRate on both movies and VG)?
       cout << ((videoGames*)myVec.at(1))->getRate() << endl; //I cast to a videogame ptr because it still thinks that it is a media ptr and tries to find get rate when there is no get rate
-      
+      */
       cout << "Input not recognized..." << endl;
     }
   }
