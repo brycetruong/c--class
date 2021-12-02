@@ -234,7 +234,7 @@ int main() {
       }
       */
     } else {
-      
+      delete myVec.at(0);
       /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
