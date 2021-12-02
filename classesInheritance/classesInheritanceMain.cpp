@@ -102,11 +102,11 @@ int main() {
         
       } else if (strcmp(input, "MOVIES") == 0 || strcmp(input, "MV") == 0) {
         //cout << "MOVIES" << endl;
-        //not done anything below this
+        
         char* tempTitle = new char[20];
         int tempYear = 0;
-        char* tempPub = new char[20];
-        char* tempArt = new char[20];
+        char* tempDir = new char[20];
+        double tempRate = 0.0;
         int tempDur = 0;
         
         cout << "Input title:" << endl;
@@ -117,19 +117,19 @@ int main() {
         cin.getline(input, 20, '\n');
         tempYear = atoi(input);
         
-        cout << "Input publisher:" << endl;
+        cout << "Input director:" << endl;
         cin.getline(input, 20, '\n');
-        strcpy(tempPub, input);
+        strcpy(tempDir, input);
         
-        cout << "Input artist:" << endl;
+        cout << "Input rating:" << endl;
         cin.getline(input, 20, '\n');
-        strcpy(tempArt, input);
+        tempRate = atof(input);
         
-        cout << "Input duration (in seconds):" << endl;
+        cout << "Input duration (in minutes):" << endl;
         cin.getline(input, 20, '\n');
         tempDur = atoi(input);
           
-        myVec.push_back(new movie(tempTitle, tempYear, tempPub, tempArt, tempDur));
+        myVec.push_back(new movie(tempTitle, tempYear, tempDir, tempRate, tempDur));
         
       } else {
         cout << "Returning to menu..." << endl;
