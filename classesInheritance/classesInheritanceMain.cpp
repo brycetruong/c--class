@@ -151,6 +151,7 @@ int main() {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
             if (myVec.at(i) -> getType() == VG) {
               cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: VideoGame" << endl;
               cout << "Title: " << ((videoGames*)myVec.at(i)) -> getTitle() << endl;
               cout << "Year: " << ((videoGames*)myVec.at(i)) -> getYear() << endl;
               cout << "Publisher: " << ((videoGames*)myVec.at(i)) -> getPub() << endl;
@@ -158,9 +159,25 @@ int main() {
               cout << "-\t-\t-\t-\t" << endl;
               cout << endl;
             } else if (myVec.at(i) -> getType() == MS) {
-              
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Music" << endl;
+              cout << "Title: " << ((music*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((music*)myVec.at(i)) -> getYear() << endl;
+              cout << "Publisher: " << ((music*)myVec.at(i)) -> getPub() << endl;
+              cout << "Artist: " << ((music*)myVec.at(i)) -> getArt() << endl;
+              cout << "Duration: " << ((music*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
             } else if (myVec.at(i) -> getType() == MV) {
-              
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << "Media Type: Movie" << endl;
+              cout << "Title: " << ((movie*)myVec.at(i)) -> getTitle() << endl;
+              cout << "Year: " << ((movie*)myVec.at(i)) -> getYear() << endl;
+              cout << "Director: " << ((movie*)myVec.at(i)) -> getDir() << endl;
+              cout << "Rating: " << ((movie*)myVec.at(i)) -> getRate() << endl;
+              cout << "Duration: " << ((movie*)myVec.at(i)) -> getDuration() << endl;
+              cout << "-\t-\t-\t-\t" << endl;
+              cout << endl;
             }
             
           }
