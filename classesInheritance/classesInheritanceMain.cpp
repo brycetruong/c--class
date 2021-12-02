@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 11/5/21
-Last Modified: 11/15/21
+Last Modified: 12/1/21
 */
 #include <iostream>
 #include <cstring>
@@ -28,7 +28,7 @@ int main() {
   char input[20];
   bool stillRunning = true;
   
-  media* mediaList[20];
+  media* mediaList[20]; //useless I never used an array except in my testing phase
   
   vector<media*> myVec;
   
