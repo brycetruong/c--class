@@ -236,20 +236,22 @@ int main() {
       
       if (matches > 1) {
         cout << matches << " matches found! Input indicie to delete:" << endl;
-        cout << "-\t-\t-\t-\t-\t-" << endl;
+        
         for (int i = 0; i < matches; i++) {
           cout << i << endl;
         }
+        cout << "-\t-\t-\t-\t-\t-" << endl;
         cout << endl;
         
-        cout << atoi(input) << endl;
-        cout << (mediaToDelete[atoi(input)] -> getYear()) << endl;
-        cout << indexOfVec[atoi(input)] << endl;
+
         
         
         
         cin.getline(input, 20, '\n');
         
+        cout << atoi(input) << endl;
+        cout << (mediaToDelete[atoi(input)] -> getYear()) << endl;
+        cout << indexOfVec[atoi(input)] << endl;
         
         
         delete mediaToDelete[atoi(input)];
