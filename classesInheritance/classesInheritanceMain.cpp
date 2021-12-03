@@ -247,9 +247,13 @@ int main() {
         myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
         
       } else {
-        cout << "Succesfully deleted" << endl;
+        if (matches != 0) {
+          cout << "Succesfully deleted" << endl;
         delete mediaToDelete[0];
         myVec.erase(myVec.begin() + indexOfVec[0]);
+        } else {
+          cout << "No matches found" << endl;
+        }
       }
       
     } else if (strcmp(input, "QUIT") == 0) {
