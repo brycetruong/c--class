@@ -243,7 +243,7 @@ int main() {
         cout << endl;
         
         cout << atoi(input) << endl;
-        cout << mediaToDelete[atoi] -> getYear();
+        cout << (mediaToDelete[atoi(input)] -> getYear()) << endl;
         cout << indexOfVec[atoi(input)] << endl;
         
         
