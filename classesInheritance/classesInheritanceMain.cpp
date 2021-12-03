@@ -243,9 +243,9 @@ int main() {
         cout << endl;
         
         cout << atoi(input) << endl;
-        cout << myVec.begin() << endl;
+        cout << mediaToDelete[atoi] -> getYear();
         cout << indexOfVec[atoi(input)] << endl;
-        cout << myVec.begin() + indexOfVec[atoi(input)] << endl;
+        
         
         
         cin.getline(input, 20, '\n');
