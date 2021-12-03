@@ -255,7 +255,8 @@ int main() {
         
         
         delete mediaToDelete[atoi(input)];
-        myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
+        myVec.erase(myVec.begin() + 1);
+        //myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
         
       } else {
         if (matches != 0) {
