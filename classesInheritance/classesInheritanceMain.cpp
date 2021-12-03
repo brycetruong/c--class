@@ -195,8 +195,8 @@ int main() {
         
         for (int i = 0; i < myVec.size(); i++) {
           if (myVec.at(i) -> getYear() == atoi(input)) {
-            matches++;
             mediaToDelete[matches] = myVec.at(i);
+            matches++;
             indexOfVec[matches] = i;
             if (myVec.at(i) -> getType() == VG) {
               cout << "-\t-\t-\t-\t" << endl;
@@ -238,17 +238,17 @@ int main() {
         cout << matches << "matches found! Input indicie to delete:" << endl;
         cout << "/t" << endl;
         for (int i = 0; i < matches; i++) {
-          cout << "/t" << i << endl;
+          cout << i << "/t" << endl;
         }
         cin.getline(input, 20, '\n');
         
-        mediaToDelete[atoi(input)];
-        myVec.erase(indexOfVec[atoi(input)]);
+        delete mediaToDelete[atoi(input)];
+        myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
         
       } else {
        cout << "Succesfully deleted" << endl;
        delete mediaToDelete[0];
-       myVec.erase(indexOfVec[0]);
+       myVec.erase(myVec.begin() + indexOfVec[0]);
       }
       
     } else if (strcmp(input, "QUIT") == 0) {
@@ -350,7 +350,7 @@ int main() {
       */
     } else {
       delete myVec.at(0);
-      myVec.erase(0);
+      myVec.erase(myVec.begin());
       /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
