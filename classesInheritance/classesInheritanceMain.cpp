@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 11/5/21
-Last Modified: 12/1/21
+Last Modified: 12/3/21
 */
 #include <iostream>
 #include <cstring>
@@ -245,16 +245,12 @@ int main() {
         }
         cout << "-\t-\t-\t-\t-\t-" << endl;
         cout << endl;
-        
 
-        
-        
-        
         cin.getline(input, 20, '\n');
         
-        cout << atoi(input) << endl;
+        /*cout << atoi(input) << endl;
         cout << (mediaToDelete[atoi(input)] -> getYear()) << endl;
-        cout << indexOfVec[atoi(input)] << endl;
+        cout << indexOfVec[atoi(input)] << endl;*/
         
         
         delete mediaToDelete[atoi(input)];
@@ -363,14 +359,21 @@ int main() {
       
       
       
+      
+    } else {
+      
+      //WELCOME TO THE CODE GRAVEYARD! enjoy your stay!
+      
+      
       /*
       for (int i = 0; i < myVec.size(); i++) {
         cout << myVec.at(i) -> getTitle() << endl;
       }
       */
-    } else {
-      delete myVec.at(0);
-      myVec.erase(myVec.begin());
+      
+      //delete myVec.at(0);
+      //myVec.erase(myVec.begin());
+      
       /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
@@ -394,6 +397,7 @@ int main() {
       cout << myVec.at(1)->getYear() << endl; //note to self: also use virtual functions for when there are the same fctn (like getRate on both movies and VG)?
       cout << ((videoGames*)myVec.at(1))->getRate() << endl; //I cast to a videogame ptr because it still thinks that it is a media ptr and tries to find get rate when there is no get rate
       */
+      
       cout << "Input not recognized..." << endl;
     }
   }
