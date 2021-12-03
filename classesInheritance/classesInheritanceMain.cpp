@@ -235,20 +235,21 @@ int main() {
       }
       
       if (matches > 1) {
-        cout << matches << "matches found! Input indicie to delete:" << endl;
-        cout << "/t" << endl;
+        cout << matches << " matches found! Input indicie to delete:" << endl;
+        cout << "-\t-\t-\t-\t-\t-" << endl;
         for (int i = 0; i < matches; i++) {
-          cout << i << "/t" << endl;
+          cout << i << "/t";
         }
+        cout << endl;
         cin.getline(input, 20, '\n');
         
         delete mediaToDelete[atoi(input)];
         myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
         
       } else {
-       cout << "Succesfully deleted" << endl;
-       delete mediaToDelete[0];
-       myVec.erase(myVec.begin() + indexOfVec[0]);
+        cout << "Succesfully deleted" << endl;
+        delete mediaToDelete[0];
+        myVec.erase(myVec.begin() + indexOfVec[0]);
       }
       
     } else if (strcmp(input, "QUIT") == 0) {
