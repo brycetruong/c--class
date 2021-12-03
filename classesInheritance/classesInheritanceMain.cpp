@@ -241,10 +241,16 @@ int main() {
           cout << i << endl;
         }
         cout << endl;
-        cin.getline(input, 20, '\n');
         
         cout << atoi(input) << endl;
+        cout << myVec.begin() << endl;
         cout << indexOfVec[atoi(input)] << endl;
+        cout << myVec.begin() + indexOfVec[atoi(input)] << endl;
+        
+        
+        cin.getline(input, 20, '\n');
+        
+        
         
         delete mediaToDelete[atoi(input)];
         myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
