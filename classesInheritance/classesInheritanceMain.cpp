@@ -238,7 +238,7 @@ int main() {
         cout << matches << " matches found! Input indicie to delete:" << endl;
         cout << "-\t-\t-\t-\t-\t-" << endl;
         for (int i = 0; i < matches; i++) {
-          cout << i << "\t" << end;
+          cout << i << endl;
         }
         cout << endl;
         cin.getline(input, 20, '\n');
