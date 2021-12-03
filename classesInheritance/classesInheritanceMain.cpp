@@ -235,8 +235,13 @@ int main() {
       }
       
       if (matches > 1) {
-        cout << "Multiple matches! Input indicie to delete:" << endl;
+        cout << matches << "matches found! Input indicie to delete:" << endl;
+        cout << "/t" << endl;
+        for (int i = 1; i < matches+1; i++) cout << "/t" << i << endl;
         cin.getline(input, 20, '\n');
+        
+        mediaToDelete[atoi(input)]
+        myVec.erase(indexOfVec[atoi(input)]);
         
       } else {
        cout << "Succesfully deleted" << endl;
@@ -343,7 +348,7 @@ int main() {
       */
     } else {
       delete myVec.at(0);
-      myVec.erase(i);
+      myVec.erase(0);
       /*
       char* testTitle = new char[20];
       strcpy(testTitle, "Pacman");
