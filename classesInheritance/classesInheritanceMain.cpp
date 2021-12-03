@@ -153,8 +153,9 @@ int main() {
         for (int i = 0; i < myVec.size(); i++) {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
             mediaToDelete[matches] = myVec.at(i);
-            matches++;
             indexOfVec[matches] = i;
+            matches++;
+            
             if (myVec.at(i) -> getType() == VG) {
               cout << "-\t-\t-\t-\t" << endl;
               cout << "Media Type: VideoGame" << endl;
@@ -196,8 +197,10 @@ int main() {
         for (int i = 0; i < myVec.size(); i++) {
           if (myVec.at(i) -> getYear() == atoi(input)) {
             mediaToDelete[matches] = myVec.at(i);
-            matches++;
             indexOfVec[matches] = i;
+            matches++;
+            
+            
             if (myVec.at(i) -> getType() == VG) {
               cout << "-\t-\t-\t-\t" << endl;
               cout << "Media Type: VideoGame" << endl;
