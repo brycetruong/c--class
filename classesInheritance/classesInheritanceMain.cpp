@@ -1,8 +1,21 @@
 /*
 Author: Bryce Truong
 Date Created: 11/5/21
-Last Modified: 12/3/21
+Last Modified: 12/6/21
+
+This is a classes project that does stuff. You can add, search, and delete THREE different media types: Videogames, Music, and Movies.
+
+
+Sources:
+https://www.quantstart.com/articles/C-Virtual-Destructors-How-to-Avoid-Memory-Leaks/
+https://www.geeksforgeeks.org/destructors-c/
+https://www.learncpp.com/cpp-tutorial/header-guards/
+https://www.geeksforgeeks.org/stack-vs-heap-memory-allocation/
+https://www.cplusplus.com/reference/vector/vector/erase/
+https://www.tutorialspoint.com/how-do-i-find-the-length-of-an-array-in-c-cplusplus
+https://www.cplusplus.com/reference/vector/vector/crbegin/
 */
+
 #include <iostream>
 #include <cstring>
 #include <cctype>
@@ -28,7 +41,7 @@ int main() {
   char input[20];
   bool stillRunning = true;
   
-  media* mediaList[20]; //useless I never used an array except in my testing phase
+  media* mediaList[20]; //useless I never used this array except in my testing phase
   
   vector<media*> myVec;
   
@@ -36,6 +49,14 @@ int main() {
     cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tSEARCH\tQUIT" << endl;
     cin.getline(input, 20, '\n');
     if (strcmp(input, "ADD") == 0) {
+      
+      /* READ ME FOR ADDING - COMMENTS
+      How I added things to my media vector was I initialized the internal variables using the constructor.
+      I made temporary vars which I stored the user input, and then at the end, I called the constructor for the videogames/music/movie and pushed everything into it.
+      I don't have to put in the type of media it is, because that is already made automatically when the constructor is called.
+      
+      */
+      
       cout << "What kind of media would you like to add? \nVIDEOGAMES (VG)\tMUSIC (MS)\tMOVIES (MV)" << endl;
       cin.getline(input, 20, '\n');
       if (strcmp(input, "VIDEOGAMES") == 0 || strcmp(input, "VG") == 0) {
@@ -140,11 +161,15 @@ int main() {
       cin.getline(input, 20, '\n');
       
       int matches = 0;
-      int indexOfVec[20];
-      /*int vg = 0;
-      int ms = 0;
-      int mv = 0;*/
+      int indexOfVec[20]; //probably should've called this indexInVec to be clearer
       media* mediaToDelete[20];
+      
+      /* READ ME FOR DELETING - COMMENTS PART 1/2
+      So the delete searching part is the exact same as the searching part (see comments below in searching section)
+      The only thing that is different, is when it finds a matching title/year, it adds the ptr to an array, and adds the index that it was at to another array.
+      This is because if there are multiple matches, the user can choose which one to delete.
+      
+      */
       
       if (strcmp(input, "TITLE") == 0){
         cout << "Enter Title:" << endl;
@@ -152,6 +177,7 @@ int main() {
         
         for (int i = 0; i < myVec.size(); i++) {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
+            //The three lines below differ from the regular search loop.
             mediaToDelete[matches] = myVec.at(i);
             indexOfVec[matches] = i;
             matches++;
@@ -237,6 +263,13 @@ int main() {
         cout << "Input not recognized... please enter TITLE or YEAR" << endl;
       }
       
+      /* READ ME FOR DELETING - COMMENTS PART 2/2
+      After the loop compiles all the matches, I check if there are multiple matches, and if there aren't more than 1 match, then I just delete the first one in the array.
+      I delete the actual object first, and then I remove it from the vector. Removing it from the vector was a little bit tricky because vector::erase() uses an iterator instead of just a normal index.
+      I print out all of the matches, and then prompt the user to delete which one (using the index).
+      
+      */
+      
       if (matches > 1) {
         cout << matches << " matches found! Input indicie to delete:" << endl;
         
@@ -247,14 +280,8 @@ int main() {
         cout << endl;
 
         cin.getline(input, 20, '\n');
-        
-        /*cout << atoi(input) << endl;
-        cout << (mediaToDelete[atoi(input)] -> getYear()) << endl;
-        cout << indexOfVec[atoi(input)] << endl;*/
-        
-        
+
         delete mediaToDelete[atoi(input)];
-        //myVec.erase(myVec.begin() + 1);
         myVec.erase(myVec.begin() + indexOfVec[atoi(input)]);
         
       } else {
@@ -278,6 +305,16 @@ int main() {
         cout << "Enter Title:" << endl;
         cin.getline(input, 20, '\n');
         
+        /* READ ME FOR SEARCHING AND PRINTING - COMMENTS
+        
+        So basically how my search and printing works is, I loop thru the entire vector, and first find the matching title/year
+        Inside each distinct media, I have a type (VG, MS, or MV) which tells me what kind of media it is so I don't accidentally call getDuration() on a videogame media.
+        Then when I print out, you will notice that I to a videogame (or music or movie) ptr because it still thinks that it is a media ptr and tries to find getRate() when there is no getRate()
+        I do this for all of the functions other than getYear() or getTitle() because those are part of the media class. (actually I realized that I also casted those to ptrs too but they would work exactly the same without...)
+        The arrow (->) dereferences the ptrs and treats them as normal objects which I then can use the getSomething() functions on them.
+        
+        */
+        
         for (int i = 0; i < myVec.size(); i++) {
           if (strcmp(myVec.at(i) -> getTitle(), input) == 0) {
             if (myVec.at(i) -> getType() == VG) {
@@ -354,50 +391,8 @@ int main() {
         }
       } else {
         cout << "Input not recognized... please enter TITLE or YEAR" << endl;
-      }
-      
-      
-      
-      
-      
+      }   
     } else {
-      
-      //WELCOME TO THE CODE GRAVEYARD! enjoy your stay!
-      
-      
-      /*
-      for (int i = 0; i < myVec.size(); i++) {
-        cout << myVec.at(i) -> getTitle() << endl;
-      }
-      */
-      
-      //delete myVec.at(0);
-      //myVec.erase(myVec.begin());
-      
-      /*
-      char* testTitle = new char[20];
-      strcpy(testTitle, "Pacman");
-      int newInt = 2021;
-      mediaList[0] = new media(testTitle, newInt); //videogames or media
-      myVec.push_back(mediaList[0]);
-      strcpy(testTitle, "Galaga");
-      newInt = 2022;
-      mediaList[1] = new videoGames(testTitle, newInt, testTitle, 7.8);
-      myVec.push_back(mediaList[1]);
-      strcpy(testTitle, "Galaga");
-      newInt = 2023;
-      mediaList[2] = new videoGames(testTitle, newInt, testTitle, 9.9);
-      myVec.push_back(mediaList[2]);
-      
-      cout << endl;
-      
-      cout << myVec.at(0)->getTitle() << endl;
-      cout << mediaList[0]->getYear() << endl;
-      
-      cout << myVec.at(1)->getYear() << endl; //note to self: also use virtual functions for when there are the same fctn (like getRate on both movies and VG)?
-      cout << ((videoGames*)myVec.at(1))->getRate() << endl; //I cast to a videogame ptr because it still thinks that it is a media ptr and tries to find get rate when there is no get rate
-      */
-      
       cout << "Input not recognized..." << endl;
     }
   }
