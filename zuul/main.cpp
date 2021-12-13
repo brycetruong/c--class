@@ -22,12 +22,29 @@ https://www.cplusplus.com/reference/vector/vector/crbegin/
 #include <stdlib.h>
 #include <vector>
 #include <iterator>
+#include "room.h"
+#include "item.h"
 
 using namespace std;
 
+void printCurrentRoom(*room );
+
 int main() {
   char input[20];
-  bool stillRunning = true;
+  bool running = true;
+  room* roomList[20];
+  vector<item*> inventory;
+  room* currentRoom
+  
+  while (running) {
+    
+  }
   
   
+}
+
+void printCurrentRoom(*room) {
+  
+  
+  return;
 }
