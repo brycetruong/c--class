@@ -37,8 +37,14 @@ void room::addItem(item* newItem) {
   roomInv.push_back(newItem);
 }
 
-void room::remItem(item* newItem) {
-  
+item* room::remItem(char* itemName) {
+  for (int i = 0; i < roomInv.size(); i++) {
+   if (strcmp(roomInv.at(i)->getName(), itemName) == 0) {
+     item* temp = roomInv.at(i);
+     roomInv.erase(roomInv.begin() + i);
+     return temp;
+   }
+ }
 }
 
 void room::printItems() {
