@@ -10,6 +10,7 @@ Last Modified: 12/9/21
 #include <vector>
 #include <iterator>
 #include "room.h"
+#include "item.h"
 
 using namespace std;
 
