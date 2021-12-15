@@ -23,6 +23,8 @@ class room {
 	room(char*);
 	char* getDesc();
 	addItem();
+	remItem();
+	printItems();
 	
 	char* desc;
 	vector<item*> roomInv;
