@@ -45,6 +45,7 @@ item* room::remItem(char* itemName) {
      return temp;
    }
  }
+ return NULL;
 }
 
 void room::printItems() {
