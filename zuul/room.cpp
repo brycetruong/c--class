@@ -37,7 +37,7 @@ void room::addItem(item* newItem) {
   roomInv.push_back(newItem);
 }
 
-void room::remItem() {
+void room::remItem(item* newItem) {
   
 }
 
