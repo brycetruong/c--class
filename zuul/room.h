@@ -23,8 +23,8 @@ class room {
 	~room();
 	room(char*);
 	char* getDesc();
-	addItem();
-	remItem();
+	addItem(item*);
+	remItem(item*);
 	printItems();
 	
 	char* desc;
