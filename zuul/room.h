@@ -4,7 +4,7 @@
 /*
 Author: Bryce Truong
 Date Created: 12/9/21
-Last Modified: 12/9/21
+Last Modified: 12/15/21
 
 
 */
@@ -23,9 +23,9 @@ class room {
 	~room();
 	room(char*);
 	char* getDesc();
-	addItem(item*);
-	remItem(item*);
-	printItems();
+	void addItem(item*);
+	void remItem(item*);
+	void printItems();
 	
 	char* desc;
 	vector<item*> roomInv;
