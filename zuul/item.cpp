@@ -16,7 +16,6 @@ item::item(){
   name = new char[20];
 
 }
-
 item::~item(){
   delete[] name;
 }

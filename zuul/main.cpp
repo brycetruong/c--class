@@ -27,23 +27,39 @@ https://www.cplusplus.com/reference/vector/vector/crbegin/
 
 using namespace std;
 
-void printCurrentRoom(*room );
+void printCurrentRoom(room* currentRoom);
 
 int main() {
   char input[20];
   bool running = true;
   room* roomList[20];
   vector<item*> inventory;
-  room* currentRoom
-  
+  room* currentRoom;
+
   while (running) {
+    bool playing = true;
+    /* CREATE ROOMS */
+    
+
+    
+    /* COMMAND PARSER */
+    /* Availible commands:
+       go north/east/south/waffles
+       get "item_name"
+       w,a,s,d (same as go)
+       quit
+    */
+
+
     
   }
+  
+  cout << "Thanks for playing, have a nice day!" << endl; 
   
   
 }
 
-void printCurrentRoom(*room) {
+void printCurrentRoom(room* currentRoom) {
   
   
   return;
