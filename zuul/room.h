@@ -11,6 +11,8 @@ Last Modified: 12/9/21
 #include <iostream>
 #include <cstring>
 #include <stdio.h>
+#include <vector>
+#include <iterator>
 
 using namespace std;
 
@@ -20,8 +22,10 @@ class room {
 	~room();
 	room(char*);
 	char* getDesc();
+	addItem();
 	
 	char* desc;
+	vector<item*> roomInv;
 
 };
 
