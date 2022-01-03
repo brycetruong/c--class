@@ -22,10 +22,16 @@ https://www.cplusplus.com/reference/vector/vector/crbegin/
 #include <stdlib.h>
 #include <vector>
 #include <iterator>
+#include <map>
 #include "room.h"
 #include "item.h"
 
 using namespace std;
+
+const int NORTH = 0;
+const int EAST = 1;
+const int SOUTH = 2;
+const int WEST = 3;
 
 void printCurrentRoom(room* currentRoom);
 
