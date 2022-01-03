@@ -13,9 +13,15 @@ Last Modified: 12/15/21
 #include <stdio.h>
 #include <vector>
 #include <iterator>
+#include <map>
 #include "item.h"
 
 using namespace std;
+
+const int NORTH = 0;
+const int EAST = 1;
+const int SOUTH = 2;
+const int WEST = 3;
 
 class room {
 	public:
@@ -23,12 +29,15 @@ class room {
 	~room();
 	room(char*);
 	char* getDesc();
+	void setExit(int, room*);
 	void addItem(item*);
 	item* remItem(char*);
 	void printItems();
 	
 	char* desc;
 	vector<item*> roomInv;
+	
+	map<int, room*> exits; //direction
 
 };
 
