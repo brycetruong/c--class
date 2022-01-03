@@ -15,11 +15,6 @@ Last Modified: 12/9/21
 
 using namespace std;
 
-const int NORTH = 0;
-const int EAST = 1;
-const int SOUTH = 2;
-const int WEST = 3;
-
 room::room(){
   
   desc = new char[20];
