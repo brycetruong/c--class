@@ -9,10 +9,16 @@ Last Modified: 12/9/21
 #include <stdio.h>
 #include <vector>
 #include <iterator>
+#include <map>
 #include "room.h"
 
 
 using namespace std;
+
+const int NORTH = 0;
+const int EAST = 1;
+const int SOUTH = 2;
+const int WEST = 3;
 
 room::room(){
   
@@ -31,6 +37,10 @@ room::room(char* newDesc) {
 
 char* room::getDesc() {
   return desc;
+}
+
+void room::setExit(int direction, room* newExit) {
+  exits.insert((pair<int, room*>(direction, newExit));
 }
 
 void room::addItem(item* newItem) {
