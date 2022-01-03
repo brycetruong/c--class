@@ -23,7 +23,7 @@ room::room(){
 
 room::~room(){
   delete[] desc;
-  delete exits;
+  //delete exits; //do i need to delete this?
 }
 
 room::room(char* newDesc) {
