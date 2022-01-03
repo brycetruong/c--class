@@ -45,7 +45,7 @@ int main() {
   while (running) {
     bool playing = true;
     /* CREATE ROOMS */
-    
+    //testRoom1 = new Room();
 
     
     /* COMMAND PARSER */
