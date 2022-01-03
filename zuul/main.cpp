@@ -41,7 +41,7 @@ int main() {
     bool playing = true;
     /* CREATE ROOMS */
     //testRoom1 = new Room();
-
+    cout << NORTH << endl;
     
     /* COMMAND PARSER */
     /* Availible commands:
