@@ -35,7 +35,7 @@ char* room::getDesc() {
 }
 
 void room::setExit(int direction, room* newExit) {
-  exits.insert((pair<int, room*>(direction, newExit));
+  exits.insert(pair<int, room*>(direction, newExit));
 }
 
 void room::addItem(item* newItem) {
