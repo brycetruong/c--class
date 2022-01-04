@@ -47,7 +47,13 @@ void room::printInfo() {
  for (itr = exits.begin(); itr != exits.end(); itr++) {
         cout << '\t' << itr->first << '\t' << itr->second->getName() << '\n';
  }
-  
+ //also prints the items
+ cout << "Items:" << endl;
+ for (int i = 0; i < roomInv.size(); i++) {
+   cout << roomInv.at(i)->getName() << endl;
+ }
+ 
+ 
 }
 
 void room::setExit(int direction, room* newExit) {
