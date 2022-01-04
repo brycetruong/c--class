@@ -41,9 +41,9 @@ int main() {
   
   /* CREATE ROOMS */
   char* TR1Desc = char[20];
-  strcpy("testRoom1 desc?", TR1Desc);
+  strcpy(TR1Desc, "testRoom1 desc?");
   char* TR1Name = char[20];
-  strcpy("testRoom1", TR1Desc);
+  strcpy(TR1Desc, "testRoom1");
   testRoom1 = new room(TR1Desc, TR1Name);
   testRoom2 = new room(TR1Desc, TR1Name);
   
@@ -52,7 +52,7 @@ int main() {
   currentRoom = testRoom1;
   
   /* ADD ITEMS */
-  inventory.push_back(new item("test_item"));
+  //inventory.push_back(new item("test_item"));
   
   
   while (running) {
