@@ -26,9 +26,12 @@ room::~room(){
   //delete exits; //do i need to delete this?
 }
 
-room::room(char* newDesc) {
+room::room(char* newDesc, char* newName) {
   desc = new char[80];
   strcpy(desc, newDesc);
+  
+  name = new char[80];
+  strcpy(name, newName);
 }
 
 char* room::getDesc() {
