@@ -44,7 +44,7 @@ int main() {
   char* TR1Desc = new char[80];
   strcpy(TR1Desc, "testRoom1 desc?");
   char* TR1Name = new char[80];
-  strcpy(TR1Desc, "testRoom1");
+  strcpy(TR1Name, "testRoom1");
   room* testRoom1 = new room(TR1Desc, TR1Name);
   room* testRoom2 = new room(TR1Desc, TR1Name);
   
