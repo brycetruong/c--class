@@ -43,7 +43,9 @@ char* room::getName() {
 }
 
 void room::printInfo() {
- cout << "You are in the " << name << "\n" << desc << "The exits are:" << endl;
+ cout << "You are in the " << name << endl;
+ cout << desc << endl;
+ cout << "The exits are:" << endl;
  for (itr = exits.begin(); itr != exits.end(); itr++) {
         cout << '\t' << itr->first << '\t' << itr->second->getName() << '\n';
  }
