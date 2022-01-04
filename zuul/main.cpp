@@ -44,8 +44,8 @@ int main() {
   strcpy(TR1Desc, "testRoom1 desc?");
   char* TR1Name = new char[20];
   strcpy(TR1Desc, "testRoom1");
-  testRoom1 = new room(TR1Desc, TR1Name);
-  testRoom2 = new room(TR1Desc, TR1Name);
+  room* testRoom1 = new room(TR1Desc, TR1Name);
+  room* testRoom2 = new room(TR1Desc, TR1Name);
   
   testRoom1->setExit(NORTH, testRoom2*);
     
