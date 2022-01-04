@@ -41,9 +41,9 @@ int main() {
   
   /* CREATE ROOMS */
   
-  char* TR1Desc = new char[20];
+  char* TR1Desc = new char[80];
   strcpy(TR1Desc, "testRoom1 desc?");
-  char* TR1Name = new char[20];
+  char* TR1Name = new char[80];
   strcpy(TR1Desc, "testRoom1");
   room* testRoom1 = new room(TR1Desc, TR1Name);
   room* testRoom2 = new room(TR1Desc, TR1Name);
@@ -65,11 +65,11 @@ int main() {
   inventory.push_back(new item(testingItem));
   
   
-  currentRoom->printItems();
+  //currentRoom->printItems();
   
-  for (int i = 0; i < inventory.size(); i++) {
+  /*for (int i = 0; i < inventory.size(); i++) {
    cout << inventory.at(i)->getName() << endl;
-  }
+  }*/
   
   currentRoom->printInfo();
   
