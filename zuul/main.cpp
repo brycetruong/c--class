@@ -41,8 +41,8 @@ int main() {
   while (running) {
     bool playing = true;
     /* CREATE ROOMS */
-    testRoom1 = new Room("testRoom1 desc?", "testRoom1");
-    testRoom2 = new Room("pls work...", "TR2");
+    room* testRoom1 = new Room("testRoom1 desc?", "testRoom1");
+    room* testRoom2 = new Room("pls work...", "TR2");
     
     
     testRoom1->setExit(NORTH, testRoom2*);
