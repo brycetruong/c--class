@@ -71,6 +71,8 @@ int main() {
    cout << inventory.at(i)->getName() << endl;
   }
   
+  currentRoom->printInfo();
+  
   while (running) {
     
     
