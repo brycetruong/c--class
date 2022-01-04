@@ -11,6 +11,7 @@ https://www.geeksforgeeks.org/stack-vs-heap-memory-allocation/
 https://www.cplusplus.com/reference/vector/vector/erase/
 https://www.tutorialspoint.com/how-do-i-find-the-length-of-an-array-in-c-cplusplus
 https://www.cplusplus.com/reference/vector/vector/crbegin/
+https://www.udacity.com/blog/2020/03/c-maps-explained.html
 */
 
 #include <iostream>
@@ -40,8 +41,8 @@ int main() {
   while (running) {
     bool playing = true;
     /* CREATE ROOMS */
-    testRoom1 = new Room("testRoom1 desc?");
-    testRoom2 = new Room("pls work...");
+    testRoom1 = new Room("testRoom1 desc?", "testRoom1");
+    testRoom2 = new Room("pls work...", "TR2");
     
     
     testRoom1->setExit(NORTH, testRoom2*);
