@@ -40,9 +40,9 @@ int main() {
 
   
   /* CREATE ROOMS */
-  char* TR1Desc = char[20];
+  char* TR1Desc = new char[20];
   strcpy(TR1Desc, "testRoom1 desc?");
-  char* TR1Name = char[20];
+  char* TR1Name = new char[20];
   strcpy(TR1Desc, "testRoom1");
   testRoom1 = new room(TR1Desc, TR1Name);
   testRoom2 = new room(TR1Desc, TR1Name);
