@@ -47,7 +47,7 @@ int main() {
   room* testRoom1 = new room(TR1Desc, TR1Name);
   room* testRoom2 = new room(TR1Desc, TR1Name);
   
-  testRoom1->setExit(NORTH, testRoom2*);
+  testRoom1->setExit(NORTH, testRoom2);
     
   currentRoom = testRoom1;
   
