@@ -40,9 +40,13 @@ int main() {
   while (running) {
     bool playing = true;
     /* CREATE ROOMS */
-    //testRoom1 = new Room();
-    cout << NORTH << endl;
+    testRoom1 = new Room("testRoom1 desc?");
+    testRoom2 = new Room("pls work...");
     
+    
+    testRoom1->setExit(NORTH, testRoom2*);
+    
+    currentRoom = testRoom1;
     /* COMMAND PARSER */
     /* Availible commands:
        go north/east/south/waffles
@@ -50,6 +54,9 @@ int main() {
        w,a,s,d (same as go)
        quit
     */
+    cin.getline(input, 20, '\n');
+    
+    cin.getline(input, 20, '\n');
 
 
     
