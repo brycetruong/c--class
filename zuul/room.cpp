@@ -33,7 +33,7 @@ room::room(char* newDesc, char* newName) {
   strcpy(desc, newDesc);
   
   roomname = new char[80];
-  strcpy(name, newName);
+  strcpy(roomname, newName);
 }
 
 char* room::getDesc() {
