@@ -56,7 +56,7 @@ int main() {
   
   char* testingRoomItem = new char[20];
   strcpy(testingRoomItem, "test_room_item");
-  testRoom1.addItem(new Item(testingRoomItem));
+  testRoom1->addItem(new item(testingRoomItem));
   
   /* ADD ITEMS TO INV*/
   
