@@ -29,6 +29,7 @@ class room {
 	~room();
 	room(char*, char*);
 	char* getDesc();
+	void printInfo();
 	void setExit(int, room*);
 	void addItem(item*);
 	item* remItem(char*);
