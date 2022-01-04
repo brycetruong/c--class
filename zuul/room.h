@@ -40,6 +40,7 @@ class room {
 	vector<item*> roomInv;
 	
 	map<int, room*> exits; //direction
+	map<int, room*>::iterator itr;
 
 };
 
