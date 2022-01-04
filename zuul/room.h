@@ -35,6 +35,7 @@ class room {
 	void printItems();
 	
 	char* desc;
+	char* name;
 	vector<item*> roomInv;
 	
 	map<int, room*> exits; //direction
