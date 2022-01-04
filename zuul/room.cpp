@@ -17,7 +17,9 @@ using namespace std;
 
 room::room(){
   
-  desc = new char[20];
+  desc = new char[80];
+  
+  name = new char[80];
 
 }
 
