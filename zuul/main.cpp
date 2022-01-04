@@ -40,8 +40,12 @@ int main() {
 
   
   /* CREATE ROOMS */
-  testRoom1 = new room("testRoom1 desc?", "testRoom1");
-  testRoom2 = new room("pls work...", "TR2");
+  char* TR1Desc = char[20];
+  strcpy("testRoom1 desc?", TR1Desc);
+  char* TR1Name = char[20];
+  strcpy("testRoom1", TR1Desc);
+  room testRoom1 = new room(TR1Desc, TR1Name);
+  room testRoom2 = new room(TR1Desc, TR1Name);
   
   testRoom1->setExit(NORTH, testRoom2*);
     
