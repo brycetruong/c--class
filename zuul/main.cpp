@@ -40,6 +40,7 @@ int main() {
 
   
   /* CREATE ROOMS */
+  
   char* TR1Desc = new char[20];
   strcpy(TR1Desc, "testRoom1 desc?");
   char* TR1Name = new char[20];
@@ -51,11 +52,19 @@ int main() {
     
   currentRoom = testRoom1;
   
-  /* ADD ITEMS */
+  /* ADD ITEMS TO ROOMS */
+  
+  char* testingRoomItem = new char[20];
+  strcpy(testingRoomItem, "test_room_item");
+  testRoom1.addItem(new Item(testingRoomItem));
+  
+  /* ADD ITEMS TO INV*/
+  
   char* testingItem = new char[20];
   strcpy(testingItem, "test_item");
   inventory.push_back(new item(testingItem));
   
+  currentRoom->printItems();
   
   while (running) {
     
