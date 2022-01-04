@@ -66,7 +66,11 @@ int main() {
   
   
   currentRoom->printItems();
-  printCurrentInv();
+  
+  for (int i = 0; i < inventory.size(); i++) {
+   cout << inventory.at(i)->getName() << endl;
+  }
+  
   while (running) {
     
     
@@ -91,8 +95,6 @@ int main() {
 }
 
 void printCurrentInv() {
-  for (int i = 0; i < inventory.size(); i++) {
-   cout << inventory.at(i)->getName() << endl;
-  }
+  
   return;
 }
