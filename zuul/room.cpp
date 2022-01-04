@@ -49,7 +49,15 @@ void room::printInfo() {
  cout << desc << endl;
  cout << "The exits are:" << endl;
  for (itr = exits.begin(); itr != exits.end(); ++itr) {
-        cout << '\t' << itr->first << '\t' << itr->second->getName() << '\n';
+   if(itr->first == NORTH) {
+     cout << "North: " << itr->second->getName() << endl;
+   } else if (itr->first == EAST) {
+     cout << "East: " << itr->second->getName() << endl;
+   } else if (itr->first == SOUTH) {
+     cout << "South: " << itr->second->getName() << endl;
+   } else {
+     cout << "West: " << itr->second->getName() << endl;
+   }
  }
  //also prints the items
  cout << "Items:" << endl;
