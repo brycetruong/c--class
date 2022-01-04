@@ -38,16 +38,22 @@ int main() {
   vector<item*> inventory;
   room* currentRoom;
 
+  
+  /* CREATE ROOMS */
+  testRoom1 = new room("testRoom1 desc?", "testRoom1");
+  testRoom2 = new room("pls work...", "TR2");
+  
+  testRoom1->setExit(NORTH, testRoom2*);
+    
+  currentRoom = testRoom1;
+  
+  /* ADD ITEMS */
+  inventory.push_back(new item("test_item"));
+  
+  
   while (running) {
-    bool playing = true;
-    /* CREATE ROOMS */
-    room* testRoom1 = new Room("testRoom1 desc?", "testRoom1");
-    room* testRoom2 = new Room("pls work...", "TR2");
     
     
-    testRoom1->setExit(NORTH, testRoom2*);
-    
-    currentRoom = testRoom1;
     /* COMMAND PARSER */
     /* Availible commands:
        go north/east/south/waffles
