@@ -19,7 +19,7 @@ room::room(){
   
   desc = new char[80];
   
-  name = new char[80];
+  roomname = new char[80];
 
 }
 
@@ -32,7 +32,7 @@ room::room(char* newDesc, char* newName) {
   desc = new char[80];
   strcpy(desc, newDesc);
   
-  name = new char[80];
+  roomname = new char[80];
   strcpy(name, newName);
 }
 
@@ -41,14 +41,14 @@ char* room::getDesc() {
 }
 
 char* room::getName() {
- return name; 
+ return roomname; 
 }
 
 void room::printInfo() {
- cout << "You are in the " << name << endl;
+ cout << "You are in the " << roomname << endl;
  cout << desc << endl;
  cout << "The exits are:" << endl;
- for (itr = exits.begin(); itr != exits.end(); itr++) {
+ for (itr = exits.begin(); itr != exits.end(); ++itr) {
         cout << '\t' << itr->first << '\t' << itr->second->getName() << '\n';
  }
  //also prints the items
