@@ -38,6 +38,14 @@ char* room::getDesc() {
   return desc;
 }
 
+void room::printInfo() {
+ cout << "You are in the " << name << "\n" << desc << "The exits are:" << endl;
+ for (itr = exits.begin(); itr != exits.end(); itr++) {
+        cout << '\t' << itr->first << '\t' << itr->second->getName() << '\n';
+ }
+  
+}
+
 void room::setExit(int direction, room* newExit) {
   exits.insert(pair<int, room*>(direction, newExit));
 }
