@@ -38,6 +38,10 @@ char* room::getDesc() {
   return desc;
 }
 
+char* room::getName() {
+ return name; 
+}
+
 void room::printInfo() {
  cout << "You are in the " << name << "\n" << desc << "The exits are:" << endl;
  for (itr = exits.begin(); itr != exits.end(); itr++) {
