@@ -27,7 +27,7 @@ class room {
 	public:
 	room();
 	~room();
-	room(char*);
+	room(char*, char*);
 	char* getDesc();
 	void setExit(int, room*);
 	void addItem(item*);
