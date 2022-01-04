@@ -52,7 +52,9 @@ int main() {
   currentRoom = testRoom1;
   
   /* ADD ITEMS */
-  //inventory.push_back(new item("test_item"));
+  char* testingItem = new char[20];
+  strcpy(testingItem, "test_item");
+  inventory.push_back(new item(testingItem));
   
   
   while (running) {
