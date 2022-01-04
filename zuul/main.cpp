@@ -29,7 +29,7 @@ https://www.udacity.com/blog/2020/03/c-maps-explained.html
 
 using namespace std;
 
-void printCurrentRoom(room* currentRoom);
+void printCurrentInv();
 
 int main() {
   char input[20];
@@ -64,8 +64,9 @@ int main() {
   strcpy(testingItem, "test_item");
   inventory.push_back(new item(testingItem));
   
-  currentRoom->printItems();
   
+  currentRoom->printItems();
+  printCurrentInv();
   while (running) {
     
     
@@ -89,8 +90,9 @@ int main() {
   
 }
 
-void printCurrentRoom(room* currentRoom) {
-  
-  
+void printCurrentInv() {
+  for (int i = 0; i < inventory.size(); i++) {
+   cout << inventory.at(i)->getName() << endl;
+  }
   return;
 }
