@@ -45,6 +45,7 @@ char* room::getName() {
 }
 
 void room::printInfo() {
+ cout << "\t-\t-\t-\t-\t-\t-\t-\t-\t-" << endl;
  cout << "You are in the " << roomname << endl;
  cout << "\t-\t-\t-" << endl;
  cout << desc << endl;
@@ -66,6 +67,7 @@ void room::printInfo() {
  for (int i = 0; i < roomInv.size(); i++) {
    cout << roomInv.at(i)->getName() << endl;
  }
+ cout << "\t-\t-\t-\t-\t-\t-\t-\t-\t-" << endl;
 }
 
 void room::setExit(int direction, room* newExit) {
