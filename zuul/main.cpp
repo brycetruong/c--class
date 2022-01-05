@@ -29,8 +29,6 @@ https://www.udacity.com/blog/2020/03/c-maps-explained.html
 
 using namespace std;
 
-void printCurrentInv();
-
 int main() {
   char input[20];
   bool running = true;
@@ -118,7 +116,7 @@ int main() {
     }
     
     
-    cin.getline(input, 20, '\n');
+    
 
 
     
@@ -127,9 +125,4 @@ int main() {
   cout << "Thanks for playing, have a nice day!" << endl; 
   
   
-}
-
-void printCurrentInv() {
-  
-  return;
 }
