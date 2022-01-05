@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 12/9/21
-Last Modified: 12/9/21
+Last Modified: 1/5/22
 
 Sources:
 https://www.quantstart.com/articles/C-Virtual-Destructors-How-to-Avoid-Memory-Leaks/
