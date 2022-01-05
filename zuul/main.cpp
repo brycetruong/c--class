@@ -62,10 +62,6 @@ int main() {
   strcpy(item1, "Flashlight");
   inventory.push_back(new item(item1));
   
-  
-  
-  currentRoom->printInfo();
-  
   while (running) {
     
     currentRoom->printInfo();
@@ -78,6 +74,7 @@ int main() {
        drop
           "item_name"
        w,a,s,d (same as go)
+       inv
        quit
     */
     cin.getline(input, 20, '\n');
@@ -110,14 +107,30 @@ int main() {
       running = false;
     } else if (strcmp(input, "drop") == 0) {
       
+      
       currentRoom->printItems();
+      cout << "Items in Inventory:" << endl;
+      for (int i = 0; i < inventory.size(); i++) {
+        cout << inventory.at(i)->getName() << endl;
+      }
     } else if (strcmp(input, "get") == 0) {
       cout << "Enter Item Name: " << endl;
       cin.getline(input, 20, '\n');
       if (currentRoom->remItem(input) != NULL) {
-        
+        inventory.push_back(currentRoom->remItem(input));
+        currentRoom->printItems();
+        cout << "Items in Inventory:" << endl;
+        for (int i = 0; i < inventory.size(); i++) {
+          cout << inventory.at(i)->getName() << endl;
+        }
+      } else {
+       cout << "No item found!" << endl;
       }
-      currentRoom->printItems();
+    } else if (strcmp(input, "inv") == 0 || strcmp(input, "inventory") == 0) {
+      cout << "Items in Inventory:" << endl;
+      for (int i = 0; i < inventory.size(); i++) {
+        cout << inventory.at(i)->getName() << endl;
+      }
     } else {
      cout << "command not recognized..." << endl;
     }
