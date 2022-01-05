@@ -64,12 +64,19 @@ void room::printInfo() {
  for (int i = 0; i < roomInv.size(); i++) {
    cout << roomInv.at(i)->getName() << endl;
  }
- 
- 
 }
 
 void room::setExit(int direction, room* newExit) {
   exits.insert(pair<int, room*>(direction, newExit));
+}
+
+room* room::getExit(int direction) {
+ for (itr = exits.begin(); itr != exits.end(); ++itr) {
+   if(itr->first == direction) {
+     return itr->second;
+   }
+ }
+ return NULL;
 }
 
 void room::addItem(item* newItem) {
