@@ -112,7 +112,9 @@ int main() {
       
       currentRoom->printItems();
     } else if (strcmp(input, "get") == 0) {
-      if (currentRoom->remItem != NULL) {
+      cout << "Enter Item Name: " << endl;
+      cin.getline(input, 20, '\n');
+      if (currentRoom->remItem(input) != NULL) {
         
       }
       currentRoom->printItems();
