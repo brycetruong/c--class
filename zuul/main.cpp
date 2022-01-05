@@ -75,12 +75,15 @@ int main() {
   
   while (running) {
     
+    currentRoom->printInfo();
     
     /* COMMAND PARSER */
     /* Availible commands:
-       go north/east/south/waffles
-       get "item_name"
-       drop "item_name"
+       north/east/south/waffles
+       get
+          "item_name"
+       drop
+          "item_name"
        w,a,s,d (same as go)
        quit
     */
@@ -88,18 +91,30 @@ int main() {
     if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
       if (currentRoom->getExit(NORTH) != NULL) {
         currentRoom = currentRoom->getExit(NORTH);
-        currentRoom->printInfo();
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
     } else if (strcmp(input, "a") == 0 || strcmp(input, "east") == 0) {
-      
+      if (currentRoom->getExit(EAST) != NULL) {
+        currentRoom = currentRoom->getExit(EAST);
+      } else {
+       cout << "Sorry, there isn't an exit in that direction" << endl; 
+      }
     } else if (strcmp(input, "s") == 0 || strcmp(input, "south") == 0) {
-      
+      if (currentRoom->getExit(SOUTH) != NULL) {
+        currentRoom = currentRoom->getExit(SOUTH);
+      } else {
+       cout << "Sorry, there isn't an exit in that direction" << endl; 
+      }
     } else if (strcmp(input, "d") == 0 || strcmp(input, "west") == 0) {
-      
-    } else if (strcmp(input, "") == 0) {
-      
+      if (currentRoom->getExit(WEST) != NULL) {
+        currentRoom = currentRoom->getExit(WEST);
+      } else {
+       cout << "Sorry, there isn't an exit in that direction" << endl; 
+      }
+    } else if (strcmp(input, "quit") == 0) {
+      cout << "Byee!" << endl;
+      running = false;
     }
     
     
