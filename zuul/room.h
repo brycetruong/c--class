@@ -32,6 +32,7 @@ class room {
 	char* getName();
 	void printInfo();
 	void setExit(int, room*);
+	room* getExit(int);
 	void addItem(item*);
 	item* remItem(char*);
 	void printItems();
