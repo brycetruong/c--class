@@ -58,16 +58,11 @@ int main() {
   
   /* ADD ITEMS TO INV*/
   
-  char* testingItem = new char[20];
-  strcpy(testingItem, "test_item");
-  inventory.push_back(new item(testingItem));
+  char* item1 = new char[20];
+  strcpy(item1, "Flashlight");
+  inventory.push_back(new item(item1));
   
   
-  //currentRoom->printItems();
-  
-  /*for (int i = 0; i < inventory.size(); i++) {
-   cout << inventory.at(i)->getName() << endl;
-  }*/
   
   currentRoom->printInfo();
   
@@ -115,10 +110,14 @@ int main() {
       running = false;
     } else if (strcmp(input, "drop") == 0) {
       
+      currentRoom->printItems();
     } else if (strcmp(input, "get") == 0) {
-    
+      if (currentRoom->remItem != NULL) {
+        
+      }
+      currentRoom->printItems();
     } else {
-     cout << "command not recognized" << endl;
+     cout << "command not recognized..." << endl;
     }
     
   }
