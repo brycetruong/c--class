@@ -80,10 +80,23 @@ int main() {
     /* Availible commands:
        go north/east/south/waffles
        get "item_name"
+       drop "item_name"
        w,a,s,d (same as go)
        quit
     */
     cin.getline(input, 20, '\n');
+    if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
+      
+    } else if (strcmp(input, "a") == 0 || strcmp(input, "east") == 0) {
+      
+    } else if (strcmp(input, "s") == 0 || strcmp(input, "south") == 0) {
+      
+    } else if (strcmp(input, "d") == 0 || strcmp(input, "west") == 0) {
+      
+    } else if (strcmp(input, "") == 0) {
+      
+    }
+    
     
     cin.getline(input, 20, '\n');
 
