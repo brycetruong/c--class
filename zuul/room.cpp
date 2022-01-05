@@ -46,8 +46,10 @@ char* room::getName() {
 
 void room::printInfo() {
  cout << "You are in the " << roomname << endl;
+ cout << "\t-\t-\t-" << endl;
  cout << desc << endl;
- cout << "The exits are:" << endl;
+ cout << "\t-\t-\t-" << endl;
+  cout << "Available exits:" << endl;
  for (itr = exits.begin(); itr != exits.end(); ++itr) {
    if(itr->first == NORTH) {
      cout << "North: " << itr->second->getName() << endl;
@@ -60,7 +62,7 @@ void room::printInfo() {
    }
  }
  //also prints the items
- cout << "Items:" << endl;
+ cout << "Items in room:" << endl;
  for (int i = 0; i < roomInv.size(); i++) {
    cout << roomInv.at(i)->getName() << endl;
  }
@@ -95,6 +97,7 @@ item* room::remItem(char* itemName) {
 }
 
 void room::printItems() {
+ cout << "Items in room:" << endl;
  for (int i = 0; i < roomInv.size(); i++) {
    cout << roomInv.at(i)->getName() << endl;
  }
