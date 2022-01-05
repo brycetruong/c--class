@@ -113,12 +113,13 @@ int main() {
     } else if (strcmp(input, "quit") == 0) {
       cout << "Byee!" << endl;
       running = false;
+    } else if (strcmp(input, "drop") == 0) {
+      
+    } else if (strcmp(input, "get") == 0) {
+    
+    } else {
+     cout << "command not recognized" << endl;
     }
-    
-    
-    
-
-
     
   }
   
