@@ -86,7 +86,12 @@ int main() {
     */
     cin.getline(input, 20, '\n');
     if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
-      
+      if (currentRoom->getExit(NORTH) != NULL) {
+        currentRoom = currentRoom->getExit(NORTH);
+        currentRoom->printInfo();
+      } else {
+       cout << "Sorry, there isn't an exit in that direction" << endl; 
+      }
     } else if (strcmp(input, "a") == 0 || strcmp(input, "east") == 0) {
       
     } else if (strcmp(input, "s") == 0 || strcmp(input, "south") == 0) {
