@@ -80,12 +80,14 @@ int main() {
   strcpy(item1, "Flashlight");
   inventory.push_back(new item(item1));
   
+  currentRoom->printInfo();
+  
   while (running) {
 
     if (inventory.size() == 6 && strcmp(currentRoom->getName(), "entrance")) {
       running = false;
     }
-    currentRoom->printInfo();
+    
     
     /* COMMANDS */
     /* Availible commands:
@@ -103,24 +105,28 @@ int main() {
     if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
       if (currentRoom->getExit(NORTH) != NULL) {
         currentRoom = currentRoom->getExit(NORTH);
+        currentRoom->printInfo();
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
     } else if (strcmp(input, "a") == 0 || strcmp(input, "east") == 0) {
       if (currentRoom->getExit(EAST) != NULL) {
         currentRoom = currentRoom->getExit(EAST);
+        currentRoom->printInfo();
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
     } else if (strcmp(input, "s") == 0 || strcmp(input, "south") == 0) {
       if (currentRoom->getExit(SOUTH) != NULL) {
         currentRoom = currentRoom->getExit(SOUTH);
+        currentRoom->printInfo();
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
     } else if (strcmp(input, "d") == 0 || strcmp(input, "west") == 0) {
       if (currentRoom->getExit(WEST) != NULL) {
         currentRoom = currentRoom->getExit(WEST);
+        currentRoom->printInfo();
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
@@ -136,6 +142,7 @@ int main() {
         if (strcmp(input, inventory.at(i)->getName()) == 0) {
           currentRoom->addItem(inventory.at(i));
           inventory.erase(inventory.begin() + i);
+          cout << "item dropped" << endl;
           break;
         }
       }
@@ -152,6 +159,7 @@ int main() {
       cin.getline(input, 20, '\n');
       if (currentRoom->remItem(input, false) != NULL) {
         inventory.push_back(currentRoom->remItem(input, true));
+        cout << "item picked up" << endl;
         currentRoom->printItems();
         cout << "Items in Inventory:" << endl;
         for (int i = 0; i < inventory.size(); i++) {
