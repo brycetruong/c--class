@@ -34,7 +34,7 @@ class room {
 	void setExit(int, room*);
 	room* getExit(int);
 	void addItem(item*);
-	item* remItem(char*);
+	item* remItem(char*, bool);
 	void printItems();
 	
 	char* desc;
