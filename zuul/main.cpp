@@ -45,6 +45,18 @@ int main() {
   
   /* CREATE ROOMS */
   
+  strcpy(roomDesc, "You are standing outside the entrance to a cave.");
+  strcpy(roomName, "entrance");
+  room* entrance = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "A huge cavern with a mini lake in the middle (if you go north, you go underwater spelunking)");
+  strcpy(roomName, "cavern");
+  room* cavern = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "You are underwater in the mini lake.");
+  strcpy(roomName, "underwater");
+  room* cavern = new room(roomDesc, roomName);
+  
   char* TR1Desc = new char[80];
   strcpy(TR1Desc, "testRoom1 desc?");
   char* TR1Name = new char[80];
