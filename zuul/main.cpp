@@ -35,6 +35,10 @@ int main() {
   room* roomList[20];
   vector<item*> inventory;
   room* currentRoom;
+  
+  char* roomDesc = new char[80];
+  char* roomName = new char[80];
+  char* itemName = new char[80];
 
   
   /* CREATE ROOMS */
@@ -110,7 +114,7 @@ int main() {
       cout << "Enter Item Name: " << endl;
       cin.getline(input, 20, '\n');
       for (int i = 0; i < inventory.size(); i++) {
-        if (strcmp(input, inventory.at(i)->getName) == 0) {
+        if (strcmp(input, (char)inventory.at(i)->getName) == 0) {
           currentRoom->addItem(inventory.at(i));
           inventory.erase(inventory.begin() + i);
           break;
