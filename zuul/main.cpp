@@ -62,8 +62,6 @@ int main() {
   
   /* ADD ITEMS TO ROOMS */
   
-  char* itemName = new char[20];
-  
   strcpy(itemName, "test_room_item");
   entrance->addItem(new item(itemName));
   
