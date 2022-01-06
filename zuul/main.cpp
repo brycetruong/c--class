@@ -57,28 +57,20 @@ int main() {
   strcpy(roomName, "underwater");
   room* underwater = new room(roomDesc, roomName);
   
-  char* TR1Desc = new char[80];
-  strcpy(TR1Desc, "testRoom1 desc?");
-  char* TR1Name = new char[80];
-  strcpy(TR1Name, "testRoom1");
-  room* testRoom1 = new room(TR1Desc, TR1Name);
-  room* testRoom2 = new room(TR1Desc, TR1Name);
-  
-  testRoom1->setExit(NORTH, testRoom2);
     
-  currentRoom = testRoom1;
+  currentRoom = entrance;
   
   /* ADD ITEMS TO ROOMS */
   
-  char* testingRoomItem = new char[20];
-  strcpy(testingRoomItem, "test_room_item");
-  testRoom1->addItem(new item(testingRoomItem));
+  char* itemName = new char[20];
+  strcpy(itemName, "test_room_item");
+  entrance->addItem(new item(itemName));
   
   /* ADD ITEMS TO INV*/
   
-  char* item1 = new char[20];
-  strcpy(item1, "Flashlight");
-  inventory.push_back(new item(item1));
+  char* itemName = new char[20];
+  strcpy(itemName, "Flashlight");
+  inventory.push_back(new item(itemName));
   
   currentRoom->printInfo();
   
