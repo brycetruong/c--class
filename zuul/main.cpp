@@ -50,10 +50,20 @@ int main() {
   room* entrance = new room(roomDesc, roomName);
   
   strcpy(roomDesc, "You are in an ordinary cave junction. You can hear water dripping to the east...");
-  strcpy(roomName, "boringcave1");
+  strcpy(roomName, "a boring cave");
   room* boringcave1 = new room(roomDesc, roomName);
   strcpy(itemName, "plain rock");
   boringcave1->addItem(new item(itemName));
+  
+  strcpy(roomDesc, "A long passage extends westward. The cave is very narrow.");
+  strcpy(roomName, "narrow cave");
+  room* narrowcave = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "This is a very very cramped place. It probably leads nowhere.");
+  strcpy(roomName, "claustrophobically narrow cave");
+  room* narrowercave = new room(roomDesc, roomName);
+  strcpy(itemName, "pirate flag");
+  narrowercave->addItem(new item(itemName));
   
   strcpy(roomDesc, "A huge cavern with a mini lake in the middle. (go north to go spelunking)");
   strcpy(roomName, "cavern");
@@ -73,15 +83,19 @@ int main() {
   
   entrance->setExit(NORTH, boringcave1);
   
-  boringcave1->setExit(NORTH, cavern);
   boringcave1->setExit(EAST, cavern);
   boringcave1->setExit(SOUTH, entrance);
-  boringcave1->setExit(WEST, entrance);
+  boringcave1->setExit(WEST, narrowcave);
+  
+  boringcave1->setExit(WEST, narrowcave);
   
   cavern->setExit(NORTH, underwater);
   cavern->setExit(WEST, boringcave1);
   
-  underwater->setExit(SOUTH, cavern);
+  narrowcave->setExit(EAST, boringcave1);
+  narrowcave->setExit(WEST, narrowercave);
+  
+  narrowercave->setExit(EAST, narrowcave);
   
   
   /* ADD ITEMS TO INV*/
