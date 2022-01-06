@@ -45,7 +45,7 @@ int main() {
   
   /* CREATE ROOMS */
   
-  strcpy(roomDesc, "You are standing outside in the forest, a cave lies before you. Legend says, there is a secret (not so secret anymore) pirate treasure trove deep within the cave.");
+  strcpy(roomDesc, "You are standing outside in the forest, a cave lies before you.\nLegend says, there is a secret (not so secret anymore) pirate treasure trove deep within the cave.");
   strcpy(roomName, "entrance");
   room* entrance = new room(roomDesc, roomName);
   
