@@ -45,6 +45,12 @@ int main() {
   
   /* CREATE ROOMS */
   
+  /*
+  This is where i create my rooms. I pass in the room description and the room name.
+  When I add an item, I use my method that i created in room that will add the new item to the vector of item ptrs inside the object.
+  
+  */
+  
   strcpy(roomDesc, "You are standing outside in the forest, a cave lies before you.\nLegend says, there is a secret (not so secret anymore) pirate treasure trove deep within the cave.");
   strcpy(roomName, "entrance");
   room* entrance = new room(roomDesc, roomName);
