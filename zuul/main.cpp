@@ -107,13 +107,24 @@ int main() {
       running = false;
     } else if (strcmp(input, "drop") == 0) {
       
+      cout << "Enter Item Name: " << endl;
+      cin.getline(input, 20, '\n');
+      for (int i = 0; i < inventory.size(); i++) {
+        if (strcmp(input, inventory.at(i)->getName) == 0) {
+          currentRoom->addItem(inventory.at(i));
+          inventory.erase(inventory.begin() + i);
+          break;
+        }
+      }
       
       currentRoom->printItems();
       cout << "Items in Inventory:" << endl;
       for (int i = 0; i < inventory.size(); i++) {
         cout << inventory.at(i)->getName() << endl;
       }
+      
     } else if (strcmp(input, "get") == 0) {
+      
       cout << "Enter Item Name: " << endl;
       cin.getline(input, 20, '\n');
       if (currentRoom->remItem(input) != NULL) {
@@ -126,11 +137,14 @@ int main() {
       } else {
        cout << "No item found!" << endl;
       }
+      
     } else if (strcmp(input, "inv") == 0 || strcmp(input, "inventory") == 0) {
+      
       cout << "Items in Inventory:" << endl;
       for (int i = 0; i < inventory.size(); i++) {
         cout << inventory.at(i)->getName() << endl;
       }
+      
     } else {
      cout << "command not recognized..." << endl;
     }
