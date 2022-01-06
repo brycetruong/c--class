@@ -140,7 +140,7 @@ int main() {
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
-    } else if (strcmp(input, "a") == 0 || strcmp(input, "east") == 0) {
+    } else if (strcmp(input, "d") == 0 || strcmp(input, "east") == 0) {
       if (currentRoom->getExit(EAST) != NULL) {
         currentRoom = currentRoom->getExit(EAST);
         currentRoom->printInfo();
@@ -154,7 +154,7 @@ int main() {
       } else {
        cout << "Sorry, there isn't an exit in that direction" << endl; 
       }
-    } else if (strcmp(input, "d") == 0 || strcmp(input, "west") == 0) {
+    } else if (strcmp(input, "a") == 0 || strcmp(input, "west") == 0) {
       if (currentRoom->getExit(WEST) != NULL) {
         currentRoom = currentRoom->getExit(WEST);
         currentRoom->printInfo();
