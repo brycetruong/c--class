@@ -91,7 +91,7 @@ item* room::remItem(char* itemName, bool rem) {
   for (int i = 0; i < roomInv.size(); i++) {
    if (strcmp(roomInv.at(i)->getName(), itemName) == 0) {
      item* temp = roomInv.at(i);
-     if (rem = true) {
+     if (rem == true) {
      roomInv.erase(roomInv.begin() + i);
      }
      return temp;
