@@ -133,7 +133,7 @@ int main() {
         if (strcmp(input, inventory.at(i)->getName()) == 0) {
           currentRoom->addItem(inventory.at(i));
           inventory.erase(inventory.begin() + i);
-          cout << "item dropped" << endl;
+          cout << "item dropped\n" << endl;
           break;
         }
       }
@@ -150,7 +150,7 @@ int main() {
       cin.getline(input, 20, '\n');
       if (currentRoom->remItem(input, false) != NULL) {
         inventory.push_back(currentRoom->remItem(input, true));
-        cout << "item picked up" << endl;
+        cout << "item picked up\n" << endl;
         currentRoom->printItems();
         cout << "Items in Inventory:" << endl;
         for (int i = 0; i < inventory.size(); i++) {
