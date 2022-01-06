@@ -87,11 +87,13 @@ void room::addItem(item* newItem) {
   roomInv.push_back(newItem);
 }
 
-item* room::remItem(char* itemName) {
+item* room::remItem(char* itemName, bool rem) {
   for (int i = 0; i < roomInv.size(); i++) {
    if (strcmp(roomInv.at(i)->getName(), itemName) == 0) {
+     if (rem = true) {
      item* temp = roomInv.at(i);
      roomInv.erase(roomInv.begin() + i);
+     }
      return temp;
    }
  }
