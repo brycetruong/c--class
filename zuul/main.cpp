@@ -91,8 +91,6 @@ int main() {
   boringcave1->setExit(SOUTH, entrance);
   boringcave1->setExit(WEST, narrowcave);
   
-  boringcave1->setExit(WEST, narrowcave);
-  
   cavern->setExit(NORTH, underwater);
   cavern->setExit(EAST, boringcave2);
   cavern->setExit(WEST, boringcave1);
