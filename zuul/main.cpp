@@ -55,7 +55,7 @@ int main() {
   
   strcpy(roomDesc, "You are underwater in the mini lake.");
   strcpy(roomName, "underwater");
-  room* cavern = new room(roomDesc, roomName);
+  room* underwater = new room(roomDesc, roomName);
   
   char* TR1Desc = new char[80];
   strcpy(TR1Desc, "testRoom1 desc?");
