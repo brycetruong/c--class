@@ -3,6 +3,8 @@ Author: Bryce Truong
 Date Created: 12/9/21
 Last Modified: 1/5/22
 
+This is a zuul game project.
+
 Sources:
 https://www.quantstart.com/articles/C-Virtual-Destructors-How-to-Avoid-Memory-Leaks/
 https://www.geeksforgeeks.org/destructors-c/
@@ -67,7 +69,10 @@ int main() {
   inventory.push_back(new item(item1));
   
   while (running) {
-    
+
+    if (inventory.size() == 6 && strcmp(currentRoom->getName(), "entrance")) {
+      running = false;
+    }
     currentRoom->printInfo();
     
     /* COMMANDS */
