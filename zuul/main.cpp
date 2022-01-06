@@ -63,12 +63,13 @@ int main() {
   /* ADD ITEMS TO ROOMS */
   
   char* itemName = new char[20];
+  
   strcpy(itemName, "test_room_item");
   entrance->addItem(new item(itemName));
   
   /* ADD ITEMS TO INV*/
   
-  char* itemName = new char[20];
+  
   strcpy(itemName, "Flashlight");
   inventory.push_back(new item(itemName));
   
