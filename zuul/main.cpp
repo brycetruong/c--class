@@ -65,13 +65,21 @@ int main() {
   strcpy(itemName, "pirate flag");
   narrowercave->addItem(new item(itemName));
   
-  strcpy(roomDesc, "A huge cavern with a mini lake in the middle. (go north to go spelunking)");
+  strcpy(roomDesc, "A huge cavern with a mini lake in the middle. (go north to go spelunking) There is also a waterfall to the south.");
   strcpy(roomName, "cavern");
   room* cavern = new room(roomDesc, roomName);
   strcpy(itemName, "WATER!");
   cavern->addItem(new item(itemName));
   
-  strcpy(roomDesc, "You are in another ordinary cave.");
+  strcpy(roomDesc, "The roaring sound of water drowns out all other sounds. It looks like this is a deadend?");
+  strcpy(roomName, "waterfall");
+  room* waterfall = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "");
+  strcpy(roomName, "a secret cave behind the waterfall");
+  room* secretwaterfall = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "You are in another ordinary cave. It looks like a deadend");
   strcpy(roomName, "another boring cave");
   room* boringcave2 = new room(roomDesc, roomName);
   
@@ -94,6 +102,9 @@ int main() {
   cavern->setExit(NORTH, underwater);
   cavern->setExit(EAST, boringcave2);
   cavern->setExit(WEST, boringcave1);
+  cavern->setExit(SOUTH, waterfall);
+  
+  waterfall->setExit(NORTH, cavern);
   
   boringcave2->setExit(WEST, cavern);
   
@@ -110,6 +121,20 @@ int main() {
   strcpy(itemName, "Flashlight");
   inventory.push_back(new item(itemName));
   
+  cout << "Find all of the items and return to the entrance to win. Good luck!\n" << endl;
+  
+  
+    /* AVAILABLE COMMANDS:
+       north/east/south/waffles
+       get
+          "item name"
+       drop
+          "item name"
+       w/a/s/d (same as moving)
+       inv/inventory
+       quit
+    */
+  
   currentRoom->printInfo();
   
   while (running) {
@@ -120,17 +145,7 @@ int main() {
     }
     
     
-    /* COMMANDS */
-    /* Availible commands:
-       north/east/south/waffles
-       get
-          "item_name"
-       drop
-          "item_name"
-       w/a/s/d (same as moving)
-       inv/inventory
-       quit
-    */
+    
     cin.getline(input, 20, '\n');
     
     if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
