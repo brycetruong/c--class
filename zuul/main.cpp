@@ -70,15 +70,15 @@ int main() {
     
     currentRoom->printInfo();
     
-    /* COMMAND PARSER */
+    /* COMMANDS */
     /* Availible commands:
        north/east/south/waffles
        get
           "item_name"
        drop
           "item_name"
-       w,a,s,d (same as go)
-       inv
+       w/a/s/d (same as moving)
+       inv/inventory
        quit
     */
     cin.getline(input, 20, '\n');
