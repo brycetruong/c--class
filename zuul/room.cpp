@@ -17,7 +17,7 @@ using namespace std;
 
 room::room(){
   
-  desc = new char[80];
+  desc = new char[500];
   
   roomname = new char[80];
 
@@ -29,7 +29,7 @@ room::~room(){
 }
 
 room::room(char* newDesc, char* newName) {
-  desc = new char[80];
+  desc = new char[500];
   strcpy(desc, newDesc);
   
   roomname = new char[80];
