@@ -38,36 +38,52 @@ int main() {
   vector<item*> inventory;
   room* currentRoom;
   
-  char* roomDesc = new char[80];
+  char* roomDesc = new char[500];
   char* roomName = new char[80];
   char* itemName = new char[80];
 
   
   /* CREATE ROOMS */
   
-  strcpy(roomDesc, "You are standing outside the entrance to a cave.");
+  strcpy(roomDesc, "You are standing outside in the forest, a cave lies before you.");
   strcpy(roomName, "entrance");
   room* entrance = new room(roomDesc, roomName);
   
-  strcpy(roomDesc, "A huge cavern with a mini lake in the middle");
+  strcpy(roomDesc, "You are in an ordinary cave junction. You can hear water dripping to the east...");
+  strcpy(roomName, "boringcave1");
+  room* boringcave1 = new room(roomDesc, roomName);
+  strcpy(itemName, "plain rock");
+  boringcave1->addItem(new item(itemName));
+  
+  strcpy(roomDesc, "A huge cavern with a mini lake in the middle. (go north to go spelunking)");
   strcpy(roomName, "cavern");
   room* cavern = new room(roomDesc, roomName);
+  strcpy(itemName, "WATER!");
+  cavern->addItem(new item(itemName));
   
   strcpy(roomDesc, "You are underwater in the mini lake.");
   strcpy(roomName, "underwater");
   room* underwater = new room(roomDesc, roomName);
-  
+  strcpy(itemName, "gold coin");
+  underwater->addItem(new item(itemName));
     
   currentRoom = entrance;
   
-  /* ADD ITEMS TO ROOMS */
+  /* SET EXITS */
   
-  strcpy(itemName, "test_room_item");
-  entrance->addItem(new item(itemName));
+  entrance->setExit(NORTH, boringcave1);
+  
+  boringcave1->setExit(NORTH, cavern);
+  boringcave1->setExit(EAST, cavern);
+  boringcave1->setExit(SOUTH, entrance);
+  boringcave1->setExit(WEST, entrance);
+  
+  cavern->setExit(NORTH, underwater);
+  cavern->setExit(WEST, boringcave1);
+  
   
   /* ADD ITEMS TO INV*/
-  
-  
+   
   strcpy(itemName, "Flashlight");
   inventory.push_back(new item(itemName));
   
@@ -76,6 +92,7 @@ int main() {
   while (running) {
 
     if (inventory.size() == 6 && strcmp(currentRoom->getName(), "entrance")) {
+      cout << "you win!" << endl;
       running = false;
     }
     
