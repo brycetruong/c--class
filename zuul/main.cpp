@@ -49,7 +49,7 @@ int main() {
   strcpy(roomName, "entrance");
   room* entrance = new room(roomDesc, roomName);
   
-  strcpy(roomDesc, "A huge cavern with a mini lake in the middle (if you go north, you go underwater spelunking)");
+  strcpy(roomDesc, "A huge cavern with a mini lake in the middle");
   strcpy(roomName, "cavern");
   room* cavern = new room(roomDesc, roomName);
   
@@ -99,6 +99,7 @@ int main() {
        quit
     */
     cin.getline(input, 20, '\n');
+    
     if (strcmp(input, "w") == 0 || strcmp(input, "north") == 0) {
       if (currentRoom->getExit(NORTH) != NULL) {
         currentRoom = currentRoom->getExit(NORTH);
