@@ -132,7 +132,7 @@ int main() {
       
       cout << "Enter Item Name: " << endl;
       cin.getline(input, 20, '\n');
-      if (currentRoom->remItem(input) != NULL) {
+      if (currentRoom->remItem(input, false) != NULL) {
         inventory.push_back(currentRoom->remItem(input));
         currentRoom->printItems();
         cout << "Items in Inventory:" << endl;
