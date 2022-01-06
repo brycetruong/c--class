@@ -59,7 +59,7 @@ int main() {
   strcpy(roomName, "narrow cave");
   room* narrowcave = new room(roomDesc, roomName);
   
-  strcpy(roomDesc, "This is a very very cramped place. It probably leads nowhere.");
+  strcpy(roomDesc, "This is a very very cramped place. It doesn't look like it goes any further.");
   strcpy(roomName, "claustrophobically narrow cave");
   room* narrowercave = new room(roomDesc, roomName);
   strcpy(itemName, "pirate flag");
@@ -71,7 +71,11 @@ int main() {
   strcpy(itemName, "WATER!");
   cavern->addItem(new item(itemName));
   
-  strcpy(roomDesc, "You are underwater in the mini lake.");
+  strcpy(roomDesc, "You are in another ordinary cave.");
+  strcpy(roomName, "another boring cave");
+  room* boringcave2 = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "Splash! You are underwater in the mini lake from the cavern. Nothing much here except fish and some shiny stuff in the mud.");
   strcpy(roomName, "underwater");
   room* underwater = new room(roomDesc, roomName);
   strcpy(itemName, "gold coin");
@@ -90,7 +94,12 @@ int main() {
   boringcave1->setExit(WEST, narrowcave);
   
   cavern->setExit(NORTH, underwater);
+  cavern->setExit(EAST, boringcave2);
   cavern->setExit(WEST, boringcave1);
+  
+  boringcave2->setExit(WEST, cavern);
+  
+  underwater->setExit(SOUTH, cavern);
   
   narrowcave->setExit(EAST, boringcave1);
   narrowcave->setExit(WEST, narrowercave);
