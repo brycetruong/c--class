@@ -81,7 +81,7 @@ int main() {
   strcpy(roomName, "waterfall");
   room* waterfall = new room(roomDesc, roomName);
   
-  strcpy(roomDesc, "");
+  strcpy(roomDesc, "A damp, dark and musty alcove");
   strcpy(roomName, "a secret cave behind the waterfall");
   room* secretwaterfall = new room(roomDesc, roomName);
   
