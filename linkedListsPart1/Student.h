@@ -14,16 +14,20 @@ Last Modified: 1/10/21
 using namespace std;
 
 class Student {
-	public:
-	Student();
-	~Student();
-	Student(char*, char*);
-	char* getDesc();
-	char* getName();
-		
-	char* desc;
-	char* roomname;
-	
+public:
+  Student();
+  ~Student();
+  Student(char*, char*);
+
+  char* getFname();
+  char* getLname();
+  char* getID();
+  
+private:
+  
+  char* fname;
+  char* lname;
+  int id;
 };
 
 #endif

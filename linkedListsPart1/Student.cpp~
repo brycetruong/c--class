@@ -1,0 +1,32 @@
+/*
+Author: Bryce Truong
+Date Created: 1/10/22
+Last Modified: 1/10/22
+
+*/
+#include <iostream>
+#include <cstring>
+#include <stdio.h>
+#include "Student.h"
+
+
+using namespace std;
+
+Student:Student(){
+  
+  name = new char[80];
+
+}
+
+Student:~Student(){
+  delete[] name;
+}
+
+Student:Student(char* newName) {
+  name = new char[80];
+  strcpy(roomname, newName);
+}
+
+char* Student::getName() {
+ return name; 
+}
