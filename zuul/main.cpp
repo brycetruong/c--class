@@ -189,7 +189,7 @@ int main() {
   
   while (running) {
 
-    if (inventory.size() == 6 && strcmp(currentRoom->getName(), "entrance")) {
+    if (inventory.size() == 7 && strcmp(currentRoom->getName(), "entrance") == 0) {
       cout << "you win!" << endl;
       running = false;
     }
