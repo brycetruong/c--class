@@ -90,14 +90,15 @@ int main() {
   strcpy(roomDesc, "Glittering jewels line the cave walls. They are embedded inside the rock so you cant take them out :(");
   strcpy(roomName, "diamond tunnel");
   room* diamondcave = new room(roomDesc, roomName);
+  strcpy(itemName, "diamond necklace");
+  diamondcave->addItem(new item(itemName));
   
   strcpy(roomDesc, "The room glows yellow as the light reflects off of the mountains of gold!");
   strcpy(roomName, "Treasure Stash");
   room* treasurestash = new room(roomDesc, roomName);
   strcpy(itemName, "gold chest");
   treasurestash->addItem(new item(itemName));
-  strcpy(itemName, "diamond necklace");
-  treasurestash->addItem(new item(itemName));
+  
   
   strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
   strcpy(roomName, "Secret Exit 1");
