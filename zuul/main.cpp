@@ -81,9 +81,13 @@ int main() {
   strcpy(roomName, "waterfall");
   room* waterfall = new room(roomDesc, roomName);
   
-  strcpy(roomDesc, "A damp, dark and musty alcove");
-  strcpy(roomName, "a secret cave behind the waterfall");
+  strcpy(roomDesc, "A damp, dark and musty alcove. A stream trickles through the cave.");
+  strcpy(roomName, "a secret cave behind the waterfall.");
   room* secretwaterfall = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "Glittering jewels line the cave walls. They are embedded inside the rock so you cant take them out :(");
+  strcpy(roomName, "diamond tunnel");
+  room* diamondcave = new room(roomDesc, roomName);
   
   strcpy(roomDesc, "You are in another ordinary cave. It looks like a deadend");
   strcpy(roomName, "another boring cave");
@@ -111,6 +115,7 @@ int main() {
   cavern->setExit(SOUTH, waterfall);
   
   waterfall->setExit(NORTH, cavern);
+  waterfall->setExit(SOUTH, secretwaterfall);
   
   boringcave2->setExit(WEST, cavern);
   
