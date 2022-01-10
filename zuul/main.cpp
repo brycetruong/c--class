@@ -5,6 +5,8 @@ Last Modified: 1/5/22
 
 This is a zuul game project.
 
+LINK TO MAP: https://docs.google.com/drawings/d/1NzrsL1TfH7Zb5IX9UAK4qNpRSBTWV5TDfGNslR-FCiE/edit
+
 Sources:
 https://www.quantstart.com/articles/C-Virtual-Destructors-How-to-Avoid-Memory-Leaks/
 https://www.geeksforgeeks.org/destructors-c/
@@ -89,6 +91,26 @@ int main() {
   strcpy(roomName, "diamond tunnel");
   room* diamondcave = new room(roomDesc, roomName);
   
+  strcpy(roomDesc, "The room glows yellow as the light reflects off of the mountains of gold!");
+  strcpy(roomName, "Treasure Stash");
+  room* treasurestash = new room(roomDesc, roomName);
+  strcpy(itemName, "gold chest");
+  underwater->addItem(new item(itemName));
+  strcpy(itemName, "diamond necklace");
+  underwater->addItem(new item(itemName));
+  
+  strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
+  strcpy(roomName, "Secret Exit");
+  room* secretexit1 = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
+  strcpy(roomName, "Secret Exit");
+  room* secretexit2 = new room(roomDesc, roomName);
+  
+  strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
+  strcpy(roomName, "Secret Exit");
+  room* secretexit3 = new room(roomDesc, roomName);
+  
   strcpy(roomDesc, "You are in another ordinary cave. It looks like a deadend");
   strcpy(roomName, "another boring cave");
   room* boringcave2 = new room(roomDesc, roomName);
@@ -102,6 +124,7 @@ int main() {
   currentRoom = entrance;
   
   /* SET EXITS */
+  //I make all of my exits here using a method in my room.
   
   entrance->setExit(NORTH, boringcave1);
   
@@ -116,6 +139,21 @@ int main() {
   
   waterfall->setExit(NORTH, cavern);
   waterfall->setExit(SOUTH, secretwaterfall);
+  
+  secretwaterfall->setExit(NORTH, waterfall);
+  secretwaterfall->setExit(SOUTH, diamondcave);
+  
+  diamondcave->setExit(NORTH, secretwaterfall);
+  diamondcave->setExit(SOUTH, treasurestash);
+  
+  treasurestash->setExit(NORTH, diamondcave);
+  treasurestash->setExit(WEST, secretexit1);
+  
+  secretexit1->setExit(NORTH, secretexit2);
+  
+  secretexit2->setExit(NORTH, secretexit3);
+  
+  secretexit3->setExit(NORTH, entrance);
   
   boringcave2->setExit(WEST, cavern);
   
@@ -214,7 +252,7 @@ int main() {
       
       cout << "Enter Item Name: " << endl;
       cin.getline(input, 20, '\n');
-      if (currentRoom->remItem(input, false) != NULL) {
+      if (currentRoom->remItem(input, false) != NULL) { // I used the remove item from room also as a check to make sure it isn't null. the 'false' makes sure that the method doesnt actually try and remove said item.
         inventory.push_back(currentRoom->remItem(input, true));
         cout << "item picked up\n" << endl;
         currentRoom->printItems();
