@@ -224,7 +224,7 @@ int main() {
         currentRoom = currentRoom->getExit(WEST);
         currentRoom->printInfo();
       } else {
-       cout << "Sorry, there isn't an exit in that direction" << endl; 
+       cout << "Sorry, there isn't an exit in that direction" << endl; //comments
       }
     } else if (strcmp(input, "quit") == 0) {
       cout << "Byee!" << endl;
