@@ -95,20 +95,20 @@ int main() {
   strcpy(roomName, "Treasure Stash");
   room* treasurestash = new room(roomDesc, roomName);
   strcpy(itemName, "gold chest");
-  underwater->addItem(new item(itemName));
+  treasurestash->addItem(new item(itemName));
   strcpy(itemName, "diamond necklace");
-  underwater->addItem(new item(itemName));
+  treasurestash->addItem(new item(itemName));
   
   strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
-  strcpy(roomName, "Secret Exit");
+  strcpy(roomName, "Secret Exit 1");
   room* secretexit1 = new room(roomDesc, roomName);
   
   strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
-  strcpy(roomName, "Secret Exit");
+  strcpy(roomName, "Secret Exit 2");
   room* secretexit2 = new room(roomDesc, roomName);
   
   strcpy(roomDesc, "A secret exit that will lead back to the entrance (one way)");
-  strcpy(roomName, "Secret Exit");
+  strcpy(roomName, "Secret Exit 3");
   room* secretexit3 = new room(roomDesc, roomName);
   
   strcpy(roomDesc, "You are in another ordinary cave. It looks like a deadend");
