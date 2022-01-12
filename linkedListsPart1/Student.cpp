@@ -12,26 +12,37 @@ Last Modified: 1/10/22
 
 using namespace std;
 
-Student:Student(){
+Student::Student(){
   
   fname = new char[80];
   lname = new char[80];
   
 }
 
-Student:~Student(){
-  delete[] name;
+Student::~Student(){
+  delete[] fname;
+  delete[] lname;
 }
 
-Student:Student(char* newFname, char* newLname) {
+Student::Student(char* newFname, char* newLname, int newID) {
   fname = new char[80];
   strcpy(fname, newFname);
 
   fname = new char[80];
   strcpy(fname, newFname);
-  
+
+  id = newID;
 }
 
 char* Student::getFname() {
  return fname; 
 }
+
+char* Student::getLname() {
+ return fname; 
+}
+
+int Student::getID() {
+  return id;
+}
+

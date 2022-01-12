@@ -17,17 +17,19 @@ class Student {
 public:
   Student();
   ~Student();
-  Student(char*, char*);
+  Student(char*, char*, int);
 
   char* getFname();
   char* getLname();
-  char* getID();
+  int getID();
   
 private:
   
   char* fname;
   char* lname;
   int id;
+  double gpa;
+  
 };
 
 #endif

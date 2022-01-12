@@ -1,0 +1,24 @@
+/*
+Author: Bryce Truong
+Date Created: 1/10/22
+Last Modified: 1/10/22
+
+*/
+#include <iostream>
+#include <cstring>
+#include <stdio.h>
+#include "Node.h"
+
+
+using namespace std;
+
+Node::Node(){
+  
+  fname = new char[80];
+  lname = new char[80];
+  
+}
+
+Student:~Student(){
+  delete[] name;
+}
