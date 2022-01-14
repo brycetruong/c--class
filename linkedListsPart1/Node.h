@@ -4,7 +4,7 @@
 /*
 Author: Bryce Truong
 Date Created: 1/10/21
-Last Modified: 1/11/21
+Last Modified: 1/14/21
 */
 
 #include <iostream>
@@ -16,17 +16,21 @@ class Node {
  public:
   Node();
   ~Node();
-  //void setStudent(Student* newStudent);
-  //Student* getStudent();
+  void setStudent(Student* newStudent);
+  Student* getStudent();
 
+  /*
   void setValue(int newValue);
   int getValue();
+  */
+  
   void setNext(Node* newNext);
   Node* getNext();
   
  private:
-  
-  int value;
+
+  Student* student;
+  //int value;
   Node* next;
     
 };

@@ -17,11 +17,12 @@ class Student {
 public:
   Student();
   ~Student();
-  Student(char*, char*, int);
+  Student(char*, char*, int, double); //You are passing in: Firstname, Lastname, StudentID, GPA in that order.
 
   char* getFname();
   char* getLname();
   int getID();
+  double getGPA();
   
 private:
   

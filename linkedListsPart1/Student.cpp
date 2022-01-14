@@ -16,7 +16,10 @@ Student::Student(){
   
   fname = new char[80];
   lname = new char[80];
-  
+
+  id = 0;
+
+  gpa = 0.0;
 }
 
 Student::~Student(){
@@ -24,7 +27,7 @@ Student::~Student(){
   delete[] lname;
 }
 
-Student::Student(char* newFname, char* newLname, int newID) {
+Student::Student(char* newFname, char* newLname, int newID, double newGPA) {
   fname = new char[80];
   strcpy(fname, newFname);
 
@@ -32,6 +35,8 @@ Student::Student(char* newFname, char* newLname, int newID) {
   strcpy(fname, newFname);
 
   id = newID;
+
+  gpa = newGPA;
 }
 
 char* Student::getFname() {
@@ -46,3 +51,6 @@ int Student::getID() {
   return id;
 }
 
+double Student::getGPA() {
+  return gpa;
+}

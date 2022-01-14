@@ -1,20 +1,20 @@
 /*
 Author: Bryce Truong
 Date Created: 1/10/22
-Last Modified: 1/10/22
+Last Modified: 1/14/22
 */
 
 #include <iostream>
 #include <cstring>
 #include <cctype>
-//#include "Student.h"
+#include "Student.h"
 #include "Node.h"
 
 
 using namespace std;
 
-void add(Node* head, int newValue);
-void print(Node* head, Node* next);
+void add(Node*& head, int newValue);
+void print(Node*& head, Node* next);
 
 int main() {
   
@@ -25,11 +25,13 @@ int main() {
   add(head, 5);
   print(head, head);
   add(head, 7);
+  print(head, head);
   add(head, 2);
   print(head, head);
-  
+
+  running = false;
   while (running) {
-    running = false;
+    
     cin.getline(input, 20, '\n');
     add(head, atoi(input));
     print(head, head);
@@ -37,7 +39,7 @@ int main() {
   
 }
 
-void add(Node* head, int newValue) {
+void add(Node*& head, int newValue) {
   Node* current = head;
   if (current == NULL) {
     head = new Node();
@@ -53,7 +55,7 @@ void add(Node* head, int newValue) {
 }
 
 
-void print(Node* head, Node* next) {
+void print(Node*& head, Node* next) {
   if (next == head) {
     cout << "testing: ";
   }
