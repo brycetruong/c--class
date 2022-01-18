@@ -26,7 +26,7 @@ int Student::getStudentID(){
   return ID;
 }
 void Student::setStudentGPA(float newGPA){
-  GPA=newGPA;
+  GPA = newGPA;
 }
 float Student::getStudentGPA(){
   return GPA;
