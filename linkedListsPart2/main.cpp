@@ -29,6 +29,9 @@ int main() {
   testStudent->setStudentfName(temp);
 
   cout << testStudent->getStudentfName() << endl;
+  
+  add(head, testStudent);
+  print(head, head);
   /*
   add(head, 5);
   print(head, head);
