@@ -51,6 +51,7 @@ int main() {
     Student* tempSt = new Student();
     cout << "Enter Student Firstname: ";
     cin.getline(input, 20, '\n');
+    cout << input << endl;
     
     
   }
