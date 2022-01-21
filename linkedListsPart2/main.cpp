@@ -78,6 +78,12 @@ int main() {
       running = false;
     } else if (strcmp(input, "PRINT") == 0) {
       print(head, head);
+    } else if (strcmp(input, "DELETE") == 0) {
+      //delete
+    } else if (strcmp(input, "AVERAGE") == 0) {
+      //delete
+    } else {
+      cout << "Input not recognized..." << endl;
     }
   }
   
