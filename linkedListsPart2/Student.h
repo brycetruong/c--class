@@ -7,7 +7,7 @@ using namespace std;
 class Student{
  public:
   Student();
-  Student(char*, char*, int, double); //You are passing in: Firstname, Lastname, StudentID, GPA in that order.
+  Student(char*, char*, int, float); //You are passing in: Firstname, Lastname, StudentID, GPA in that order.
   ~Student();
   void setStudentfName(char*);
   char* getStudentfName();
