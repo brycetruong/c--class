@@ -68,6 +68,7 @@ int main() {
     tempSt->setStudentGPA((float)atof(input));
     
     add(head, tempSt);
+    print(head, head);
     
   }
   
