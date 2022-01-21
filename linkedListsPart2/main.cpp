@@ -44,7 +44,7 @@ int main() {
   print(head, head);
   */
   
-  running = false;
+  running = true;
   while (running) {
     
     char* tempInput = new char[50];
