@@ -27,7 +27,7 @@ Student::~Student(){
   delete[] lname;
 }
 
-Student::Student(char* newFname, char* newLname, int newID, double newGPA) {
+Student::Student(char* newFname, char* newLname, int newID, float newGPA) {
   fname = new char[80];
   strcpy(fname, newFname);
 
