@@ -22,7 +22,7 @@ int main() {
   bool running = true;
   Node* head = NULL;
 
-  char* temp = new char[50];
+  char* tempInput = new char[50];
   Student* testStudent = new Student();
   cin.getline(input, 50, '\n');
   strcpy(temp, input);
@@ -44,6 +44,9 @@ int main() {
   running = false;
   while (running) {
     
+    char* tempInput = new char[50];
+    Student* tempSt = new Student();
+    cout << "Enter Student Firstname: ";
     cin.getline(input, 20, '\n');
     
     
