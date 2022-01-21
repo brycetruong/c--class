@@ -46,11 +46,10 @@ int main() {
   print(head, head);
   */
   
-  running = true;
   while (running) {
     cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tSEARCH\tQUIT" << endl;
-    cin.getline(input, 20, '\n');
-    if (strcmp(toupper(input), "ADD") == 0) {
+    cin.getline(input, 50, '\n');
+    if (strcmp(input, "ADD") == 0) {
       
       char* tempInput = new char[50];
       Student* tempSt = new Student();
@@ -73,6 +72,11 @@ int main() {
       tempSt->setStudentGPA((float)atof(input));
 
       add(head, tempSt);
+      
+    } else if (strcmp(input, "QUIT") == 0) {
+      cout << "Exiting..." << endl;
+      running = false;
+    } else if (strcmp(input, "PRINT") == 0) {
       print(head, head);
     }
   }
