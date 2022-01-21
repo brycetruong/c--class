@@ -92,10 +92,19 @@ void add(Node*& head, Student* newStudent) {
 
 void print(Node*& head, Node* next) {
   if (next == head) {
-    cout << "List of Students\n-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-" << endl;;
+    cout << "List of Students:/n" << endl;;
   }
   if (next != NULL) {
-    cout << next->getStudent()->getStudentfName() << " ";
+    cout << "-\t-\t-\t-\t-\t-\t-\t-" << endl;
+    cout << "Firstname: ";
+    cout << next->getStudent()->getStudentfName() << endl;
+    cout << "Lastname: ";
+    cout << next->getStudent()->getStudentlName() << endl;
+    cout << "Student ID: ";
+    cout << next->getStudent()->getStudentID() << endl;
+    cout << "Student GPA: ";
+    cout << next->getStudent()->getStudentGPA() << endl;
+    
     print(head, next->getNext());
   }
 }
