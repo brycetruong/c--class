@@ -7,6 +7,8 @@ Last Modified: 1/14/22
 #include <iostream>
 #include <cstring>
 #include <cctype>
+#include <stdio.h>
+#include <ctype.h>
 #include "Student.h"
 #include "Node.h"
 
@@ -46,30 +48,33 @@ int main() {
   
   running = true;
   while (running) {
-    
-    char* tempInput = new char[50];
-    Student* tempSt = new Student();
-    cout << "Enter Student Firstname: ";
-    cin.getline(input, 50, '\n');
-    strcpy(tempInput, input);
-    tempSt->setStudentfName(tempInput);
-    
-    cout << "Enter Student Lirstname: ";
-    cin.getline(input, 50, '\n');
-    strcpy(tempInput, input);
-    tempSt->setStudentlName(tempInput);
-    
-    cout << "Enter Student ID: ";
-    cin.getline(input, 50, '\n');
-    tempSt->setStudentID(atoi(input));
-    
-    cout << "Enter Student GPA: ";
-    cin.getline(input, 50, '\n');
-    tempSt->setStudentGPA((float)atof(input));
-    
-    add(head, tempSt);
-    print(head, head);
-    
+    cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tSEARCH\tQUIT" << endl;
+    cin.getline(input, 20, '\n');
+    if (strcmp(toupper(input), "ADD") == 0) {
+      
+      char* tempInput = new char[50];
+      Student* tempSt = new Student();
+      cout << "Enter Student Firstname: ";
+      cin.getline(input, 50, '\n');
+      strcpy(tempInput, input);
+      tempSt->setStudentfName(tempInput);
+
+      cout << "Enter Student Lirstname: ";
+      cin.getline(input, 50, '\n');
+      strcpy(tempInput, input);
+      tempSt->setStudentlName(tempInput);
+
+      cout << "Enter Student ID: ";
+      cin.getline(input, 50, '\n');
+      tempSt->setStudentID(atoi(input));
+
+      cout << "Enter Student GPA: ";
+      cin.getline(input, 50, '\n');
+      tempSt->setStudentGPA((float)atof(input));
+
+      add(head, tempSt);
+      print(head, head);
+    }
   }
   
 }
