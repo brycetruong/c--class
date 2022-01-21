@@ -13,7 +13,7 @@ Last Modified: 1/14/22
 using namespace std;
 
 Node::Node(){
-  value = 0;
+  student = NULL;
   next = NULL;
 }
 
