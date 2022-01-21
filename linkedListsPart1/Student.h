@@ -17,7 +17,7 @@ class Student {
 public:
   Student();
   ~Student();//destructor
-  Student(char*, char*, int, double); //You are passing in: Firstname, Lastname, StudentID, GPA in that order.
+  Student(char*, char*, int, float); //You are passing in: Firstname, Lastname, StudentID, GPA in that order.
 
   //all of these you will use to get the firstname, lastname, student ID and GPA.
   char* getFname();
@@ -30,7 +30,7 @@ private:
   char* fname;
   char* lname;
   int id;
-  double gpa;
+  float gpa;
   
 };
 
