@@ -1,5 +1,5 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef STUDENT_H
+#define STUDENT_H
 
 /*
 Author: Bryce Truong
