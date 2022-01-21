@@ -21,17 +21,20 @@ int main() {
   char input[50];
   bool running = true;
   Node* head = NULL;
-
+  
+  /*
   char* tempInput = new char[50];
   Student* testStudent = new Student();
   cin.getline(input, 50, '\n');
-  strcpy(temp, input);
+  strcpy(tempInput, input);
   testStudent->setStudentfName(temp);
 
   cout << testStudent->getStudentfName() << endl;
   
   add(head, testStudent);
   print(head, head);
+  */
+  
   /*
   add(head, 5);
   print(head, head);
