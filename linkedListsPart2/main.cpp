@@ -63,13 +63,9 @@ int main() {
     cin.getline(input, 50, '\n');
     tempSt->setStudentID(atoi(input));
     
-    cout << "Enter Student ID: ";
-    cin.getline(input, 50, '\n');
-    tempSt->setStudentID(atoi(input));
-    
     cout << "Enter Student GPA: ";
     cin.getline(input, 50, '\n');
-    tempSt->setStudentID((float)atof(input));
+    tempSt->setStudentGPA((float)atof(input));
     
     add(head, tempSt);
     
