@@ -47,7 +47,7 @@ int main() {
   */
   
   while (running) {
-    cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tSEARCH\tQUIT" << endl;
+    cout << "Welcome to the menu. Please select one of the following:\nADD\tDELETE\tPRINT\tQUIT" << endl;
     cin.getline(input, 50, '\n');
     if (strcmp(input, "ADD") == 0) {
       
