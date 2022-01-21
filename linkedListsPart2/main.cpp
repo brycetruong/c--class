@@ -50,9 +50,28 @@ int main() {
     char* tempInput = new char[50];
     Student* tempSt = new Student();
     cout << "Enter Student Firstname: ";
-    cin.getline(input, 20, '\n');
-    cout << input << endl;
+    cin.getline(input, 50, '\n');
+    strcpy(tempInput, input);
+    tempSt->setStudentfName(tempInput);
     
+    cout << "Enter Student Lirstname: ";
+    cin.getline(input, 50, '\n');
+    strcpy(tempInput, input);
+    tempSt->setStudentlName(tempInput);
+    
+    cout << "Enter Student ID: ";
+    cin.getline(input, 50, '\n');
+    tempSt->setStudentID(atoi(input));
+    
+    cout << "Enter Student ID: ";
+    cin.getline(input, 50, '\n');
+    tempSt->setStudentID(atoi(input));
+    
+    cout << "Enter Student GPA: ";
+    cin.getline(input, 50, '\n');
+    tempSt->setStudentID((float)atof(input));
+    
+    add(head, tempSt);
     
   }
   
@@ -76,7 +95,7 @@ void add(Node*& head, Student* newStudent) {
 
 void print(Node*& head, Node* next) {
   if (next == head) {
-    cout << "testing: ";
+    cout << "List of Students\n-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-\t-" << endl;;
   }
   if (next != NULL) {
     cout << next->getStudent()->getStudentfName() << " ";
