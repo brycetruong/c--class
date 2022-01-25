@@ -9,6 +9,7 @@ Last Modified: 1/14/22
 #include <cctype>
 #include <stdio.h>
 #include <ctype.h>
+#include <iomanip> //this is for setprecision()
 #include "Student.h"
 #include "Node.h"
 
@@ -121,7 +122,7 @@ void print(Node*& head, Node* next) {
     cout << "Student ID: ";
     cout << next->getStudent()->getStudentID() << endl;
     cout << "Student GPA: ";
-    cout << next->getStudent()->getStudentGPA() << endl;
+    cout << setprecision(3) << next->getStudent()->getStudentGPA() << endl;
     
     print(head, next->getNext());
   }
