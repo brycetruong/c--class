@@ -81,6 +81,7 @@ int main() {
       print(head, head);
     } else if (strcmp(input, "DELETE") == 0) {
       //delete
+      deleteNode(head, head, 477552);
     } else if (strcmp(input, "AVERAGE") == 0) {
       //delete
     } else {
