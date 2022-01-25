@@ -52,7 +52,7 @@ int main() {
     cin.getline(input, 50, '\n');
     if (strcmp(input, "ADD") == 0) {
       
-      char* tempInput = char[50];
+      char* tempInput = new char[50];
       Student* tempSt = new Student();
       cout << "Enter Student Firstname: ";
       cin.getline(input, 50, '\n');
