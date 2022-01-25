@@ -17,7 +17,7 @@ Last Modified: 1/14/22
 using namespace std;
 
 void add(Node*& head, Student* newStudent);
-void print(Node*& head, Node* next);
+void print(Node* next);
 void deleteNode(Node*& head, Node* next, int id);
 
 int main() {
@@ -79,7 +79,7 @@ int main() {
       cout << "Exiting..." << endl;
       running = false;
     } else if (strcmp(input, "PRINT") == 0) {
-      print(head, head);
+      print(head);
     } else if (strcmp(input, "DELETE") == 0) {
       //delete
       deleteNode(head, head, 477552);
@@ -108,10 +108,7 @@ void add(Node*& head, Student* newStudent) {
 }
 
 
-void print(Node*& head, Node* next) {
-  if (next == head) {
-    cout << "List of Students:\n" << endl;;
-  }
+void print(Node* next) {
   if (next != NULL) {
     cout << endl;
     cout << "-\t-\t-\t-\t-\t-\t-\t-" << endl;
@@ -124,7 +121,7 @@ void print(Node*& head, Node* next) {
     cout << "Student GPA: ";
     cout << setprecision(3) << next->getStudent()->getStudentGPA() << endl;
     
-    print(head, next->getNext());
+    print(next->getNext());
   }
 }
 
@@ -136,9 +133,9 @@ void deleteNode(Node*& head, Node* next, int id) {
     if (next->getNext()->getStudent()->getStudentID() == id) {
       
       Node* temp = next->getNext();
-      next->setNext(next->getNext()->getNext());
-      
-      
+      if (next->getNext()->getNext() != NULL) {
+        next->setNext(next->getNext()->getNext());
+      }
       delete temp;
     } else {
       deleteNode(head, next->getNext(), id);
