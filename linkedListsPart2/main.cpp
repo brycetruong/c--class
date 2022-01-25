@@ -130,9 +130,12 @@ void deleteNode(Node* current, int id) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
       Node* temp = current->getNext();
-      if (current->getNext()->getNext() != NULL) {
+      if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext());
+      } else { //if two nodes forwards IS null
+       current->setNext(NULL);
       }
+      
       delete temp;
     } else {
       deleteNode(current->getNext(), id);
