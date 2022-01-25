@@ -129,14 +129,17 @@ void print(Node*& head, Node* next) {
 }
 
 void deleteNode(Node*& head, Node* next, int id) {
-  if (next == head) {
+  if (next == head) { //if next is the first one
     cout << "List of Students:\n" << endl;;
   }
   if (next != NULL) {
     if (next->getNext()->getStudent()->getStudentID() == id) {
+      
+      Node* temp = next->getNext();
       next->setNext(next->getNext()->getNext());
       
-      delete next->getNext();
+      
+      delete temp;
     } else {
       deleteNode(head, next->getNext(), id);
     }
