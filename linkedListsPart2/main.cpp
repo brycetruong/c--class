@@ -17,6 +17,7 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node*& head, Node* next);
+void deleteNode(Node*& head, Node* next, int id);
 
 int main() {
   
@@ -124,3 +125,19 @@ void print(Node*& head, Node* next) {
     print(head, next->getNext());
   }
 }
+
+void deleteNode(Node*& head, Node* next, int id) {
+  if (next == head) {
+    cout << "List of Students:\n" << endl;;
+  }
+  if (next != NULL) {
+    if (next->getNext()->getStudent()->getStudentID() == id) {
+      next->setNext(next->getNext()->getNext());
+      
+      delete next->getNext();
+    } else {
+      deleteNode(head, next->getNext(), id);
+    }
+  }
+}
+
