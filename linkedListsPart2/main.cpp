@@ -126,13 +126,10 @@ void print(Node* next) {
 }
 
 void deleteNode(Node* current, int id) {
-  if (current == head) { //if next is the first one
-    cout << "List of Students:\n" << endl;;
-  }
   if (current != NULL) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
-      Node* temp = next->getNext();
+      Node* temp = current->getNext();
       if (current->getNext()->getNext() != NULL) {
         current->setNext(current->getNext()->getNext());
       }
