@@ -133,7 +133,7 @@ void deleteNode(Node* current, int id) {
       if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext());
       } else { //if two nodes forwards IS null
-       current->setNext(NULL);
+       current->setNext(new Node());
       }
       
       delete temp;
