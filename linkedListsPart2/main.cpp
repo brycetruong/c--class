@@ -18,7 +18,7 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node* next);
-void deleteNode(Node*& current, int id);
+void deleteNode(Node*& head, Node* current, int id);
 
 int main() {
   
@@ -82,7 +82,7 @@ int main() {
       print(head);
     } else if (strcmp(input, "DELETE") == 0) {
       //delete
-      deleteNode(head, 477552);
+      deleteNode(head, head, 477552);
     } else if (strcmp(input, "AVERAGE") == 0) {
       //delete
     } else {
@@ -125,7 +125,7 @@ void print(Node* next) {
   }
 }
 
-void deleteNode(Node*& current, int id) {
+void deleteNode(Node*& head, Node* current, int id) {
   if (current != NULL && current->getNext() != NULL) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
@@ -138,7 +138,7 @@ void deleteNode(Node*& current, int id) {
       
       delete temp;
     } else {
-      deleteNode(current->getNext(), id);
+      deleteNode(head, current->getNext(), id);
     }
   }
 }
