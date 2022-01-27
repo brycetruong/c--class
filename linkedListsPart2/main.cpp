@@ -134,8 +134,9 @@ void deleteNode(Node*& head, Node* current, int id) {
       Node* temp = current->getNext();
       if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext()); //repair the link
+        
       } else { //if two nodes forwards IS null
-       current->setNext(new Node());
+       current->setNext(NULL);
       }
       
       delete temp;
