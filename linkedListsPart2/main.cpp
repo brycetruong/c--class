@@ -120,7 +120,7 @@ void print(Node* next) {
     cout << next->getStudent()->getStudentID() << endl;
     cout << "Student GPA: ";
     cout << setprecision(3) << next->getStudent()->getStudentGPA() << endl;
-    if (next-getNext() != NULL) {
+    if (next->getNext() != NULL) {
       print(next->getNext());
     }
   }
