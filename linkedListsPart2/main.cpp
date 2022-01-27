@@ -127,8 +127,9 @@ void print(Node* next) {
 
 void deleteNode(Node*& head, Node* current, int id) {
   if (current != NULL) {
+    cout << "!null" << endl;
     if (current->getNext()->getStudent()->getStudentID() == id) {
-      
+      cout << "match" <<endl;
       Node* temp = current->getNext();
       if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext()); //repair the link
