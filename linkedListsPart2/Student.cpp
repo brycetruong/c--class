@@ -7,8 +7,8 @@ Student::Student(){
 
 }
 Student::~Student(){
-  delete fname;
-  delete lname;
+  //delete fname;
+  //delete lname;
 }
 
 Student::Student(char* newFname, char* newLname, int newID, float newGPA) {
