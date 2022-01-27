@@ -126,7 +126,7 @@ void print(Node* next) {
 }
 
 void deleteNode(Node* current, int id) {
-  if (current != NULL) {
+  if (current != NULL && current->getNext() != NULL) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
       Node* temp = current->getNext();
