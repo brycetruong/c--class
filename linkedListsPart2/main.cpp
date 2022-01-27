@@ -120,17 +120,17 @@ void print(Node* next) {
     cout << next->getStudent()->getStudentID() << endl;
     cout << "Student GPA: ";
     cout << setprecision(3) << next->getStudent()->getStudentGPA() << endl;
-    if (next->getNext() != NULL) {
-      print(next->getNext());
-    }
+    
+    print(next->getNext());
+    
   }
 }
 
 void deleteNode(Node*& head, Node* current, int id) {
   if (current != NULL) {
-    cout << "!null" << endl;
+    //cout << "!null" << endl;
     if (current->getNext() != NULL && current->getNext()->getStudent()->getStudentID() == id) {
-      cout << "match" <<endl;
+      //cout << "match" <<endl;
       Node* temp = current->getNext();
       if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext()); //repair the link
