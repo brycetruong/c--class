@@ -18,7 +18,7 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node* next);
-void deleteNode(Node* next, int id);
+void deleteNode(Node*& current, int id);
 
 int main() {
   
@@ -125,7 +125,7 @@ void print(Node* next) {
   }
 }
 
-void deleteNode(Node* current, int id) {
+void deleteNode(Node*& current, int id) {
   if (current != NULL && current->getNext() != NULL) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
