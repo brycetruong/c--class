@@ -126,7 +126,7 @@ void print(Node* next) {
 }
 
 void deleteNode(Node*& head, Node* current, int id) {
-  if (current != NULL && current->getNext() != NULL) {
+  if (current != NULL) {
     if (current->getNext()->getStudent()->getStudentID() == id) {
       
       Node* temp = current->getNext();
@@ -138,7 +138,9 @@ void deleteNode(Node*& head, Node* current, int id) {
       
       delete temp;
     } else {
-      deleteNode(head, current->getNext(), id);
+      if (current->getNext() != NULL) {
+        deleteNode(head, current->getNext(), id);
+      }
     }
   }
 }
