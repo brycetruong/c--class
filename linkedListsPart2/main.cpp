@@ -136,7 +136,7 @@ void addGPA(Node* current, float& dividend, int& divisor) {
 	if (current != NULL) {
 		divisor++;
 		dividend += current->getStudent()->getStudentGPA();
-		addGPA(current->getNext(), GPA, divisor);
+		addGPA(current->getNext(), dividend, divisor);
 	} else {
 		cout << dividend/divisor << endl;
 	}
