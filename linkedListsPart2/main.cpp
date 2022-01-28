@@ -127,10 +127,20 @@ void print(Node* next) {
 }
 
 void deleteNode(Node*& head, Node* current, int id) {
+  cout << "start" << endl;
   if (current != NULL) {
-    //cout << "!null" << endl;
-    if (current->getNext() != NULL && current->getNext()->getStudent()->getStudentID() == id) {
-      //cout << "match" <<endl;
+    if (false/*current->getStudent()->getStudentID() == id*/) {
+      Node* temp = current;
+      if (current->getNext() != NULL) {
+	head->setNext(current->getNext());
+        
+      } else { //if two nodes forwards IS null
+	head->setNext(NULL);
+      }
+      
+      delete temp;
+    } else if (current->getNext() != NULL && current->getNext()->getStudent()->getStudentID() == id) {
+      
       Node* temp = current->getNext();
       if (current->getNext()->getNext() != NULL) { //if two spaces forwards is not null
         current->setNext(current->getNext()->getNext()); //repair the link
@@ -141,9 +151,8 @@ void deleteNode(Node*& head, Node* current, int id) {
       
       delete temp;
     } else {
-      if (current->getNext() != NULL) {
-        deleteNode(head, current->getNext(), id);
-      }
+      deleteNode(head, current->getNext(), id);
+      
     }
   }
 }
