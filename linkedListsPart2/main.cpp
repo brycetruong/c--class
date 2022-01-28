@@ -133,7 +133,7 @@ void print(Node* next) {
 void addGPA(Node* current, float& GPA) {
 	if (current != NULL) {
 		GPA += current->getStudent()->getStudentGPA();
-		addGPA(current->getNext(), GPA)
+		addGPA(current->getNext(), GPA);
 	} else {
 		cout << GPA << endl;
 	}
