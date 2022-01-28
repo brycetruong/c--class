@@ -18,7 +18,8 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node* next);
-void deleteNode(Node* head, Node* current, int id);
+void addGPA(Node* current, float& GPA);
+void deleteNode(Node*& head, Node* current, int id);
 
 int main() {
   
@@ -82,7 +83,9 @@ int main() {
       print(head);
     } else if (strcmp(input, "DELETE") == 0) {
       //delete
-      deleteNode(head, head, 477552);
+			cout << "Enter Student ID: ";
+			cin.getline(input, 50, '\n');
+      deleteNode(head, head, atoi(input));
     } else if (strcmp(input, "AVERAGE") == 0) {
       //delete
     } else {
@@ -126,12 +129,18 @@ void print(Node* next) {
   }
 }
 
-void deleteNode(Node* head, Node* current, int id) {
-  cout << "start" << endl;
+void addGPA(Node* current, float& GPA) {
+	if (current != NULL) {
+		GPA += current->getStudent()->getStudentGPA();
+		addGPA(current->getNext(), GPA)
+	} else {
+		cout << GPA << endl;
+	}
+}
+
+void deleteNode(Node*& head, Node* current, int id) {
   if (current != NULL) {
-    cout << "notnull" << endl;  
     if (false/*current->getStudent()->getStudentID() == id*/) {
-	    cout << "found" << endl;
       Node* temp = current;
       if (current->getNext() != NULL) {
 	      current->setNext(current->getNext());
@@ -155,6 +164,8 @@ void deleteNode(Node* head, Node* current, int id) {
       deleteNode(head, current->getNext(), id);
       
     }
-  }
+  } else {
+		cout << "No student by that ID found" << endl;
+	}
 }
 
