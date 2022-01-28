@@ -130,16 +130,15 @@ void deleteNode(Node* head, Node* current, int id) {
   cout << "start" << endl;
   if (current != NULL) {
     cout << "notnull" << endl;  
-    if (current->getStudent()->getStudentID() == id) {
-			cout << "found" << endl;
+    if (false/*current->getStudent()->getStudentID() == id*/) {
+	    cout << "found" << endl;
       Node* temp = current;
       if (current->getNext() != NULL) {
-				current->setNext(current->getNext());
+	      current->setNext(current->getNext());
         
       } else {
-				current->setNext(NULL);
+	      current->setNext(NULL);
       }
-      
       delete temp;
     } else if (current->getNext() != NULL && current->getNext()->getStudent()->getStudentID() == id) {
       
