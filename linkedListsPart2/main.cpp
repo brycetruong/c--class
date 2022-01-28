@@ -18,7 +18,7 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node* next);
-void addGPA(Node* current, float& GPA);
+void addGPA(Node* current, float& GPA, int& divisor);
 void deleteNode(Node*& head, Node* current, int id);
 
 int main() {
@@ -87,8 +87,9 @@ int main() {
 			cin.getline(input, 50, '\n');
       deleteNode(head, head, atoi(input));
     } else if (strcmp(input, "AVERAGE") == 0) {
-      float temp = 0.0;
-			addGPA(head, temp);
+      float dividend = 0.0;
+			int divisor = 0;
+			addGPA(head, dividend, divisor);
     } else {
       cout << "Input not recognized..." << endl;
     }
@@ -124,18 +125,20 @@ void print(Node* next) {
     cout << next->getStudent()->getStudentID() << endl;
     cout << "Student GPA: ";
     cout << setprecision(3) << next->getStudent()->getStudentGPA() << endl;
-    
+    cout << "-\t-\t-\t-\t-\t-\t-\t-" << endl;
+		
     print(next->getNext());
     
   }
 }
 
-void addGPA(Node* current, float& GPA) {
+void addGPA(Node* current, float& dividend, int& divisor) {
 	if (current != NULL) {
-		GPA += current->getStudent()->getStudentGPA();
-		addGPA(current->getNext(), GPA);
+		divisor++;
+		dividend += current->getStudent()->getStudentGPA();
+		addGPA(current->getNext(), GPA, divisor);
 	} else {
-		cout << GPA << endl;
+		cout << dividend/divisor << endl;
 	}
 }
 
