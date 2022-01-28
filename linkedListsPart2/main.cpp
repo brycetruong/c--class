@@ -134,10 +134,10 @@ void deleteNode(Node* head, Node* current, int id) {
 			cout << "found" << endl;
       Node* temp = current;
       if (current->getNext() != NULL) {
-				head->setNext(current->getNext());
+				current->setNext(current->getNext());
         
       } else {
-				head->setNext(NULL);
+				current->setNext(NULL);
       }
       
       delete temp;
