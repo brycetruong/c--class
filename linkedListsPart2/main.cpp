@@ -18,7 +18,7 @@ using namespace std;
 
 void add(Node*& head, Student* newStudent);
 void print(Node* next);
-void deleteNode(Node*& head, Node* current, int id);
+void deleteNode(Node* head, Node* current, int id);
 
 int main() {
   
@@ -98,7 +98,7 @@ void add(Node*& head, Student* newStudent) {
     head = new Node();
     head->setStudent(newStudent);
   } else {
-    while (current->getNext() != NULL) {
+    while (current->getNext() != NULL) {//go to the end of the list
       current = current->getNext();
     }
     current->setNext(new Node());
@@ -126,16 +126,18 @@ void print(Node* next) {
   }
 }
 
-void deleteNode(Node*& head, Node* current, int id) {
+void deleteNode(Node* head, Node* current, int id) {
   cout << "start" << endl;
   if (current != NULL) {
-    if (false/*current->getStudent()->getStudentID() == id*/) {
+    cout << "notnull" << endl;  
+    if (current->getStudent()->getStudentID() == id) {
+			cout << "found" << endl;
       Node* temp = current;
       if (current->getNext() != NULL) {
-	head->setNext(current->getNext());
+				head->setNext(current->getNext());
         
-      } else { //if two nodes forwards IS null
-	head->setNext(NULL);
+      } else {
+				head->setNext(NULL);
       }
       
       delete temp;
