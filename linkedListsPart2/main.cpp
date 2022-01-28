@@ -87,7 +87,8 @@ int main() {
 			cin.getline(input, 50, '\n');
       deleteNode(head, head, atoi(input));
     } else if (strcmp(input, "AVERAGE") == 0) {
-      //delete
+      float temp = 0.0;
+			addGPA(head, temp);
     } else {
       cout << "Input not recognized..." << endl;
     }
