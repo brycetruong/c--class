@@ -144,14 +144,9 @@ void addGPA(Node* current, float& dividend, int& divisor) {
 
 void deleteNode(Node*& head, Node* current, int id) {
   if (current != NULL) {
-    if (false/*current->getStudent()->getStudentID() == id*/) {
+    if (current->getStudent()->getStudentID() == id) {
       Node* temp = current;
-      if (current->getNext() != NULL) {
-	      current->setNext(current->getNext());
-        
-      } else {
-	      current->setNext(NULL);
-      }
+	    head = current->getNext();
       delete temp;
     } else if (current->getNext() != NULL && current->getNext()->getStudent()->getStudentID() == id) {
       
