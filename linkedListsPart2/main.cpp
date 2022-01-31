@@ -119,7 +119,7 @@ void add(Node * & head, Student * newStudent) {
 
 }
 
-void print(Node * next) {
+void print(Node * next) { //calls itself until it reaches the end (when the next is null)
   if (next != NULL) {
     cout << endl;
     cout << "-\t-\t-\t-\t-\t-\t-\t-" << endl;
@@ -138,21 +138,30 @@ void print(Node * next) {
   }
 }
 
-void addGPA(Node * current, float & dividend, int & divisor) {
-  if (current != NULL) {
+void addGPA(Node * current, float & dividend, int & divisor) { //since im using recursion, I have to have a local variable outside the function that is changed each time it find a student (which is why I used a reference). I then pass that value back into the equation so the divisor ticks up each time a student is found.
+  if (current != NULL) { //while we aren't at the end of the LL
     divisor++;
     dividend += current -> getStudent() -> getStudentGPA();
-    addGPA(current -> getNext(), dividend, divisor);
-  } else {
+    addGPA(current -> getNext(), dividend, divisor); //pass the newly changed divisor back in
+  } else { //print out the gpa when we are at the end
     cout << dividend / divisor << endl;
   }
 }
+
+
+/* DELETE NODE COMMENTS:
+So basically, you pass in the head, twice. One time as just a ptr and one time as a reference ptr. It starts at head and gets the student ptr, then gets the student ID and checks
+if it matches. If it does, then we check to see if there are any other nodes ahead of it to repair the links. Then we set the head to the next one. This is the only time we actually alter head.
+
+As for any other case, I actually check the current's next node's student ID. So since im always checking one ahead, I know when I want to delete the one in front, I reconnect my current one to two nodes ahead.
+*/
+
 
 void deleteNode(Node * & head, Node * current, int id) {
   if (current != NULL) {
     if (current -> getStudent() -> getStudentID() == id) {
       Node * temp = current;
-      head = current -> getNext();
+      head = current -> getNext(); //if the next one is NULL, then we actually just set the next one to null.
       delete temp;
     } else if (current -> getNext() != NULL && current -> getNext() -> getStudent() -> getStudentID() == id) {
 
