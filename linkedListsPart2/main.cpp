@@ -106,7 +106,7 @@ int main() {
 
 void add(Node * & head, Student * newStudent) {
   Node * current = head;
-  if (current == NULL) {
+  if (current == NULL) { //only if this is the first addition to the list.
     head = new Node();
     head -> setStudent(newStudent);
   } else {
