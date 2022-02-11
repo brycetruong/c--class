@@ -22,11 +22,20 @@ class Node {
   
   void setNext(Node* newNext);
   Node* getNext();
+
+  void setLeft(Node*);
+  void setRight(Node*);
+
+  Node * getLeft();
+  Node * getRight();
   
  private:
 
   char data;
   Node* next;
+
+  Node * left;
+  Node * right;
     
 };
 
