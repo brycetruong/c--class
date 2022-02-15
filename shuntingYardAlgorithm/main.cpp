@@ -50,7 +50,6 @@ int main() {
       i++;
     } else {
       if (input[i] >= '0' && input[i] <= '9') { //if it is a number enqueue it into the output queue
-	cout << "num" << endl;
 	enqueue(qhead, input[i]);
 	i++;
       } else if (input[i] == '+'
@@ -58,7 +57,6 @@ int main() {
 		 || input[i] == '/'
 		 || input[i] == '*'
 		 || input[i] == '^') { //if it's an operator
-	cout << "op" << endl;
 	while (peek(shead) != '\0'
 	       && ((getPrecedence(peek(shead)) > getPrecedence(input[i])) //while there's an operator on the top of the stack with greater precedence
 		   || (getPrecedence(peek(shead)) == getPrecedence(input[i])//they have the same precedence
@@ -77,20 +75,20 @@ int main() {
 	while (peek(shead) != '(') { //While there's not a left bracket at the top of the stack
 	  if (peek(shead) != '\0') {
 	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
-	  } else {
+	  } else { //if you get to the end without finding the matching parenthesis...
 	    cout << "Mismatching Parenthesis!" << endl;
 	    break;
 	  }
 	}
-	cout << "Discarded: " << pop(shead) -> getData() << endl;
+	delete pop(shead); //discard the left parenthesis
 	i++;
       } else {
 	cout << "Probably a bad input (note: you shouldn't ever see this message...)" << endl;
       }
-      while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
-	enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
-      }
     }
+  }
+  while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
+    	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
   }
   cout << "queue (remember its backwards rn)" << endl;
   print(qhead);
@@ -161,8 +159,8 @@ int getPrecedence(char oper) { //finds the precedence of the operator (nothing i
   } else if (oper == '\0') { //if the stack is empty
     return 0;
   } else {
-    cout << "If you see this message, you probably messed up bigtime somewhere somehow..." << endl;
-    return 0;//something went horribly wrong...
+    //probably a parenthesis or some other thing
+    return 0;
   }
 }
 
