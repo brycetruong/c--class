@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 2/7/22
-Last Modified: 2/8/22
+Last Modified: 2/11/22
 */
 
 #include <iostream>
@@ -14,7 +14,12 @@ Last Modified: 2/8/22
 
 using namespace std;
 
+int getPrecedence(char oper); //finds the precedence of the operator (nothing in there is 0, +- is 1, */ is 2, and ^ is 3)
+
+int getAsso(char oper); // 0 is left associativity, and 1 is right
+
 void enqueue(Node * & head, char data); //basically the same as 'push' so I didn't add another function for it
+void enqueue(Node * & head, Node * toAdd);
 
 void push(Node * & head, char data);
 
@@ -35,8 +40,83 @@ int main() {
   
   Node * qhead = new Node();
   
-  //print(qhead);
+  cin.getline(input, 50, '\n');
 
+  int i = 0;
+  int j = 0;
+  char output[50];
+  while (input[i] != '\0') { //loop through the entire character array.
+    if (input[i] == ' ') {
+      i++;
+    } else {
+      if (input[i] >= '0' && input[i] <= '9') { //if it is a number enqueue it into the output queue
+	cout << "num" << endl;
+	enqueue(qhead, input[i]);
+	i++;
+      } else if (input[i] == '+'
+		 || input[i] == '-'
+		 || input[i] == '/'
+		 || input[i] == '*'
+		 || input[i] == '^') { //if it's an operator
+	cout << "op" << endl;
+	while (peek(shead) != '\0'
+	       && ((getPrecedence(peek(shead)) > getPrecedence(input[i])) //while there's an operator on the top of the stack with greater precedence
+		   || (getPrecedence(peek(shead)) == getPrecedence(input[i])//they have the same precedence
+		       && (getAsso(peek(shead)) == 0 && getAsso(input[i]) == 0)//both left associative
+		       )
+		   )
+	       ) {
+	  enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
+	}
+	push(shead, input[i]); //push the current op onto the stack
+	i++;
+      } else if (input[i] == '(') { //if left bracket, push to stack
+	push(shead, input[i]);
+	i++;
+      } else if (input[i] == ')') {
+	while (peek(shead) != '(') { //While there's not a left bracket at the top of the stack
+	  if (peek(shead) != '\0') {
+	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
+	  } else {
+	    cout << "Mismatching Parenthesis!" << endl;
+	    break;
+	  }
+	}
+	cout << "Discarded: " << pop(shead) -> getData() << endl;
+	i++;
+      } else {
+	cout << "Probably a bad input (note: you shouldn't ever see this message...)" << endl;
+      }
+      while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
+	enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
+      }
+    }
+  }
+  cout << "queue (remember its backwards rn)" << endl;
+  print(qhead);
+
+  cout << "stack" << endl;
+  print(shead);
+
+
+  /*
+  push(shead, 'a');
+
+  push(shead, 'b');
+
+  push(shead, 'c');
+
+  print(shead);
+
+  enqueue(qhead, pop(shead));
+  
+  enqueue(qhead, pop(shead));
+
+  enqueue(qhead, pop(shead));
+
+  print(qhead);
+  
+  
   enqueue(qhead, 'a');
 
   enqueue(qhead, 'b');
@@ -68,6 +148,31 @@ int main() {
   cout << pop(shead)->getData() << endl;
 
   cout << pop(shead)->getData() << endl;
+  */
+}
+
+int getPrecedence(char oper) { //finds the precedence of the operator (nothing in there is 0, +- is 1, */ is 2, and ^ is 3)
+  if (oper == '+' || oper == '-') {
+    return 1;
+  } else if (oper == '*' || oper == '/') {
+    return 2;
+  } else if (oper == '^') {
+    return 3;
+  } else if (oper == '\0') { //if the stack is empty
+    return 0;
+  } else {
+    cout << "If you see this message, you probably messed up bigtime somewhere somehow..." << endl;
+    return 0;//something went horribly wrong...
+  }
+}
+
+int getAsso(char oper) { // 0 is left associativity, and 1 is right
+  if (oper == '^') {
+    return 1;
+  } else {
+    return 0;
+  }
+  
 }
 
 void print(Node * next) { //calls itself until it reaches the end (when the next is null)
@@ -92,22 +197,36 @@ void enqueue(Node * & head, char data) {
   }
 }
 
+void enqueue(Node * & head, Node * toAdd) {
+  if (head -> getData() == '\0') {
+    head -> setData(toAdd -> getData());
+    delete toAdd;
+  } else {
+    toAdd -> setNext(head);
+    head = toAdd;
+  }
+}
+
 void push(Node * & head, char data) {
   enqueue(head, data);
 }
 
 Node * pop(Node * & head) {
-  Node * temp = new Node();
-  temp -> setData(head -> getData());
-  
-  if (head -> getNext() != NULL) { //makes sure I dont accidentally turn head into NULL, which would be bad because I call functions to get head's data with pop.
-    Node * tempDel = head;
-    head = head -> getNext();
-    delete tempDel;
+  if (head -> getData() != '\0') {
+    Node * temp = new Node();
+    temp -> setData(head -> getData());
+    
+    if (head -> getNext() != NULL) { //makes sure I dont accidentally turn head into NULL, which would be bad because I call functions to get head's data with pop.
+      Node * tempDel = head;
+      head = head -> getNext();
+      delete tempDel;
+    } else {
+      head -> setData('\0'); //clear the head
+    }
+    return temp;
   } else {
-    head -> setData('\0'); //clear the head
+    return head;
   }
-  return temp;
 }
 
 Node * dequeue(Node * & head, Node * current) {
@@ -115,7 +234,6 @@ Node * dequeue(Node * & head, Node * current) {
     if (current -> getNext() -> getNext() == NULL) {//if the next node is the last one in the list.
       Node * temp = current -> getNext();
       current -> setNext(NULL);
-      temp -> setNext(NULL);
       return temp;
     } else {
       return dequeue(head, current -> getNext());
