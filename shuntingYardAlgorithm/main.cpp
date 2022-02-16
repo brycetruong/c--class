@@ -90,6 +90,7 @@ int main() {
   while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
     	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
   }
+  
   cout << "queue (remember its backwards rn)" << endl;
   print(qhead);
 
