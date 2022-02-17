@@ -1,7 +1,10 @@
 /*
 Author: Bryce Truong
 Date Created: 2/7/22
-Last Modified: 2/11/22
+Last Modified: 2/17/22
+
+This is a program that first uses the Shunting Yard Algorithm to convert infix notation to postfix notation,
+and then contructs an expression tree
 */
 
 #include <iostream>
@@ -14,6 +17,10 @@ Last Modified: 2/11/22
 
 using namespace std;
 
+void infix (Node * tree);
+void postfix (Node * tree);
+void prefix (Node * tree);
+
 int getPrecedence(char oper); //finds the precedence of the operator (nothing in there is 0, +- is 1, */ is 2, and ^ is 3)
 
 int getAsso(char oper); // 0 is left associativity, and 1 is right
@@ -22,6 +29,7 @@ void enqueue(Node * & head, char data); //basically the same as 'push' so I didn
 void enqueue(Node * & head, Node * toAdd);
 
 void push(Node * & head, char data);
+void push(Node * & head, Node * toAdd);
 
 Node * pop(Node * & head);
 
@@ -90,7 +98,8 @@ int main() {
   while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
     	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
   }
-  
+
+  cout << endl;
   cout << "queue (remember its backwards rn)" << endl;
   print(qhead);
 
@@ -98,6 +107,40 @@ int main() {
   print(shead);
 
 
+  /* BINARY EXPRESSION TREE CREATION */
+
+  
+  bool qEmpty = false;
+  Node * beTree = NULL;
+  while (qEmpty == false) {
+    
+    beTree = dequeue(qhead, qhead);
+    if (beTree -> getData() >= '0' && beTree -> getData() <= '9') { // if number, push it onto the stack
+      push(shead, beTree);
+    } else if (beTree -> getData() == '+'
+	       || beTree -> getData() == '-'
+	       || beTree -> getData() == '/'
+	       || beTree -> getData() == '*'
+	       || beTree -> getData() == '^') {
+      beTree -> setRight(pop(shead));
+      beTree -> setLeft(pop(shead));
+      push(shead, beTree);
+    } else if (beTree -> getData() == '\0') {
+      beTree = pop(shead);
+      qEmpty = true;
+    }
+    
+  }
+  cout << endl;
+  cout << "queue (remember its backwards rn)" << endl;
+  print(qhead);
+  
+  cout << "stack" << endl;
+  print(shead);
+
+  
+
+  
   /*
   push(shead, 'a');
 
@@ -150,6 +193,24 @@ int main() {
   */
 }
 
+/* TRAVERSAL FUNCTIONS */
+
+void infix (Node * tree) {
+  
+}
+
+void postfix (Node * tree) {
+
+}
+
+void prefix (Node * tree) {
+
+}
+
+/* - - - - - - - - - - */
+
+/* PRECEDENCE AND ASSOCIATIVITY */
+
 int getPrecedence(char oper) { //finds the precedence of the operator (nothing in there is 0, +- is 1, */ is 2, and ^ is 3)
   if (oper == '+' || oper == '-') {
     return 1;
@@ -173,6 +234,9 @@ int getAsso(char oper) { // 0 is left associativity, and 1 is right
   }
   
 }
+
+/* - - - - - - - - - - - - - */
+
 
 void print(Node * next) { //calls itself until it reaches the end (when the next is null)
   if (next != NULL) {
@@ -208,6 +272,10 @@ void enqueue(Node * & head, Node * toAdd) {
 
 void push(Node * & head, char data) {
   enqueue(head, data);
+}
+
+void push(Node * & head, Node * toAdd) {
+  enqueue(head, toAdd);
 }
 
 Node * pop(Node * & head) {
