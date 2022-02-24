@@ -105,8 +105,7 @@ int main() {
 
   cout << "stack" << endl;
   print(shead);
-
-
+  
   /* BINARY EXPRESSION TREE CREATION */
 
   
@@ -115,17 +114,17 @@ int main() {
   while (qEmpty == false) {
     
     beTree = dequeue(qhead, qhead);
-    if (beTree -> getData() >= '0' && beTree -> getData() <= '9') { // if number, push it onto the stack
+    if(beTree -> getData() >= '0' && beTree -> getData() <= '9') { // if number, push it onto the stack
       push(shead, beTree);
     } else if (beTree -> getData() == '+'
 	       || beTree -> getData() == '-'
 	       || beTree -> getData() == '/'
 	       || beTree -> getData() == '*'
-	       || beTree -> getData() == '^') {
+	       || beTree -> getData() == '^') { //if it is an op, set the right and then the left, then push it back into the stack
       beTree -> setRight(pop(shead));
       beTree -> setLeft(pop(shead));
       push(shead, beTree);
-    } else if (beTree -> getData() == '\0') {
+    } else if (beTree -> getData() == '\0') { //if it is the last one (which means it's empty)
       beTree = pop(shead);
       qEmpty = true;
     }
@@ -138,7 +137,14 @@ int main() {
   cout << "stack" << endl;
   print(shead);
 
+  cout << endl;
   
+  cout << beTree -> getLeft() << endl;
+
+
+  
+
+  //infix(beTree);
 
   
   /*
@@ -196,7 +202,28 @@ int main() {
 /* TRAVERSAL FUNCTIONS */
 
 void infix (Node * tree) {
-  
+  if (tree->getData() != '\0') {
+    if (tree -> getData() == '+'
+	|| tree -> getData() == '-'
+	|| tree -> getData() == '/'
+	|| tree -> getData() == '*'
+	|| tree -> getData() == '^') {
+      cout << '(';
+    }
+    infix(tree -> getLeft());
+
+    cout << tree -> getData();
+    
+    infix(tree -> getRight());
+    
+    if (tree -> getData() == '+'
+	|| tree -> getData() == '-'
+	|| tree -> getData() == '/'
+	|| tree -> getData() == '*'
+	|| tree -> getData() == '^') {
+      cout << ')';
+    }
+  }
 }
 
 void postfix (Node * tree) {

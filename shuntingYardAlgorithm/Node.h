@@ -23,8 +23,8 @@ class Node {
   void setNext(Node* newNext);
   Node* getNext();
 
-  void setLeft(Node*);
-  void setRight(Node*);
+  void setLeft(Node * newLeft);
+  void setRight(Node * newRight);
 
   Node * getLeft();
   Node * getRight();
