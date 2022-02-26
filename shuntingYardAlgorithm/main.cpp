@@ -102,7 +102,7 @@ int main() {
   cout << endl;
   cout << "queue (remember its backwards rn)" << endl;
   print(qhead);
-
+  cout << endl;
   cout << "stack" << endl;
   print(shead);
   
@@ -130,21 +130,9 @@ int main() {
     }
     
   }
-  cout << endl;
-  cout << "queue (remember its backwards rn)" << endl;
-  print(qhead);
   
-  cout << "stack" << endl;
-  print(shead);
-
-  cout << endl;
   
-  cout << beTree -> getLeft() << endl;
-
-
-  
-
-  //infix(beTree);
+  infix(beTree);
 
   
   /*
@@ -202,7 +190,7 @@ int main() {
 /* TRAVERSAL FUNCTIONS */
 
 void infix (Node * tree) {
-  if (tree->getData() != '\0') {
+  if (tree != NULL) {
     if (tree -> getData() == '+'
 	|| tree -> getData() == '-'
 	|| tree -> getData() == '/'
@@ -211,7 +199,7 @@ void infix (Node * tree) {
       cout << '(';
     }
     infix(tree -> getLeft());
-
+    
     cout << tree -> getData();
     
     infix(tree -> getRight());
@@ -290,6 +278,8 @@ void enqueue(Node * & head, char data) {
 void enqueue(Node * & head, Node * toAdd) {
   if (head -> getData() == '\0') {
     head -> setData(toAdd -> getData());
+    head -> setLeft(toAdd -> getLeft());
+    head -> setRight(toAdd -> getRight());
     delete toAdd;
   } else {
     toAdd -> setNext(head);
@@ -309,6 +299,8 @@ Node * pop(Node * & head) {
   if (head -> getData() != '\0') {
     Node * temp = new Node();
     temp -> setData(head -> getData());
+    temp -> setLeft(head -> getLeft());
+    temp -> setRight(head -> getRight());
     
     if (head -> getNext() != NULL) { //makes sure I dont accidentally turn head into NULL, which would be bad because I call functions to get head's data with pop.
       Node * tempDel = head;
