@@ -1,10 +1,14 @@
 /*
 Author: Bryce Truong
 Date Created: 2/7/22
-Last Modified: 2/17/22
+Last Modified: 2/26/22
 
 This is a program that first uses the Shunting Yard Algorithm to convert infix notation to postfix notation,
-and then contructs an expression tree
+and then contructs a binary expression tree with all the operands and operators.
+
+Afterwards, it will prompt the user what type of notation they would like the output in.
+
+
 */
 
 #include <iostream>
@@ -25,17 +29,18 @@ int getPrecedence(char oper); //finds the precedence of the operator (nothing in
 
 int getAsso(char oper); // 0 is left associativity, and 1 is right
 
-void enqueue(Node * & head, char data); //basically the same as 'push' so I didn't add another function for it
-void enqueue(Node * & head, Node * toAdd);
+void enqueue(Node * & head, char data); // First version of enqueue, that just makes a new node with an inputed character
+void enqueue(Node * & head, Node * toAdd); //a second version of enqueue that that takes in an already existing node ptr
+//instead of creating a new one from scratch
 
-void push(Node * & head, char data);
+void push(Node * & head, char data); //basically the same as 'enqueue' so I didn't add another function for it
 void push(Node * & head, Node * toAdd);
 
 Node * pop(Node * & head);
 
-char peek(Node * head);
+char peek(Node * head); //looks at the top of the stack (literally the simplest function in the entire program)
 
-Node * dequeue(Node * & head, Node * current);
+Node * dequeue(Node * & head, Node * current); //takes from the back of the queue
 
 void print(Node * next);
 
@@ -98,13 +103,15 @@ int main() {
   while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
     	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
   }
-
+  
+  /*
   cout << endl;
   cout << "queue (remember its backwards rn)" << endl;
   print(qhead);
   cout << endl;
   cout << "stack" << endl;
   print(shead);
+  */
   
   /* BINARY EXPRESSION TREE CREATION */
 
@@ -130,61 +137,27 @@ int main() {
     }
     
   }
+  while (true) {
+    cout << "Enter: \"infix\", \"postfix\", \"prefix\", \"quit\"" << endl;
+    cin.getline(input, 50, '\n');  
+    if (strcmp(input, "infix") == 0) {
+      infix(beTree);
+      cout << endl;
+    } else if (strcmp(input, "postfix") == 0) {
+      postfix(beTree);
+      cout << endl;
+    } else if (strcmp(input, "prefix") == 0) {
+      prefix(beTree);
+      cout << endl;
+    } else if (strcmp(input, "quit") == 0) {
+      break;
+    } else {
+      cout << "input not recognized" << endl;
+    }
+  }
   
   
-  infix(beTree);
-
   
-  /*
-  push(shead, 'a');
-
-  push(shead, 'b');
-
-  push(shead, 'c');
-
-  print(shead);
-
-  enqueue(qhead, pop(shead));
-  
-  enqueue(qhead, pop(shead));
-
-  enqueue(qhead, pop(shead));
-
-  print(qhead);
-  
-  
-  enqueue(qhead, 'a');
-
-  enqueue(qhead, 'b');
-
-  enqueue(qhead, 'c');
-
-  print(qhead);
-  
-  cout << dequeue(qhead, qhead)->getData() << endl;
-
-  cout << dequeue(qhead, qhead)->getData() << endl;
-
-  cout << dequeue(qhead, qhead)->getData() << endl;
-  
-  print(qhead);
-
-  push(shead, 'a');
-
-  push(shead, 'b');
-
-  push(shead, 'c');
-
-  print(shead);
-
-  cout << pop(shead)->getData() << endl;
-
-  cout << pop(shead)->getData() << endl;
-
-  cout << pop(shead)->getData() << endl;
-
-  cout << pop(shead)->getData() << endl;
-  */
 }
 
 /* TRAVERSAL FUNCTIONS */
@@ -215,11 +188,19 @@ void infix (Node * tree) {
 }
 
 void postfix (Node * tree) {
-
+  if (tree != NULL) {
+    postfix(tree -> getLeft());
+    postfix(tree -> getRight());
+    cout << tree -> getData();
+  }
 }
 
 void prefix (Node * tree) {
-
+  if (tree != NULL) {
+    cout << tree -> getData();
+    postfix(tree -> getLeft());
+    postfix(tree -> getRight());
+  }
 }
 
 /* - - - - - - - - - - */
@@ -252,7 +233,6 @@ int getAsso(char oper) { // 0 is left associativity, and 1 is right
 
 /* - - - - - - - - - - - - - */
 
-
 void print(Node * next) { //calls itself until it reaches the end (when the next is null)
   if (next != NULL) {
     cout << "-\t-\t-" << endl;
@@ -263,6 +243,8 @@ void print(Node * next) { //calls itself until it reaches the end (when the next
     
   }
 }
+
+/* PUSHING FUNCTIONS */
 
 void enqueue(Node * & head, char data) {
   if(head -> getData() == '\0') {
@@ -294,6 +276,10 @@ void push(Node * & head, char data) {
 void push(Node * & head, Node * toAdd) {
   enqueue(head, toAdd);
 }
+
+/* - - - - - - - - - - - - - */
+
+/* POPPING AND DEQUEUE */
 
 Node * pop(Node * & head) {
   if (head -> getData() != '\0') {
@@ -333,6 +319,8 @@ Node * dequeue(Node * & head, Node * current) {
     return temp;
   }
 }
+
+/* - - - - - - - - - - - - - */
 
 char peek(Node * head) {
   return head -> getData();
