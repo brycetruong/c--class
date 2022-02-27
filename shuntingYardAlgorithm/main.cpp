@@ -1,13 +1,19 @@
 /*
 Author: Bryce Truong
 Date Created: 2/7/22
-Last Modified: 2/26/22
+Last Modified: 2/27/22
 
 This is a program that first uses the Shunting Yard Algorithm to convert infix notation to postfix notation,
 and then contructs a binary expression tree with all the operands and operators.
 
 Afterwards, it will prompt the user what type of notation they would like the output in.
+You can enter "infix", "prefix", or "postfix"
 
+This program uses two ADTs; a singly linear linked list stack, and a singly linear linked list queue.
+Respective functions were made to pop, push, peek, queue and dequeue Node classes into and out of the lists.
+
+No global variables were used in the making of this program.
+No strings were used in this project, only character arrays.
 
 */
 
@@ -42,7 +48,7 @@ char peek(Node * head); //looks at the top of the stack (literally the simplest 
 
 Node * dequeue(Node * & head, Node * current); //takes from the back of the queue
 
-void print(Node * next);
+void print(Node * next); //prints starting from the head and going back
 
 int main() {
   
@@ -55,8 +61,9 @@ int main() {
   
   cin.getline(input, 50, '\n');
 
+  /* SHUNTING YARD ALGORITHIM */
+  
   int i = 0;
-  int j = 0;
   char output[50];
   while (input[i] != '\0') { //loop through the entire character array.
     if (input[i] == ' ') {
@@ -103,6 +110,8 @@ int main() {
   while (peek(shead) != '\0') { //While there are operators on the stack, pop them to the queue
     	    enqueue(qhead, pop(shead)); //Pop operators from the stack and enqueue onto the output queue
   }
+
+  /* - - - - - - - - - - */
   
   /*
   cout << endl;
@@ -128,7 +137,7 @@ int main() {
 	       || beTree -> getData() == '/'
 	       || beTree -> getData() == '*'
 	       || beTree -> getData() == '^') { //if it is an op, set the right and then the left, then push it back into the stack
-      beTree -> setRight(pop(shead));
+      beTree -> setRight(pop(shead)); //set the right one before the left one
       beTree -> setLeft(pop(shead));
       push(shead, beTree);
     } else if (beTree -> getData() == '\0') { //if it is the last one (which means it's empty)
@@ -137,6 +146,9 @@ int main() {
     }
     
   }
+
+  /* - - - - - - - - - - */
+  
   while (true) {
     cout << "Enter: \"infix\", \"postfix\", \"prefix\", \"quit\"" << endl;
     cin.getline(input, 50, '\n');  
@@ -168,15 +180,12 @@ void infix (Node * tree) {
 	|| tree -> getData() == '-'
 	|| tree -> getData() == '/'
 	|| tree -> getData() == '*'
-	|| tree -> getData() == '^') {
+	|| tree -> getData() == '^') { //any operators get their own pair of parenthesis
       cout << '(';
     }
     infix(tree -> getLeft());
-    
     cout << tree -> getData();
-    
     infix(tree -> getRight());
-    
     if (tree -> getData() == '+'
 	|| tree -> getData() == '-'
 	|| tree -> getData() == '/'
@@ -259,7 +268,7 @@ void enqueue(Node * & head, char data) {
 
 void enqueue(Node * & head, Node * toAdd) {
   if (head -> getData() == '\0') {
-    head -> setData(toAdd -> getData());
+    head -> setData(toAdd -> getData()); //copying over the data from toAdd over to head
     head -> setLeft(toAdd -> getLeft());
     head -> setRight(toAdd -> getRight());
     delete toAdd;
@@ -284,6 +293,7 @@ void push(Node * & head, Node * toAdd) {
 Node * pop(Node * & head) {
   if (head -> getData() != '\0') {
     Node * temp = new Node();
+    //makes a new node, grabs all of head's data, then deletes the ptr to head while returning a new node
     temp -> setData(head -> getData());
     temp -> setLeft(head -> getLeft());
     temp -> setRight(head -> getRight());
@@ -293,11 +303,12 @@ Node * pop(Node * & head) {
       head = head -> getNext();
       delete tempDel;
     } else {
-      head -> setData('\0'); //clear the head
+      head -> setData('\0'); //clear the head by just reseting its data.
     }
     return temp;
   } else {
     return head;
+    //if you try and pop when the stack is empty, then it just returns a blank node (which should have '\0' as the data)
   }
 }
 
@@ -308,7 +319,8 @@ Node * dequeue(Node * & head, Node * current) {
       current -> setNext(NULL);
       return temp;
     } else {
-      return dequeue(head, current -> getNext());
+      return dequeue(head, current -> getNext()); //recursion to get all the way until the end of the LL queue
+      //then returns all the way back through the function.
     }
   } else {
     Node * temp = new Node();
@@ -322,6 +334,6 @@ Node * dequeue(Node * & head, Node * current) {
 
 /* - - - - - - - - - - - - - */
 
-char peek(Node * head) {
+char peek(Node * head) { //why do I even exist... :(
   return head -> getData();
 }
