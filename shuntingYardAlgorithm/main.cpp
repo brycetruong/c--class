@@ -207,8 +207,8 @@ void postfix (Node * tree) {
 void prefix (Node * tree) {
   if (tree != NULL) {
     cout << tree -> getData();
-    postfix(tree -> getLeft());
-    postfix(tree -> getRight());
+    prefix(tree -> getLeft());
+    prefix(tree -> getRight());
   }
 }
 
