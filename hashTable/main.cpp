@@ -18,6 +18,8 @@ This is a program.
 
 using namespace std;
 
+void rehash(Node ** &oldHashTable, int &size);
+
 Node * find(Node * next, char * name, int ID);
 
 int getHashIndex(Node * toHash, int size);
@@ -42,13 +44,12 @@ int main() {
     LastNames >> lastnames[rows];
     rows++;
   }
-  
   bool running = true;
   
   char input[50];
   
   int hashTableSize = 100;
-  Node * hashTable[hashTableSize];
+  Node ** hashTable = new Node * [hashTableSize];
   for(int i = 0; i < hashTableSize; i++) {
     hashTable[i] = NULL;
   }
@@ -144,11 +145,12 @@ int main() {
 
       temp -> setID(rand() % 89999 + 10000); //gets a number between 10000 and 99999 (a five digit student ID)
 
-      temp -> setGPA(rand());
+      temp -> setGPA((rand() % 400 + 100)/(float)(100));
 
       cout << temp -> getfname() << endl;
       cout << temp -> getlname() << endl;
       cout << temp -> getID() << endl;
+      cout << temp -> getGPA() << endl;
       
       if (hashTable[getHashIndex(temp, hashTableSize)] == NULL) {
 	hashTable[getHashIndex(temp, hashTableSize)] = temp;
@@ -178,13 +180,31 @@ Node * find(Node * next, char * name, int ID) { //calls itself until it reaches 
   }
 }
 
+void rehash(Node ** &oldHashTable, int &size) {
+  size = size * 2;
+  Node ** newHashTable = new Node * [size]; //make a new hashtable
+  for(int i = 0; i < size; i++) {
+    newHashTable[i] = NULL;
+  }
+
+  for (int i = 0; i < size/2; i++) { //loop thru old array
+    while(oldHashTable[i]) { //while still stuff here
+      Node * student = oldHashTable[i];
+      oldHashTable[i] = student -> getNext();
+
+      int newIndex = getHashIndex(student, size);
+    }
+  }
+
+}
+
 int getHashIndex(Node * toHash, int size) {
   char * fname = toHash -> getfname();
   char * lname = toHash -> getlname();
   int ID = toHash -> getID();
   
   int index = 0;
-  
+  //65 -122
   int i = 0;
   while(fname[i] != '\0') {
     index += fname[i];
