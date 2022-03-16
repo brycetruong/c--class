@@ -57,7 +57,7 @@ int main() {
     
     cout << "Enter mode: \n\t-ADD\n\t-DELETE\n\t-PRINT\n\t-RAND\n\t-QUIT" << endl;
     cin.getline(input, 50, '\n');
-    if (strcmp(input, "ADD") == 0 || strcmp(input, "a") == 0) {
+    if (strcmp(input, "ADD") == 0 || strcmp(input, "a") == 0 || strcmp(input, "add") == 0) {
       Node * temp = new Node();
 
       cout << "Enter Student Firstname: ";
@@ -77,7 +77,7 @@ int main() {
       temp -> setGPA(atof(input));
 
       if (hashTable[getHashIndex(temp, hashTableSize)] == NULL) {
-      hashTable[getHashIndex(temp, hashTableSize)] = temp;
+	hashTable[getHashIndex(temp, hashTableSize)] = temp;
       } else if (hashTable[getHashIndex(temp, hashTableSize)] -> getNext() == NULL) {
 	hashTable[getHashIndex(temp, hashTableSize)] -> setNext(temp);
       } else if (hashTable[getHashIndex(temp, hashTableSize)] -> getNext() -> getNext() == NULL) {
@@ -90,7 +90,7 @@ int main() {
       
     } else if (strcmp(input, "QUIT") == 0 || strcmp(input, "q") == 0) {
       running = false;
-    } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0) {
+    } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
 
       Node * temp = new Node();
 
@@ -133,7 +133,7 @@ int main() {
       }
       delete temp;
       
-    } else if (strcmp(input, "rand") == 0 || strcmp(input, "RAND") == 0) {
+    } else if (strcmp(input, "rand") == 0 || strcmp(input, "RAND") == 0 || strcmp(input, "r") == 0) {
       int randLine = rand() % 1912;
       Node * temp = new Node();
       
@@ -142,14 +142,16 @@ int main() {
       randLine = rand() % 100;
       temp -> setlname(lastnames[randLine]);
 
-      temp -> setID(rand() % 89999 + 10000);
+      temp -> setID(rand() % 89999 + 10000); //gets a number between 10000 and 99999 (a five digit student ID)
+
+      temp -> setGPA(rand());
 
       cout << temp -> getfname() << endl;
       cout << temp -> getlname() << endl;
       cout << temp -> getID() << endl;
       
       if (hashTable[getHashIndex(temp, hashTableSize)] == NULL) {
-      hashTable[getHashIndex(temp, hashTableSize)] = temp;
+	hashTable[getHashIndex(temp, hashTableSize)] = temp;
       } else if (hashTable[getHashIndex(temp, hashTableSize)] -> getNext() == NULL) {
 	hashTable[getHashIndex(temp, hashTableSize)] -> setNext(temp);
       } else if (hashTable[getHashIndex(temp, hashTableSize)] -> getNext() -> getNext() == NULL) {
@@ -168,10 +170,12 @@ Node * find(Node * next, char * name, int ID) { //calls itself until it reaches 
   if (next != NULL) {
     if (strcmp(next -> getfname(), name) == 0 && next -> getID() == ID) {
       return next;
+    } else {
+      return find(next -> getNext(), name, ID);
     }
-    find(next -> getNext(), name, ID);
+  } else {
+    return NULL; //need to do something here, bc this means that there is a hash match for that index, but not a match for the firstname, and the ID
   }
-  return NULL;
 }
 
 int getHashIndex(Node * toHash, int size) {
