@@ -3,7 +3,7 @@
 Author: Bryce Truong
 Date Created: 3/3/22
 Last Modified: 3/9/22
-This is a program.
+This is a program with a hash function. It places students inside and array index. You can add remove delete print (search) for students.
 */
 
 #include <iostream>
@@ -27,8 +27,8 @@ int getHashIndex(Node * toHash, int size);
 int main() {
   srand(time(NULL));
   
-  char firstnames[1912][10];
-  ifstream FirstNames;
+  char firstnames[1912][10]; //set up my files for first names and last names.
+  ifstream FirstNames; // I put them all into a big 2D character array, so I can just access the lines like "firstnames[linum]"
   FirstNames.open("firstnames.txt");
   int rows = 0;
   while (rows < 1912) {
@@ -54,14 +54,14 @@ int main() {
     hashTable[i] = NULL;
   }
 
-  while (running) {
+  while (running) { //main loop
     
     cout << "Enter mode: \n\t-ADD\n\t-DELETE\n\t-PRINT\n\t-RAND\n\t-QUIT" << endl;
     cin.getline(input, 50, '\n');
     if (strcmp(input, "ADD") == 0 || strcmp(input, "a") == 0 || strcmp(input, "add") == 0) {
       Node * temp = new Node(); //makes a new node to add into the hash table.
       
-      cout << "Enter Student Firstname: ";
+      cout << "Enter Student Firstname: "; //prompt for firstnmaes, ln, ID, and GPA
       cin.getline(input, 50, '\n');
       temp -> setfname(input);
       
@@ -77,7 +77,7 @@ int main() {
       cin.getline(input, 50, '\n');
       temp -> setGPA(atof(input));
 
-      if (hashTable[getHashIndex(temp, hashTableSize)] == NULL) { //this block handles collisions.
+      if (hashTable[getHashIndex(temp, hashTableSize)] == NULL) { //this block handles collisions. I was too lazy to make a function that uses recursion to step thru the LL, and since it's only 3...
 	hashTable[getHashIndex(temp, hashTableSize)] = temp;
       } else if (hashTable[getHashIndex(temp, hashTableSize)] -> getNext() == NULL) {
 	hashTable[getHashIndex(temp, hashTableSize)] -> setNext(temp);
@@ -218,7 +218,7 @@ int main() {
       }
     }
   }
-  FirstNames.close();
+  FirstNames.close(); //closes my files after I'm done with them
   LastNames.close();
 }
 
@@ -256,7 +256,7 @@ void rehash(Node ** &oldHashTable, int &size) {
       } else if (newHashTable[newIndex] -> getNext() -> getNext() == NULL) {
         newHashTable[newIndex] -> getNext() -> setNext(student);
       } else { //there is three, time to rehash...
-	cout << "VERY BAD, YOU GOT 3 COLLISIONS EVEN WHEN U REHASHED U STUPIDHEAD!" << endl; //idk too lazy to do anything about this.
+	cout << "VERY BAD, YOU GOT 3 COLLISIONS EVEN WHEN U REHASHED U MONKE!" << endl; //idk too lazy to do anything about this.
       }
     }
   }
@@ -277,6 +277,6 @@ int getHashIndex(Node * toHash, int size) {
     i++;
   }
   index += ID; //also add the ID to the hash
-  cout << "Returned index: " << index % size << endl;
+  //cout << "Returned index: " << index % size << endl;
   return index % size;
 }
