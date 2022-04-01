@@ -1,0 +1,32 @@
+/*
+Author: Bryce Truong
+Date Created: 3/28/22
+Last Modified: 3/28/22
+
+*/
+
+#include <iostream>
+#include <cstring>
+#include <cctype>
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include<fstream>
+
+using namespace std;
+
+int main() {
+  
+  int numbers[50]; //sets up my array with a file full of numbers
+  ifstream Numbers;
+  Numbers.open("numbers.txt");
+  int i = 0;
+  while (i < 50) {
+    Numbers >> numbers[i];
+    i = i + 1;
+  }
+
+  int healp[50];
+
+  
+}
