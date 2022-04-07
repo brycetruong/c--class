@@ -18,6 +18,8 @@ using namespace std;
 
 const int ROOT = 1;
 
+const int MAX_SIZE = 50;
+
 void insert(int * heap, int currentIndex);
 
 void printAsArray(int * heap, int size);
