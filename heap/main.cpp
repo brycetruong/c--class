@@ -3,6 +3,10 @@ Author: Bryce Truong
 Date Created: 3/28/22
 Last Modified: Sometime April, idk
 
+This program creates a heap in the form of an array. You can add a number, or use the file filled with up to 100 numbers (mine only has 50).
+
+Here is a heap visualization that I found helpful: https://www.cs.usfca.edu/~galles/visualization/Heap.html
+
 */
 
 #include <iostream>
@@ -27,6 +31,8 @@ void printAsArray(int * heap, int size);
 void printAsTree(int * heap, int index, int depth, int size);
 
 void remove(int * heap, int currentIndex, int size);
+
+void bubbleSort(int * heap, int &size);
 
 int main() {
 
@@ -61,8 +67,8 @@ int main() {
       }
     }
     size--;
-    cout << "size: "<< size << endl;
   }
+  cout << "size: "<< size << endl;
   
   for (int i = 0; i < size; i++) {
     //cout << "index:" << i << endl;
@@ -73,11 +79,13 @@ int main() {
   
   for (int i = 0; i < size; i++) {
     heap[i+1] = numbers[i];
-    insert(heap, i + 1); 
+    insert(heap, i + 1);
   }
   
   printAsArray(heap, size);
   printAsTree(heap, 1, 0, size);
+  bubbleSort(heap, size);
+  //printAsArray(heap, size);
 }
 
 void insert(int * heap, int currentIndex) {
@@ -98,18 +106,48 @@ void insert(int * heap, int currentIndex) {
 }
 
 void remove(int * heap, int currentIndex, int &size) {
-  if (currentIndex <= size) {
-    cout << heap[currentIndex];
-    heap[currentIndex] = heap[size];
+  /*if (currentIndex <= size) { //make sure we aren't running off of the end.
+    cout << heap[currentIndex]; //remove (print out) the root
+    heap[currentIndex] = heap[size]; //set the root to the last one
     size--;
   }
+  //if violates heap property
+  if (heap[currentIndex] < heap[currentIndex * 2 + 1]) { //right child is bigger, swap places 
+    
+  } else if (heap[currentIndex] < heap[currentIndex * 2]) { //left child is bigger, swap
+
+  }*/
+}
+
+void bubbleSort(int * heap, int &size) {
+  int currentIndex = 1;
+  bool swap = true;
+  while (true) {
+    swap = false;
+    for (int i = 1; i <= size; i++) {
+      if (heap[i] < heap[i+1]) {
+	int temp = heap[i];
+	heap[i] = heap[i+1];
+	heap[i+1] = temp;
+	swap = true;
+      }
+    }
+    if (swap == false) {
+      break;
+    }
+  }
+  for (int i = 1; i <= size; i++) {
+    cout << heap[i] << ", ";
+    heap[i] = -1;
+  }
+  size = 0;
 }
 
 void printAsArray(int * heap, int size) {
-  int i = 0;
+  int i = 1;
   cout << "[";
-  while (i < size) {
-    cout << heap[i+1] <<  ", ";
+  while (i <= size) {
+    cout << heap[i] <<  ", ";
     i++;
   }
   cout << "]" << endl;
@@ -117,9 +155,9 @@ void printAsArray(int * heap, int size) {
 
 void printAsTree(int * heap, int index, int depth, int size) { //shamelessly stolen from Mr. Galbraith's whiteboard
   if (index * 2 + 1 <= size && heap[index * 2 + 1] != 0) { //right
-    printAsTree(heap, index * 2 + 1, depth + 1, size);
+    printAsTree(heap, index * 2 + 1, depth + 1, size); //recursivly call the function on the right side (until it reaches the end in which the index > size and increase the depth each time we go down a level)
   }
-  for (int a = 0; a < depth; a++) {
+  for (int a = 0; a < depth; a++) { //increases the number of tabs
     cout << "\t";
   }
   cout << heap[index] << endl;
