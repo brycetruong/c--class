@@ -1,7 +1,7 @@
 /*
 Author: Bryce Truong
 Date Created: 3/28/22
-Last Modified: 3/28/22
+Last Modified: Sometime April, idk
 
 */
 
@@ -18,20 +18,26 @@ using namespace std;
 
 const int ROOT = 1;
 
+const int MAX_SIZE = 100;
+
 void insert(int * heap, int currentIndex);
 
 void printAsArray(int * heap, int size);
 
 void printAsTree(int * heap, int index, int depth, int size);
 
+void remove(int * heap, int currentIndex, int size);
+
 int main() {
 
   char input[50];
-  
-  int numbers[50]; //sets up my array with a file full of numbers
-  for(int i = 0; i < 50; i++){
+
+  int size = 0;
+  int numbers[100]; //sets up my array with a file full of numbers
+  for(int i = 0; i < 100; i++){
     numbers[i] = -1;
   }
+  cout << "a/add/ADD or f/file/FILE" << endl;
   cin.getline(input, 50, '\n');
   if (strcmp(input, "ADD") == 0 || strcmp(input, "a") == 0 || strcmp(input, "add") == 0) {
     cout << "Input Numbers, enter \'done\' when you are done" << endl;
@@ -44,32 +50,34 @@ int main() {
       numbers[i] = atoi(input);
       i++;
     }
+    size = i;
   } else if (strcmp(input, "FILE") == 0 || strcmp(input, "f") == 0 || strcmp(input, "file") == 0) {
     ifstream Numbers;
     Numbers.open("numbers.txt");
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < 100; i++){
+      if (!Numbers.eof()) {
       Numbers >> numbers[i];
+      size++;
+      }
     }
+    size--;
+    cout << "size: "<< size << endl;
   }
   
-  int size = 0;
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < size; i++) {
     //cout << "index:" << i << endl;
-    cout << numbers[i] << endl;
+    //cout << numbers[i] << endl;
   }
-
-
   
-  int * heap = new int[51];
+  int * heap = new int[size];
   
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < size; i++) {
     heap[i+1] = numbers[i];
-    insert(heap, i+1);
-    
+    insert(heap, i + 1); 
   }
-
-  printAsArray(heap, 50);
   
+  printAsArray(heap, size);
+  printAsTree(heap, 1, 0, size);
 }
 
 void insert(int * heap, int currentIndex) {
@@ -89,6 +97,14 @@ void insert(int * heap, int currentIndex) {
   }
 }
 
+void remove(int * heap, int currentIndex, int &size) {
+  if (currentIndex <= size) {
+    cout << heap[currentIndex];
+    heap[currentIndex] = heap[size];
+    size--;
+  }
+}
+
 void printAsArray(int * heap, int size) {
   int i = 0;
   cout << "[";
@@ -99,12 +115,15 @@ void printAsArray(int * heap, int size) {
   cout << "]" << endl;
 }
 
-void printAsTree(int * heap, int index, int depth, int size) {
-  if (index*2+1 <= size && heap[index*2+1] != 0) {
-    printAsTree(heap, index*2+1, depth + 1, size);
+void printAsTree(int * heap, int index, int depth, int size) { //shamelessly stolen from Mr. Galbraith's whiteboard
+  if (index * 2 + 1 <= size && heap[index * 2 + 1] != 0) { //right
+    printAsTree(heap, index * 2 + 1, depth + 1, size);
   }
   for (int a = 0; a < depth; a++) {
     cout << "\t";
   }
   cout << heap[index] << endl;
+  if (index * 2 <= size && heap[index * 2] != 0) { //left
+    printAsTree(heap, index * 2, depth + 1, size);
+  }
 }
