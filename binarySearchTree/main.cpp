@@ -10,6 +10,8 @@ This is a binary search tree.
 #include <cctype>
 #include <stdio.h>
 #include <ctype.h>
+#include<fstream>
+#include<cmath>
 
 #include "Node.h"
 
@@ -17,7 +19,7 @@ void printAsTree(Node * child, int depth);
 
 void insert(Node * & root, Node * current, int data);
 
-int search(Node * root, int searchFor);
+Node * search(Node * root, int searchFor);
 
 using namespace std;
 
@@ -27,7 +29,7 @@ int main() {
 
   Node * root = NULL;
   while (true) {
-    cout << "/na/add/ADD\nf/file/FILE\np/print/PRINT\nr/remove/REMOVE\ns/search/SEARCH\nq/quit/QUIT\n" << endl;
+    cout << "\na/add/ADD\nf/file/FILE\np/print/PRINT\nr/remove/REMOVE\ns/search/SEARCH\nq/quit/QUIT\n" << endl;
     cin.getline(input, 50, '\n');
 
     if (strcmp(input, "ADD") == 0 || strcmp(input, "a") == 0 || strcmp(input, "add") == 0) {
@@ -35,13 +37,28 @@ int main() {
       cin.getline(input, 50, '\n');
       insert(root, root, atoi(input));
     } else if (strcmp(input, "FILE") == 0 || strcmp(input, "f") == 0 || strcmp(input, "file") == 0) {
-
+      ifstream Numbers;
+      int number;
+      Numbers.open("numbers.txt");
+      for(int i = 0; i < 100; i++){
+	if (!Numbers.eof()) {
+	  Numbers >> number;
+	  insert(root, root, number);
+	}
+      }      
     } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
       printAsTree(root, 0);
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
 
     } else if (strcmp(input, "SEARCH") == 0 || strcmp(input, "s") == 0 || strcmp(input, "search") == 0) {
-
+      cin.getline(input, 50, '\n');
+      Node * found = search(root, atoi(input));
+      if (found == NULL) {
+	cout << "Error 404! Not Found!" << endl;
+      } else {
+	cout << "Node Found @ \'" << found << "\' with data: " << found -> getData() << endl;
+      }
+      
     } else if (strcmp(input, "QUIT") == 0 || strcmp(input, "q") == 0 || strcmp(input, "quit") == 0) {
       break;
     } else {
@@ -50,11 +67,21 @@ int main() {
   }
 }
 
-int search(Node * root, int searchFor) {
-  
+Node * search(Node * root, int searchFor) {
+  if (root -> getData() == searchFor) {
+    return root;
+  } else if (searchFor < root -> getData() && root -> getLeft() != NULL) { //it is on the left
+    return search(root -> getLeft(), searchFor);
+  } else if (searchFor > root -> getData() && root -> getRight() != NULL) {
+    return search(root -> getRight(), searchFor);
+  } else if (root -> getRight() == NULL && root -> getLeft() == NULL) {
+    return NULL;
+  } else {
+    return NULL;
+  }
 }
 
-void insert(Node * & root, Node * current, int data) {
+void insert(Node * & root, Node * current, int data) { //smaller on left, bigger or =to on the right
   if (root == NULL) {
     root = new Node(data);
   } else if (current -> getData() > data) {//the node that we want to add is smaller than the current node's data
