@@ -41,6 +41,7 @@ int main() {
       cin.getline(input, 50, '\n');
       insert(root, root, atoi(input));
     } else if (strcmp(input, "FILE") == 0 || strcmp(input, "f") == 0 || strcmp(input, "file") == 0) {
+      int size = 0;
       ifstream Numbers;
       int number;
       Numbers.open("numbers.txt");
@@ -48,8 +49,10 @@ int main() {
 	if (!Numbers.eof()) {
 	  Numbers >> number;
 	  insert(root, root, number);
+	  size++;
 	}
-      }      
+      }
+      cout << size << endl;
     } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
       printAsTree(root, 0);
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
