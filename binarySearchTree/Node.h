@@ -14,6 +14,9 @@ class Node {
   void setData(int newData);
   int getData();
 
+  void setParent(Node * newPar);
+  Node * getParent();
+
   void setLeft(Node * newLeft);
   void setRight(Node * newRight);
 
@@ -24,6 +27,7 @@ class Node {
 
   int data;
 
+  Node * parent;
   Node * left;
   Node * right;
     
