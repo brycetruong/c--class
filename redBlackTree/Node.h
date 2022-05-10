@@ -5,11 +5,20 @@
 
 using namespace std;
 
+enum Color {
+  red,
+  black
+};
+
 class Node {
  public:
   Node();
   Node(int data);
   ~Node();//destroy the node
+
+  void setColor(Color color);
+  Color getColor();
+  void coutColorASCII();
   
   void setData(int newData);
   int getData();
@@ -34,9 +43,11 @@ class Node {
   Node * getRight();
   
  private:
-
+  
   int data;
 
+  Color color;
+  
   Node * parent;
   Node * left;
   Node * right;

@@ -1,21 +1,37 @@
 #include "Node.h"
 
-Node::Node(){
+Node::Node() {
   data = 0;
   left = NULL;
   right = NULL;
   parent = NULL;
+  color = red;
 }
 
-Node::Node(int newData){
+Node::Node(int newData) {
   data = newData;
   left = NULL;
   right = NULL;
   parent = NULL;
+  color = red;
 }
 
 Node::~Node(){
   
+}
+
+void Node::setColor(Color newColor) {
+  color = newColor;
+}
+Color Node::getColor() {
+  return color;
+}
+void Node::coutColorASCII() {
+  if (color == red) {
+    cout << "r";
+  } else { //color is black
+    cout << "b";
+  }
 }
 
 void Node::setData(int newData){
@@ -34,27 +50,32 @@ Node * Node::getParent() {
 
 Node * Node::getGrand() {
   if (parent) {
-    if (parent -> getParent()) {
-      return parent -> getParent();
-    }
+    return parent -> getParent();
   }
   return NULL;
 }
 
 Node * Node::getAunt() {
   if (parent) {
-    if (parent -> getSibling()) {
-      return parent -> getParent();
-    }
+    return parent -> getSibling();
   }
   return NULL;
 }
 
 Node * Node::getSibling() {
   if (parent) {
-    if (parent -> getLeft()) {
-      return parent -> getParent();
+    if (parent -> getLeft() == this) { //I am the left child
+      return parent -> getRight();
+    } else { // I am the right child
+      return parent -> getLeft();
     }
+  }
+  return NULL;
+}
+
+Node * Node::getSLC() {
+  if (getSibling()) {
+    return getSibling() -> getLeft();
   }
   return NULL;
 }
