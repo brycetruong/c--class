@@ -22,6 +22,8 @@ void insertionCases(Node * & root, Node * child);
 
 void case5(Node * & root, Node * child);
 
+Node * search(Node * root, int searchFor);
+
 using namespace std;
 
 int main() {
@@ -39,15 +41,30 @@ int main() {
       cin.getline(input, 50, '\n');
       insertion(root, root, atoi(input));
     } else if (strcmp(input, "FILE") == 0 || strcmp(input, "f") == 0 || strcmp(input, "file") == 0) {
-      //testing case
-      insertion(root, root, 50);
-      insertion(root, root, 25);
-
-      
+      int size = 0;
+      ifstream Numbers;
+      int number;
+      Numbers.open("numbers.txt");
+      for(int i = 0; i < 100; i++){
+	if (!Numbers.eof()) {
+	  Numbers >> number;
+	  insertion(root, root, number);
+	  size++;
+	}
+      }
+      cout << size << endl;
     } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
       printAsTree(root, 0);
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
     } else if (strcmp(input, "SEARCH") == 0 || strcmp(input, "s") == 0 || strcmp(input, "search") == 0) {
+      
+      cin.getline(input, 50, '\n');
+      Node * found = search(root, atoi(input));
+      if (found == NULL) {
+	cout << "Error 404! No Node Found!" << endl;
+      } else {
+	cout << "Node Found @ \'" << found << "\'\nWith data: \'" << found -> getData() << "\'\nAnd parent @ \'" << found -> getParent() << "\'\nWith data: \'" << found -> getParent() -> getData() << "\'" << endl;
+      }
       
     } else if (strcmp(input, "QUIT") == 0 || strcmp(input, "q") == 0 || strcmp(input, "quit") == 0) {
       break;
@@ -57,8 +74,22 @@ int main() {
   }
 }
 
-const int LEFT = 0;
-const int RIGHT = 1;
+Node * search(Node * root, int searchFor) {
+  if (root != NULL) { //if there even is a tree
+    if (root -> getData() == searchFor) {
+      return root;
+    } else if (searchFor < root -> getData() && root -> getLeft() != NULL) { //it is on the left
+      return search(root -> getLeft(), searchFor);
+    } else if (searchFor > root -> getData() && root -> getRight() != NULL) {
+      return search(root -> getRight(), searchFor);
+    } else if (root -> getRight() == NULL && root -> getLeft() == NULL) {
+      return NULL;
+    }
+  } else {
+    cout << "Tree is emp - tea" << endl;
+  }
+  return NULL;
+}
 
 void insertion(Node * & root, Node * current, int data) {//smaller on left, bigger or =to on the right
   if (root == NULL) {
@@ -260,7 +291,7 @@ void printAsTree(Node * child, int depth) {
       printAsTree(child -> getRight(), depth + 1); //recursivly call the function on the right side (until it reaches the end in which the index > size and increase the depth each time we go down a level)
     }
     for (int i = 0; i < depth; i++) { //increases the number of tabs
-      cout << "     ";
+      cout << "      ";
     }
     cout << "|--- " << child -> getData();
     child -> coutColorASCII();
