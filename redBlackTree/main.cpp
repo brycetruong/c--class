@@ -16,10 +16,13 @@ This is a binary search tree.
 
 void printAsTree(Node * child, int depth);
 
+void deletion(Node * & root, Node * found);
+void leafRemove(Node * found);
+void oneChildRemove(Node * & root, Node * found);
+void twoChildRemove(Node * & root, Node * original, Node * current);
+
 void insertion(Node * & root, Node * current, int data);
-
 void insertionCases(Node * & root, Node * child);
-
 void case5(Node * & root, Node * child);
 
 Node * search(Node * root, int searchFor);
@@ -44,7 +47,7 @@ int main() {
       int size = -1;
       ifstream Numbers;
       int number;
-      Numbers.open("testFile.txt");
+      Numbers.open("numbers.txt");
       for(int i = 0; i < 100; i++){
 	if (!Numbers.eof()) {
 	  Numbers >> number;
@@ -58,7 +61,13 @@ int main() {
     } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
       printAsTree(root, 0);
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
-      cout << "remove" << endl;
+      cin.getline(input, 50, '\n');
+      Node * found = search(root, atoi(input));
+      if (found == NULL) {
+	cout << "Error 404! No Node Found!" << endl;
+      } else {
+	deletion(root, root);
+      }
     } else if (strcmp(input, "SEARCH") == 0 || strcmp(input, "s") == 0 || strcmp(input, "search") == 0) {
       
       cin.getline(input, 50, '\n');
@@ -75,6 +84,37 @@ int main() {
       cout << "not recognized..." << endl;
     }
   }
+}
+
+void deletion(Node * & root, Node * found) {
+  cout << "Node Found @ \'" << found << "\'\nWith data: \'" << found -> getData() << "\'\nAnd parent @ \'" << found -> getParent() << "\'" << endl;
+  if (found -> getParent() == NULL) { //this is the root!
+
+  } else if (found -> getLeft() == NULL && found -> getRight() == NULL) { //this is a leaf! no children
+    leafRemove(found);
+  } else if (found -> getRight() != NULL && found -> getLeft() != NULL) { //there are two children!
+    twoChildRemove(root, found, found -> getRight());
+  } else if (found -> getRight() != NULL || found -> getLeft() != NULL) {//if there is at least 1 child. and this is not the root
+    oneChildRemove(root, found);
+  }
+}
+
+void leafRemove(Node * found) {
+  if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
+    found -> getParent() -> setLeft(NULL);
+    delete found;
+  } else { //this has gotta be a right child
+    found -> getParent() -> setRight(NULL);
+    delete found;
+  }  
+}
+
+void oneChildRemove(Node * & root, Node * found) {
+
+}
+
+void twoChildRemove(Node * & root, Node * original, Node * current) {
+
 }
 
 Node * search(Node * root, int searchFor) {
