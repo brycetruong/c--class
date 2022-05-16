@@ -41,21 +41,24 @@ int main() {
       cin.getline(input, 50, '\n');
       insertion(root, root, atoi(input));
     } else if (strcmp(input, "FILE") == 0 || strcmp(input, "f") == 0 || strcmp(input, "file") == 0) {
-      int size = 0;
+      int size = -1;
       ifstream Numbers;
       int number;
-      Numbers.open("numbers.txt");
+      Numbers.open("testFile.txt");
       for(int i = 0; i < 100; i++){
 	if (!Numbers.eof()) {
 	  Numbers >> number;
 	  insertion(root, root, number);
 	  size++;
+	} else {
+	  break;
 	}
       }
       cout << size << endl;
     } else if (strcmp(input, "PRINT") == 0 || strcmp(input, "p") == 0 || strcmp(input, "print") == 0) {
       printAsTree(root, 0);
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
+      cout << "remove" << endl;
     } else if (strcmp(input, "SEARCH") == 0 || strcmp(input, "s") == 0 || strcmp(input, "search") == 0) {
       
       cin.getline(input, 50, '\n');
@@ -129,6 +132,7 @@ void insertionCases(Node * & root, Node * child) { //fixes the colors, and other
     return;
   } else if (child -> getParent() && child -> getAunt() &&//having an uncle/aunt implies there is a grandparent
 	     child -> getParent() -> getColor() == red && child -> getAunt() -> getColor() == red) { //if the parent is red, and the aunt is red
+    
     cout << "\tp+u=b\tg=r" << endl;
     //change parent and uncle to black
     child -> getParent() -> setColor(black);
@@ -189,6 +193,7 @@ void insertionCases(Node * & root, Node * child) { //fixes the colors, and other
     }
     //CALL CASE 5 ON PARENT
     case5(root, parent);
+    
   } else if (child -> getParent() && child -> getGrand() &&
 	     (child -> getAunt() == NULL || child -> getAunt() -> getColor() == black) &&
 	     ( (child -> getParent() -> getRight() == child && child -> getGrand() -> getRight() == child -> getParent()) || //this is right and the parent is a right
@@ -201,12 +206,13 @@ void insertionCases(Node * & root, Node * child) { //fixes the colors, and other
 
 void case5(Node * & root, Node * child) {
   //rotate through grandparent
-  cout << "\trotate thru g" << endl;
+  
   Node * parent = child -> getParent();
   Node * grand = child -> getGrand();
   
 
   if (grand != root) {
+    cout << "\trotate thru g (not root)" << endl;
     Node * great = child -> getGrand() -> getParent();
     
     if (child -> getParent() -> getLeft() == child) { //this is a left, which implies that parent is a left too.
@@ -217,6 +223,7 @@ void case5(Node * & root, Node * child) {
       } else {
 	grand -> getParent() -> setRight(parent);
       }
+      parent -> setParent(great);
       
       parent -> setRight(grand);
       grand -> setParent(parent);
@@ -236,6 +243,7 @@ void case5(Node * & root, Node * child) {
       } else {
 	grand -> getParent() -> setRight(parent);
       }
+      parent -> setParent(great);
 
       parent -> setLeft(grand);
       grand -> setParent(parent);
@@ -249,6 +257,7 @@ void case5(Node * & root, Node * child) {
       
     }
   } else {
+    cout << "\trotate thru g (root)" << endl;
     if (child -> getParent() -> getLeft() == child) { //this is a left, which implies that parent is a left too.
       Node * c3 = parent -> getRight();
       
@@ -280,6 +289,7 @@ void case5(Node * & root, Node * child) {
       root = parent;
       
     }
+    root -> setParent(NULL);
   }
 }
 
@@ -295,6 +305,7 @@ void printAsTree(Node * child, int depth) {
     }
     cout << "|--- " << child -> getData();
     child -> coutColorASCII();
+    if (child -> getParent()) cout << child -> getParent() -> getData();
     cout << endl;
     if (child -> getLeft() != NULL) { //left
       printAsTree(child -> getLeft(), depth + 1);
