@@ -20,6 +20,7 @@ void deletion(Node * & root, Node * found);
 void leafRemove(Node * found);
 void oneChildRemove(Node * & root, Node * found);
 void twoChildRemove(Node * & root, Node * original, Node * current);
+void deletionCases(Node * & root, Node * found, Node * child);
 
 void insertion(Node * & root, Node * current, int data);
 void insertionCases(Node * & root, Node * child);
@@ -47,7 +48,7 @@ int main() {
       int size = -1;
       ifstream Numbers;
       int number;
-      Numbers.open("numbers.txt");
+      Numbers.open("testFile.txt");
       for(int i = 0; i < 100; i++){
 	if (!Numbers.eof()) {
 	  Numbers >> number;
@@ -88,7 +89,7 @@ int main() {
 
 void deletion(Node * & root, Node * found) {
   cout << "Node Found @ \'" << found << "\'\nWith data: \'" << found -> getData() << "\'\nAnd parent @ \'" << found -> getParent() << "\'" << endl;
-  if (found -> getParent() == NULL) { //this is the root!
+  if (found == root) { //this is the root!
 
   } else if (found -> getLeft() == NULL && found -> getRight() == NULL) { //this is a leaf! no children
     leafRemove(found);
@@ -100,21 +101,113 @@ void deletion(Node * & root, Node * found) {
 }
 
 void leafRemove(Node * found) {
+  //fixing parent ptrs
   if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
     found -> getParent() -> setLeft(NULL);
-    delete found;
   } else { //this has gotta be a right child
     found -> getParent() -> setRight(NULL);
-    delete found;
-  }  
+  }
+
+  delete found;
 }
 
 void oneChildRemove(Node * & root, Node * found) {
+  // Deals with nodes with a single child, and repairs parent pointers
+  if (found != root) {//root has a special case for removing
+    
+    Node * child = NULL;
 
+    //parent ptr repair
+    if (found -> getLeft() != NULL && found -> getRight() == NULL) { //if there is a single left child
+      child = found -> getLeft();
+      
+      if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
+	found -> getParent() -> setLeft(found -> getLeft()); //set my parents left to my child
+	found -> getLeft() -> setParent(found -> getParent()); //set my childs parent to my parent
+      } else { //this has gotta be a right child
+	found -> getParent() -> setRight(found -> getLeft());
+	found -> getLeft() -> setParent(found -> getParent()); //set my childs parent to my parent
+      }
+      
+    } else if (found -> getRight() != NULL && found -> getLeft() == NULL) { //if there is a single right child
+      child = found -> getRight();
+      
+      if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
+	found -> getParent() -> setLeft(found -> getRight());
+	found -> getRight() -> setParent(found -> getParent()); //set my childs parent to my parent
+      } else { //this has gotta be a right child
+	found -> getParent() -> setRight(found -> getRight());
+	found -> getRight() -> setParent(found -> getParent()); //set my childs parent to my parent
+      }
+
+    }
+    
+    //recoloring
+    Color myColor = found -> getColor();
+    Color childColor = child -> getColor();
+    if (myColor == red && childColor == black) {
+      delete found;
+    } else if (myColor == black && childColor == red) {
+      child -> setColor(black);
+      delete found;
+    } else if (myColor == black && childColor == black) {
+      deletionCases(root, found, child);
+    }
+    
+  } else { //deleting root!
+    
+    Node * child = NULL;
+    
+    if (found -> getLeft() != NULL && found -> getRight() == NULL) { //if there is a single left child
+      child = found -> getLeft();
+      root = found -> getLeft();
+      found -> getLeft() -> setParent(NULL);
+    } else if (found -> getRight() != NULL && found -> getLeft() == NULL) { //if there is a single right child
+      found = found -> getRight();
+      root = found -> getRight();
+      found -> getRight() -> setParent(NULL);
+    }
+
+    //recoloring
+    Color myColor = found -> getColor();
+    Color childColor = child -> getColor();
+    if (myColor == red && childColor == black) {
+      delete found;
+    } else if (myColor == black && childColor == red) {
+      child -> setColor(black);
+      delete found;
+    } else if (myColor == black && childColor == black) {
+      deletionCases(root, found, child);
+    }
+    
+  }
 }
 
-void twoChildRemove(Node * & root, Node * original, Node * current) {
+void deletionCases(Node * & root, Node * found, Node * child) {
+  //note: "child" has already replaced "found"
+  //case 1
+  if (child == root) { //N is new root
+    //done
+    
+  } //case 2
+  else if (child -> getSibling() -> getColor == red) {
 
+  }
+  delete found;
+}
+
+void twoChildRemove(Node * & root, Node * original, Node * current) { //IMPORTANT: YOU PASS IN original's RIGHT CHILD as "current" to start off!
+  if (current -> getParent() == original && current -> getLeft() == NULL) {//special case where there is nothing to the left and this is the first one
+    original -> setData(current -> getData());
+    oneChildRemove(root, current);
+  } else {
+    if (current -> getLeft() != NULL) {
+      twoChildRemove(root, original, current -> getLeft());
+    } else { //we have reached the far left
+      original -> setData(current -> getData());
+      oneChildRemove(root, current);
+    }
+  }
 }
 
 Node * search(Node * root, int searchFor) {
@@ -345,7 +438,7 @@ void printAsTree(Node * child, int depth) {
     }
     cout << "|--- " << child -> getData();
     child -> coutColorASCII();
-    if (child -> getParent()) cout << child -> getParent() -> getData();
+    //if (child -> getParent()) cout << child -> getParent() -> getData();
     cout << endl;
     if (child -> getLeft() != NULL) { //left
       printAsTree(child -> getLeft(), depth + 1);
