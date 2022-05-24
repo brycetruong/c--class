@@ -80,6 +80,13 @@ Node * Node::getSLC() {
   return NULL;
 }
 
+Node * Node::getSRC() {
+  if (getSibling()) {
+    return getSibling() -> getRight();
+  }
+  return NULL;
+}
+
 void Node::setLeft(Node * newLeft){
   left = newLeft;
 }

@@ -229,9 +229,13 @@ void deletionCases(Node * & root, Node * child) {
     Node * slc = child -> getSLC();
     if (child -> getParent() -> getRight() == child) { //node is a right (implies SRC == red)
       child -> getParent() -> setLeft(src);
+      src -> setParent(child -> getParent());
+      
       
     } else { //node is left (implies SLC == red)
-
+      child -> getParent() -> setRight(slc);
+      slc -> setParent(child -> getParent());
+      
     }
     
   } //case 6
