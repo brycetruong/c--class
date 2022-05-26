@@ -30,6 +30,7 @@ void case5(Node * & root, Node * child); //tree rotation around grandparent.
 
 Node * search(Node * root, int searchFor);
 
+
 using namespace std;
 
 int main() {
@@ -228,10 +229,26 @@ void deletionCases(Node * & root, Node * child) {
     Node * src = child -> getSRC();
     Node * slc = child -> getSLC();
     if (child -> getParent() -> getRight() == child) { //node is a right (implies SRC == red)
-      child -> getParent() -> setLeft(src);
+      Node * c3 = src -> getLeft();
       
-    } else { //node is left (implies SLC == red)
+      child -> getParent() -> setLeft(src);
+      src -> setParent(child -> getParent());
 
+      src -> setLeft(sibling);
+      sibling -> setParent(src);
+
+      sibling -> setRight(c3);
+      if (c3) c3 -> setParent(sibling);
+            
+    } else { //node is left (implies SLC == red)
+      Node * c4 = slc -> getLeft();
+      
+      child -> getParent() -> setRight(slc);
+      slc -> setParent(child -> getParent());
+
+      slc -> setRight(sibling);
+      sibling -> setParent(slc);
+      
     }
     
   } //case 6
@@ -250,7 +267,7 @@ void deletionCases(Node * & root, Node * child) {
 
 void case3del(Node * & root, Node * child) {
   child -> getSibling() -> setColor(red);
-  deletionCases(root, child -> getParent());
+  deletionCases(root, child -> getParent()); //only call if parent is already black (kubirs advice)
   
 }
 
