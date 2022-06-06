@@ -28,7 +28,7 @@ Color Node::getColor() {
 }
 void Node::coutColorASCII() {
   if (color == red) {
-    cout << "r";
+    cout << "\033[1;31m" << "r" << "\033[0m";
   } else { //color is black
     cout << "b";
   }

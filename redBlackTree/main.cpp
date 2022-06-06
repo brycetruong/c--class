@@ -17,7 +17,7 @@ This is a binary search tree.
 void printAsTree(Node * child, int depth);
 
 void deletion(Node * & root, Node * found);
-void leafRemove(Node * found);
+void leafRemove(Node * & root, Node * found);
 void oneChildRemove(Node * & root, Node * found);
 void twoChildRemove(Node * & root, Node * original, Node * current);
 void deletionCases(Node * & root, Node * child);
@@ -67,10 +67,13 @@ int main() {
     } else if (strcmp(input, "REMOVE") == 0 || strcmp(input, "r") == 0 || strcmp(input, "remove") == 0) {
       cin.getline(input, 50, '\n');
       Node * found = search(root, atoi(input));
+
+      cout << "Node Found @ \'" << found << "\'\nWith data: \'" << found -> getData() << "\'\nAnd parent @ \'" << found -> getParent() << "\'\nWith data: \'" << found -> getParent() -> getData() << "\'" << endl;
+      
       if (found == NULL) {
 	cout << "Error 404! No Node Found!" << endl;
       } else {
-	deletion(root, root);
+	deletion(root, found);
       }
     } else if (strcmp(input, "SEARCH") == 0 || strcmp(input, "s") == 0 || strcmp(input, "search") == 0) {
       
@@ -91,11 +94,11 @@ int main() {
 }
 
 void deletion(Node * & root, Node * found) {
-  cout << "Node Found @ \'" << found << "\'\nWith data: \'" << found -> getData() << "\'\nAnd parent @ \'" << found -> getParent() << "\'" << endl;
+  
   if (found == root) { //this is the root!
     //do something here
   } else if (found -> getLeft() == NULL && found -> getRight() == NULL) { //this is a leaf! no children
-    leafRemove(found);
+    leafRemove(root, found);
   } else if (found -> getRight() != NULL && found -> getLeft() != NULL) { //there are two children!
     twoChildRemove(root, found, found -> getRight());
   } else if (found -> getRight() != NULL || found -> getLeft() != NULL) {//if there is at least 1 child. and this is not the root
@@ -103,14 +106,15 @@ void deletion(Node * & root, Node * found) {
   }
 }
 
-void leafRemove(Node * found) {
+void leafRemove(Node * & root, Node * found) {
   //fixing parent ptrs
   if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
     found -> getParent() -> setLeft(NULL);
   } else { //this has gotta be a right child
     found -> getParent() -> setRight(NULL);
   }
-
+  found -> setColor(black);
+  deletionCases(root, found);
   delete found;
 }
 
@@ -143,19 +147,34 @@ void oneChildRemove(Node * & root, Node * found) {
 	found -> getRight() -> setParent(found -> getParent()); //set my childs parent to my parent
       }
 
+    } else { //it has to be a leaf
+      
+      if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
+	found -> getParent() -> setLeft(NULL);
+      } else { //this has gotta be a right child
+	found -> getParent() -> setRight(NULL);
+      }
+      
     }
     
     //recoloring
     Color myColor = found -> getColor();
-    Color childColor = child -> getColor();
+    Color childColor = black;
+    if (child) {
+      childColor = child -> getColor();
+    } else {
+      childColor = black;
+    }
     if (myColor == red && childColor == black) {
-      delete found;
+      //done
     } else if (myColor == black && childColor == red) {
       child -> setColor(black);
-      delete found;
-    } else if (myColor == black && childColor == black) {
+      
+    } else if (myColor == black && childColor == black && child) {
       deletionCases(root, child);
     }
+    
+    delete found;
     
   } else { //deleting root!
     
@@ -173,17 +192,23 @@ void oneChildRemove(Node * & root, Node * found) {
 
     //recoloring
     Color myColor = found -> getColor();
-    Color childColor = child -> getColor();
+    Color childColor = black;
+    if (child) {
+      childColor = child -> getColor();
+    } else {
+      childColor = black;
+    }
     if (myColor == red && childColor == black) {
-      delete found;
+      //done
     } else if (myColor == black && childColor == red) {
       child -> setColor(black);
-      delete found;
+
     } else if (myColor == black && childColor == black) {
-      delete found;
       deletionCases(root, child);
-    }
     
+    }
+
+      delete found;
   }
 }
 
@@ -195,8 +220,9 @@ void deletionCases(Node * & root, Node * child) {
     return;
   } //case 2
   else if (child -> getSibling() -> getColor() == red) {
+    
     //tree rotation around parent
-    case4(child);
+    case4(child -> getSibling());
     //call case 3
     case3del(root, child);
     
@@ -229,6 +255,9 @@ void deletionCases(Node * & root, Node * child) {
     Node * src = child -> getSRC();
     Node * slc = child -> getSLC();
     if (child -> getParent() -> getRight() == child) { //node is a right (implies SRC == red)
+
+      src -> setColor(black);
+	
       Node * c3 = src -> getLeft();
       
       child -> getParent() -> setLeft(src);
@@ -248,6 +277,9 @@ void deletionCases(Node * & root, Node * child) {
 
       slc -> setRight(sibling);
       sibling -> setParent(slc);
+
+      sibling -> setLeft(c4);
+      if (c4) c4 -> setParent(sibling);
       
     }
     
@@ -260,7 +292,22 @@ void deletionCases(Node * & root, Node * child) {
 	     && child -> getSRC() -> getColor() == red
 	     && child -> getParent() -> getLeft() == child) ) {
     //rotate through parent
+    Node * sibling = child -> getSibling();
+    Node * parent = child -> getParent();
+    Node * sChild = NULL;
+    Color pColor = parent -> getColor();
+    Color sColor = sibling -> getColor();
+    if (child -> getSLC() -> getColor() == red) {
+      sChild = child -> getSLC();
+    } else {
+      sChild = child -> getSRC();
+    }
     
+    case4(child -> getSibling()); //we are rotating the sibling through the parent not the child node
+    //switch P and S color
+    parent -> setColor(sColor);
+    sibling -> setColor(pColor);
+    sChild -> setColor(black);
   }
   
 }
@@ -374,12 +421,18 @@ void case4(Node * child) {
   //tree rotation through parent
   Node * parent = child -> getParent();
   Node * grand = child -> getGrand();
-  if (child -> getParent() -> getRight() == child) { //this is a right, which implies that parent is a left (but only in insertion case 4)
+  if (child -> getParent() -> getRight() == child) { //this is a right, which implies that parent is a left (but only in insertion case 4) (update: fixed to check if parent is a left or right)
     Node * c1 = parent -> getLeft();
     Node * c2 = child -> getLeft();
     Node * c3 = child -> getRight();
     
-    if (grand) grand -> setLeft(child);
+    if (grand) {
+      if (grand -> getLeft() == parent) {
+	grand -> setLeft(child);
+      } else {
+	grand -> setRight(child);
+      }
+    }
     child -> setParent(grand);
     
     child -> setLeft(parent);
@@ -399,7 +452,13 @@ void case4(Node * child) {
     Node * c4 = child -> getRight();
     Node * c5 = parent -> getRight();
 
-    if (grand) grand -> setRight(child);
+    if (grand) {
+      if (grand -> getRight() == parent) {
+	grand -> setRight(child);
+      } else {
+	grand -> setLeft(child);
+      }
+    }
     child -> setParent(grand);
 
     child -> setRight(parent);
@@ -518,7 +577,7 @@ void printAsTree(Node * child, int depth) {
     }
     cout << "|--- " << child -> getData();
     child -> coutColorASCII();
-    //if (child -> getParent()) cout << child -> getParent() -> getData();
+    if (child -> getParent()) cout << child -> getParent() -> getData();
     cout << endl;
     if (child -> getLeft() != NULL) { //left
       printAsTree(child -> getLeft(), depth + 1);
