@@ -25,7 +25,7 @@ void case3del(Node * & root, Node * child);
 
 void insertion(Node * & root, Node * current, int data);
 void insertionCases(Node * & root, Node * child);
-void case4(Node * child); //tree rotation around parent
+void case4(Node * & root, Node * child); //tree rotation around parent
 void case5(Node * & root, Node * child); //tree rotation around grandparent.
 
 Node * search(Node * root, int searchFor);
@@ -107,14 +107,25 @@ void deletion(Node * & root, Node * found) {
 }
 
 void leafRemove(Node * & root, Node * found) {
-  //fixing parent ptrs
-  if (found -> getParent() -> getLeft() == found) { //comparing ptrs, this is a left child
-    found -> getParent() -> setLeft(NULL);
-  } else { //this has gotta be a right child
-    found -> getParent() -> setRight(NULL);
+  Node * parent = found -> getParent();
+  
+  //recoloring
+  Color myColor = found -> getColor();
+  Color childColor = black; //since this is a leaf, it is going to turn into a nil node
+  
+  if (myColor == red && childColor == black) {
+    //done
+  } else if (myColor == black && childColor == black) {
+    deletionCases(root, found);
   }
-  found -> setColor(black);
-  deletionCases(root, found);
+  
+  //fixing parent ptrs
+  if (parent -> getLeft() == found) { //comparing ptrs, this is a left child
+    parent -> setLeft(NULL);
+  } else { //this has gotta be a right child
+    parent -> setRight(NULL);
+  }
+  
   delete found;
 }
 
@@ -123,7 +134,39 @@ void oneChildRemove(Node * & root, Node * found) {
   if (found != root) {//root has a special case for removing
     
     Node * child = NULL;
+    Node * parent = NULL;
 
+    if (found -> getLeft() != NULL && found -> getRight() == NULL) { //if there is a single left child
+      child = found -> getLeft();
+    } else if (found -> getRight() != NULL && found -> getLeft() == NULL) { //if there is a single right child
+      child = found -> getRight();
+    } else {
+      Node * temp = new Node();
+      temp -> setParent(found);
+      temp -> setData(-100);
+      found -> setRight(temp);
+      temp -> setColor(black);
+      child = temp;
+      cout << "..." << endl;
+    }
+    
+    //recoloring
+    Color myColor = found -> getColor();
+    Color childColor = black;
+    if (child) {
+      childColor = child -> getColor();
+    } else {
+      childColor = black;
+    }
+    if (myColor == red && childColor == black) {
+      //done
+    } else if (myColor == black && childColor == red) {
+      child -> setColor(black);
+      
+    } else if (myColor == black && childColor == black && child) {
+      deletionCases(root, child);
+    }
+    
     //parent ptr repair
     if (found -> getLeft() != NULL && found -> getRight() == NULL) { //if there is a single left child
       child = found -> getLeft();
@@ -155,23 +198,6 @@ void oneChildRemove(Node * & root, Node * found) {
 	found -> getParent() -> setRight(NULL);
       }
       
-    }
-    
-    //recoloring
-    Color myColor = found -> getColor();
-    Color childColor = black;
-    if (child) {
-      childColor = child -> getColor();
-    } else {
-      childColor = black;
-    }
-    if (myColor == red && childColor == black) {
-      //done
-    } else if (myColor == black && childColor == red) {
-      child -> setColor(black);
-      
-    } else if (myColor == black && childColor == black && child) {
-      deletionCases(root, child);
     }
     
     delete found;
@@ -212,22 +238,26 @@ void oneChildRemove(Node * & root, Node * found) {
   }
 }
 
-void deletionCases(Node * & root, Node * child) {  
+void deletionCases(Node * & root, Node * child) { //"child" is the one that moved into the original nodes spot 
   
   //case 1
   if (child == root) { //N is new root
     //done
     return;
   } //case 2
-  else if (child -> getSibling() -> getColor() == red) {
+  else if (child -> getSibling() && child -> getSibling() -> getColor() == red) {
     
     //tree rotation around parent
-    case4(child -> getSibling());
+    cout << "case2" << endl;
+    case4(root, child -> getSibling());
     //call case 3
     case3del(root, child);
     
   } //case 3
-  else if (child -> getSibling() -> getColor() == black) {
+  else if ( ( child -> getSibling() == NULL || child -> getSibling() -> getColor() == black ) &&
+	   ( (child -> getLeft() == NULL && child -> getRight() == NULL) ||
+	     (child -> getLeft() -> getColor() == black && child -> getRight() -> getColor() == black) ) ) {
+    
     case3del(root, child);
     
   } //case 4
@@ -235,27 +265,29 @@ void deletionCases(Node * & root, Node * child) {
 	   && child -> getSibling() -> getColor() == black
 	   && (child -> getSLC() -> getColor() == black || child -> getSLC() == NULL)
 	   && (child -> getSRC() -> getColor() == black || child -> getSRC() == NULL)) {
+    cout << "case4" << endl;
     child -> getParent() -> setColor(black);
     child -> getSibling() -> setColor(red);
     
   } //case 5
   else if ( (child -> getSibling() -> getColor() == black //sibling is black
-	     && child -> getSLC() -> getColor() == black //sibling left child is black
+	     && ( child -> getSLC() == NULL || child -> getSLC() -> getColor() == black ) //sibling left child is black
 	     && child -> getSRC() -> getColor() == red //sibling right child is red
 	     && child -> getParent() -> getRight() == child) //node is right
 	    ||
 	    (child -> getSibling() -> getColor() == black
-	     && child -> getSRC() -> getColor() == black
+	     && (child -> getSRC() == NULL || child -> getSRC() -> getColor() == black)
 	     && child -> getSLC() -> getColor() == red
 	     && child -> getParent() -> getLeft() == child) ) {
     
     //rotate through sibling
+    cout << "case5" << endl;
     Node * sibling = child -> getSibling();
     sibling -> setColor(red);
     Node * src = child -> getSRC();
-    Node * slc = child -> getSLC();
+    Node * slc = child -> getSLC(); 
     if (child -> getParent() -> getRight() == child) { //node is a right (implies SRC == red)
-
+      //slc can be null
       src -> setColor(black);
 	
       Node * c3 = src -> getLeft();
@@ -270,6 +302,7 @@ void deletionCases(Node * & root, Node * child) {
       if (c3) c3 -> setParent(sibling);
             
     } else { //node is left (implies SLC == red)
+      //src can be null
       Node * c4 = slc -> getLeft();
       
       child -> getParent() -> setRight(slc);
@@ -284,14 +317,15 @@ void deletionCases(Node * & root, Node * child) {
     }
     
   } //case 6
-  else if ( (child -> getSibling() -> getColor() == black
-	     && child -> getSLC() -> getColor() == red
-	     && child -> getParent() -> getRight() == child)
+  else if ( (child -> getSibling() -> getColor() == black //sibling black
+	     && child -> getSLC() -> getColor() == red // SLC is red
+	     && child -> getParent() -> getRight() == child) //this is a right
 	    ||
 	    (child -> getSibling() -> getColor() == black
 	     && child -> getSRC() -> getColor() == red
 	     && child -> getParent() -> getLeft() == child) ) {
     //rotate through parent
+    cout << "case6" << endl;
     Node * sibling = child -> getSibling();
     Node * parent = child -> getParent();
     Node * sChild = NULL;
@@ -303,7 +337,7 @@ void deletionCases(Node * & root, Node * child) {
       sChild = child -> getSRC();
     }
     
-    case4(child -> getSibling()); //we are rotating the sibling through the parent not the child node
+    case4(root, child -> getSibling()); //we are rotating the sibling through the parent not the child node
     //switch P and S color
     parent -> setColor(sColor);
     sibling -> setColor(pColor);
@@ -313,7 +347,8 @@ void deletionCases(Node * & root, Node * child) {
 }
 
 void case3del(Node * & root, Node * child) {
-  child -> getSibling() -> setColor(red);
+  cout << "case3" << endl;
+  if (child -> getSibling()) child -> getSibling() -> setColor(red);
   deletionCases(root, child -> getParent()); //only call if parent is already black (kubirs advice)
   
 }
@@ -402,7 +437,7 @@ void insertionCases(Node * & root, Node * child) { //fixes the colors, and other
 	       (child -> getParent() -> getLeft() == child && child -> getGrand() -> getRight() == child -> getParent()) //this is left and parent is a right
 	       ) ) {
     Node * parent = child -> getParent();
-    case4(child);
+    case4(root, child);
     //CALL CASE 5 ON PARENT
     case5(root, parent);
     
@@ -416,11 +451,14 @@ void insertionCases(Node * & root, Node * child) { //fixes the colors, and other
   }
 }
 
-void case4(Node * child) {
+void case4(Node * & root, Node * child) {
   cout << "\ttree rotation thru parent" << endl;
   //tree rotation through parent
   Node * parent = child -> getParent();
   Node * grand = child -> getGrand();
+
+  if(parent == root) root = child;
+  
   if (child -> getParent() -> getRight() == child) { //this is a right, which implies that parent is a left (but only in insertion case 4) (update: fixed to check if parent is a left or right)
     Node * c1 = parent -> getLeft();
     Node * c2 = child -> getLeft();
@@ -433,6 +471,7 @@ void case4(Node * child) {
 	grand -> setRight(child);
       }
     }
+    
     child -> setParent(grand);
     
     child -> setLeft(parent);
