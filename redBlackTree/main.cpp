@@ -2,7 +2,7 @@
 Author: Bryce Truong
 Date Created: 4/20/22
 Last Modified: 4/25/22
-This is a binary search tree.
+This is a red black binary search tree.
 */
 #include <iostream>
 #include <cstring>
